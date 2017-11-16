@@ -1,12 +1,13 @@
 .barre {
-background: grey;
-color: #FFF;
-border-radius: 0px;
+	background: grey;
+	color: #FFF;
+	border-radius: 0px;
 }
+
 .barre-sm { padding-top: 24px;
-padding-bottom: 24px; }
+	padding-bottom: 24px; }
 
 .h1 small {
-font-size: 24px;
+	font-size: 24px;
 }
 
