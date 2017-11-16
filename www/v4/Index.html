@@ -16,7 +16,7 @@
    	<link rel="stylesheet" href="./css/index.css">
 
 <!-- fichiers javascript -->
-    <script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
+    <script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
     <script type="application/javascript" src="./js/bootstrap.min.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,8 +26,9 @@
 <!-- corps de texte -->
 	<body>
 		<div class="container">
-			<div class="row">
-				<div class="col-md-offset-5 col-md-4">
+<!-- page de connexion -->
+			<div id="connexion" class="row centered-form">
+				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
 					<form class="form-login" method="post" action="php/connexion.php">
 						<h4>Bienvenue sur U'POP</h4>
 						<input type="text" id="userName" name="userName" class="form-control input-sm chat-input" placeholder="Pseudo" />
@@ -38,11 +39,96 @@
 							<span class="group-btn">  
 								<br>
 								<input href="#" class="bouton" type="submit" name="connexion" value="Se connecter">
+								
 							</span>
 						</div>
 					</form>
+					<button class="bouton" onclick="boutonClick(event)">Inscription</button>
+				</div>
+			</div>
+			
+<!-- page d'inscription -->
+			<div id="inscription" class="row centered-form">
+				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+					<div class="row panel panel-default centered-form">
+						<div class="panel-heading">
+							<h3 class="panel-title">Formulaire d'inscription</h3>
+						</div>
+						<div class="panel-body">
+							<form role="form">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Login" id="loginUser" class="form-control input-sm" placeholder="Login">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Mot de passe" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Mot de passe 2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Nom" id="nomUser" class="form-control input-sm" placeholder="Nom">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Prénom" id="prenomUser" class="form-control input-sm" placeholder="Prénom">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="Genre" id="genreUser" class="form-control input-sm" placeholder="Genre  (H/F)">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="Date de naissance" id="dateNaissanceUser" class="form-control input-sm" placeholder="Date de naissance">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Adresse" id="adresseUser" class="form-control input-sm" placeholder="Adresse Postale">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="Code Postal" id="cpUser" class="form-control input-sm" placeholder="Code Postal">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="Ville" id="villeUser" class="form-control input-sm" placeholder="Ville">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="E-mail" id="mailUser" class="form-control input-sm" placeholder="E-mail">
+									</div>
+								</div>
+								<input type="submit" value="Validation" class="bouton">
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</body>
+	<script>
+		$(document).ready(function()
+    {
+        $("#inscription").hide(); 
+    });
+
+	function boutonClick(event)
+    {
+        $("#connexion").hide(400);
+        $("#inscription").show(400);
+    }
+	</script>
 </html>

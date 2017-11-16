@@ -4,12 +4,11 @@ body {
   background-repeat : no-repeat;
   -webkit-font-smoothing: antialiased;
   font: normal 14px Roboto,arial,sans-serif;
-}
+  }
 
 .container {
     padding: 25px;
-    position: fixed;
-	opacity : 0.9;
+    opacity : 0.9;    
 }
 
 
@@ -47,5 +46,5 @@ h4 {
 	border-radius:8px;
 	background:grey;
 	font:bold 13px Arial;
-	color:#fff;
-
+    color:#fff;
+}
