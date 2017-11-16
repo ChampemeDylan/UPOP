@@ -41,9 +41,6 @@ ul {
   text-decoration : underline;
 }
 
-
-
-
 .imgButton {
   max-width : 45px;
   max-height : 45px;
@@ -55,12 +52,17 @@ ul {
   max-width : 100px;
   max-height : 100px;  
 
-
 }
-
 
 .menu{
 
   background-color: rgb(250,250,110);
+
+}
+
+.fond{
+
+  background-color: rgba(203,208,211,0.2);
+  box-shadow: -2px 1px 4px 12px rgba(203,208,211,0.2);
 
 }
