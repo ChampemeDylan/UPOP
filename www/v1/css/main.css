@@ -1,0 +1,37 @@
+html {
+  font-family     : "Helvetica";
+  text-align      : justify;
+}
+
+ul {
+  text-align      : left;
+}
+
+.imgButton {
+  max-width       : 45px;
+  max-height      : 45px;
+}
+
+.imgCV {
+  max-height      : 150px;
+  max-width       : 150px;
+}
+
+.textColor {
+  font-size       : 10px;
+  color           : grey;
+}
+
+.titleCV {
+  font-size       : 25px;
+  text-decoration : underline;
+}
+
+.title2CV {
+  font-size       : 25px;
+}
+
+.titleCateg {
+  font-size       : 15px;
+  text-decoration : underline;
+}
