@@ -28,19 +28,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-5 col-md-4">
-					<div class="form-login">
+					<form class="form-login" method="post" action="php/connexion.php">
 						<h4>Bienvenue sur U'POP</h4>
-						<input type="text" id="userName" class="form-control input-sm chat-input" placeholder="pseudo" />
+						<input type="text" id="userName" name="userName" class="form-control input-sm chat-input" placeholder="Pseudo" />
 						</br>
-						<input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="mot de passe" />
+						<input type="text" id="userPassword" name="userPassword" class="form-control input-sm chat-input" placeholder="Mot de passe" />
 						</br>
 						<div class="wrapper">
 							<span class="group-btn">  
 								<br>
-								<a href="#" class="bouton">Se connecter <i class="fa fa-sign-in"></i></a>
+								<input href="#" class="bouton" type="submit" name="connexion" value="Se connecter">
 							</span>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
