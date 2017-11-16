@@ -11,6 +11,7 @@
 <!-- feuilles de style -->
 	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./css/main.css"/>
+    <link rel="stylesheet" href="./css/figurines.css">
 
 <!-- fichiers javascript -->
     <script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
@@ -79,28 +80,35 @@
 			</div>
 			<div class="col-xs-12"><hr></div>
 		</div>
-<!--  -->
-		<div class="row fond" style="margin-top: 10px;">
+<!-- Modèle d'article -->
+<!-- /!\ A saupoudrer de requêtes SQL-->
+		<div class="row fond">
+	<!-- Image de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<img style="max-height: 80px; max-width: 80px; margin-right: 10px;" src="images/got1.jpg">
+				<img class="imageArticle" src="images/got1.jpg">
 			</div>
+	<!-- Titre et description de la figurine -->
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<p><b>Titre figurine</b></p>
 				<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
-				<p style="color: grey; font-size: smaller;">Réf : 01010101</p>
+				<p class="refColor">Réf : 01010101</p>
 			</div>
+	<!-- Nombre d'articles en stock -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
 				<p>En stock</p>
 			</div>
+	<!-- Prix de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
 				<p>Prix</p>  
 			</div>
+	<!-- Bouton d'ajout au panier -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
 				<button>Add Cart</button>
 			</div>
 		</div>
 		<div class="col-xs-12"><hr></div>
 	</div>
+<!-- Fin Modèle d'article -->
 <!-- fin contenu de la page -->
 
 </body>
