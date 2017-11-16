@@ -10,10 +10,8 @@ body {
     margin-top: 20px;
 }
 
-
 .image1 {
 	width: 100%;
-    max-height: 350px;
 }
 
 .image2 {
@@ -98,3 +96,4 @@ body {
     background-color: #fff;
     border-color: #fff;
 }
+
