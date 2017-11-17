@@ -165,7 +165,7 @@ Page figurine :
 Modification du modèle de figurine 
 
 Page accueil :
-suppresion du caroussel = a la place vidéo (je pose le code vidéo - anis/jc télécharge la vidéo)
+suppresion du caroussel = a la place vidéo (je pose le code vidéo - anis/jc télécharge la vidéo) dans le container
 Remplacé deadpool par un caroussel
 
 Page contact : 
