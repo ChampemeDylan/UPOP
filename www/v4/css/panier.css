@@ -1,13 +1,14 @@
-#total{
+.total{
 
-  text-align: right;
+	position: absolute;
+	margin: 
 
 }
 
-#commander{
+.commander{
 
   position: absolute;
-  margin-left: 280px;
+  margin-top: 80px;
 
 }
 
