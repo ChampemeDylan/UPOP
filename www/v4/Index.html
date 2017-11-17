@@ -29,21 +29,20 @@
 <!-- page de connexion -->
 			<div id="connexion" class="row centered-form">
 				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-					<form class="form-login" method="post" action="php/connexion.php">
+					<form class="form-login" method="post" action="php/connexion.php"><!-- appel du php de connexion -->
 						<h4>Bienvenue sur U'POP</h4>
-						<input type="text" id="userName" name="userName" class="form-control input-sm chat-input" placeholder="Pseudo" />
+						<input type="text" id="loginUser" name="loginUser" class="form-control input-sm chat-input" placeholder="Pseudo" />
 						</br>
-						<input type="password" id="userPassword" name="userPassword" class="form-control input-sm chat-input" placeholder="Mot de passe" />
+						<input type="password" id="passwordUser" name="passwordUser" class="form-control input-sm chat-input" placeholder="Mot de passe" />
 						</br>
 						<div class="wrapper">
 							<span class="group-btn">  
 								<br>
 								<button href="#" class="btn" type="submit" name="connexion">Se connecter</button>
-								<button class="btn" type="button" onclick="boutonClick(event)">Inscription</button>
+								<button class="btn" type="button" onclick="boutonClick(event)">Inscription</button><!-- appel fonction de bascule sur div inscription -->
 							</span>
 						</div>
-					</form>
-					
+					</form>					
 				</div>
 			</div>
 			
@@ -55,7 +54,7 @@
 							<h3 class="panel-title">Formulaire d'inscription</h3>
 						</div>
 						<div class="panel-body">
-							<form role="form" method="post" action="/php/inscription.php">
+							<form role="form" method="post" action="/php/inscription.php"><!-- appel du php d'inscription -->
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
 										<input type="text" name="loginUser" id="loginUser" class="form-control input-sm" placeholder="Login">
@@ -63,12 +62,12 @@
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="password User" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
+										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
+										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
@@ -83,12 +82,15 @@
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="genreUser" id="genreUser" class="form-control input-sm" placeholder="Genre  (H/F)">
+										<select name="genreUser" id="genreUser" class="form-control input-sm">
+											<option value="M">Masculin</option>
+											<option value="F">Féminin</option>
+										</select>
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="dateNaisssanceUser" id="dateNaissanceUser" class="form-control input-sm" placeholder="Date de naissance">
+										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" placeholder="Date de naissance">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
@@ -98,7 +100,7 @@
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="cpUser" id="cpUser" class="form-control input-sm" placeholder="Code Postal">
+										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" placeholder="Code Postal">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -108,11 +110,11 @@
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="mailUser" id="mailUser" class="form-control input-sm" placeholder="E-mail">
+										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" placeholder="E-mail">
 									</div>
 								</div>
 								<button class="btn" type="submit">Valider</button>
-								<button class="btn" onclick="boutonClick2(event)" type="button">Connexion</button>
+								<button class="btn" onclick="boutonClick2(event)" type="button">Connexion</button><!-- appel fonction de bascule sur div connexion -->
 							</form>
 						</div>
 					</div>
@@ -121,17 +123,20 @@
 		</div>
 	</body>
 	<script>
-		$(document).ready(function()
+	//cache par défaut la div d'inscription
+	$(document).ready(function()
     {
         $("#inscription").hide(); 
     });
 
+	//bascule de connexion à inscription
 	function boutonClick(event)
     {
         $("#connexion").hide(400);
         $("#inscription").show(400);
     }
 
+	//bascule d'inscription à connexion
 	function boutonClick2(event)
     {
         $("#inscription").hide(400);
