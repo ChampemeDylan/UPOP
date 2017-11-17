@@ -1,0 +1,173 @@
+1 - prorisé les tâches
+2 - Définir précisément les objectifs
+3 - Clarifier les rôles
+4 - Prévoir des retours réguliers avec les acteurs
+5 - S'appuyer sur un language et des méthodes de travail partagés
+
+Objectif 
+
+Planifier - Prévoir - Ajuster
+Definition des objectifs
+Cohésion d'équipe
+Délégation
+
+
+Chef de projet : Camille 
+Analyste : Ken et Matthias
+Responsable diapo mise en forme : Anis
+
+Sujet : Boutique en ligne (vente privée) - U'POP
+
+1 page : page de connexion
+1 page : accueil
+1 page : articles
+1 page : panier
+1 page : compte
+1 page : contact
+Page adminstrateur pour ajouté des produits (menu caché - gestion client et article)
+
+Tâches a réalisés
+MCD - visuel
+Structure du site
+Style visuel du site
+
+BONUS Modules  : nombre d'article affiché, sous forme de listes ou vignette / croissant-decroissant / option personnalisation / 
+formulaire modification d'adresse / modification validation du panier-réservé 48h (si on a le temps)
+
+
+		Envie de faire 			Pas envie de Faire
+Matthias		SQL/JQUERY			CSS (couleur)
+JC		SQL/JQUERY			Algo
+Camille		-				SQL	
+Anis		SQL/HTML/CSS/JQUERY		-
+Ken		-				JQUERY
+Dylan		SQL/HTML/CSS/BOOSTRAP		-				
+
+
+4 familles de 3 objets : 
+1 - Pop Série (GOT, Breaking Bad, Lost )
+2 - Pop Jeux vidéo (The witcher, Mario, Zelda)
+3 - Pop Animés (Pokémon, Dragon Ball, South Park)
+4 - Pop Film (Star Wars, Harry Potter, Seigneur des Anneaux)
+
+
+Base de données :
+Compteur de réservation du panier (4jours)
+
+Graphisme : 
+
+Site épurée
+Fond blanc 
+navbar simple et épuré 
+Logo par articles : 
+Série : télé
+Jeux vidéo : manette
+Animés :  tête pikachu
+Film : bande de film
+Trait centré grisé entre bloque d'articles
+
+
+
+Jour 1 : 
+- Mise en place d'une base de donnée : 
+- Database avec les tables réalisé
+- MCD / Merise 
+
+- Mise en place de la structure du site internet :  (Voir fichier croquis du site complet)
+- Icon réalisé
+- Image et présentation de chacun des produits récupéré 
+
+
+
+Jour 2
+
+OBJECTIF BASE DE DONNEES  :
+INSERT (remplir la base des données avec les produits)
+SELECT
+CONDITIONS ET ALGO
+
+OBJECTIF STRUCTURE SITE  :
+INSTALLATION HTML/CSS + structure des autres pages
+
+
+Couleur de base : NOIR GRIS VERT
+
+
+Jour 2 effectuée : 
+Structure du de la page d'accueil/connexion HTML/CSS OK
+TOOLBAR TERMINEE + Structure des pages OK
+Structure de la page : ACCUEIL (CSS à finir)
+Structure de la page : PANIER OK
+Structure de la page : contact OK
+Structure de la page FIGURINE : à finir
+
+
+
+PHP : 
+Connexion du PHP au MySQL
+récupération des données en SQL avec la Base
+Insertion de données
+Préparation de la page ADMIN (SQL)
+Remplissage de la base de données 
+
+
+
+Jour 3 : 
+OBJECTIF  STRUCTURE SITE :
+Synthétisé les CSS/HTML
+Finir les modèles de BOX
+Page compte a créer
+
+OBJECTIF BASE DE DONNEE :
+Remplir catégorie commande articles
+Finir page admin
+
+Jour 3 effectuée :
+Mise en page et structure du site HTML/CSS terminée
+Fusion des différents CSS (Main.css : qui est le CSS général et des CSS spécifiques)
+Mise en plage des fichiers sur GITHUB
+
+
+
+Jour 4 : 
+Page de connexion 
+(PHP utilisateur dans la base)
+Créer page d'inscription - reste a faire communiqué
+harmonisation du site
+
+Page de compte structure du site
+Page d'administrateur - à mettre en harmonisation
+
+Page CSS main.css en place 
+Uniformisé tout les CSS du site
+Rectification de la page panier - a terminé
+
+Recupération des données articles
+Requete SQL
+Partie connexion PHP (créer une sesison)
+Mise en place du diaporama
+
+Bloque modele page figurine
+Nettoyage code
+
+Jour 5 a effectuée :
+PHP sur toute le site a réalisée
+
+Diaporama + cahier des chages
+Rectification a terminée sur  la page panier
+Page d'admnistration a terminer
+
+Page accueil :
+suppresion du caroussel = a la place vidéo (je pose le code vidéo - anis/jc télécharge la vidéo)
+Remplacé deadpool par un caroussel
+
+Page contact : 
+Enlevé la bordure grise (optimiser à la forme du site)
+Adresse = panel panel-default (intégrer)
+
+
+Page compte : 
+Structure de page a réaliser concernant l'historique du panier
+
+Navbar : ajouter un bouton déconnexion (en option)
+Fixé en haut en de lécran - même lorsque tu scrolls
