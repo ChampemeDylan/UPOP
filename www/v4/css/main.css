@@ -16,17 +16,13 @@ ul {
   text-align      : left;
 }
 
-.imgButton {
-  max-width       : 45px;
-  max-height      : 45px;
-}
 
 .imgButton2 {
   max-width       : 100px;
   max-height      : 100px;
 }
 
-.imgCV {
+/*.imgCV {
   max-height      : 150px;
   max-width       : 150px;
 }
@@ -43,7 +39,7 @@ ul {
 
 .title2CV {
   font-size       : 25px;
-}
+}*/
 
 .titleCateg {
   font-size       : 15px;
@@ -51,8 +47,8 @@ ul {
 }
 
 .imgButton {
-  max-width : 45px;
-  max-height : 45px;
+  max-width : 55px;
+  max-height : 55px;
   
 }
 
@@ -104,3 +100,4 @@ ul {
   margin-bottom: 10px;
   
 }
+
