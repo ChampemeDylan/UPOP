@@ -150,7 +150,20 @@ Mise en place du diaporama
 Bloque modele page figurine
 Nettoyage code
 
+
+
 Jour 5 a effectuée :
+Page figurine : ok
+Modification du modèle de figurine ok
+
+Page accueil : ok
+suppresion du caroussel = a la place vidéo (je pose le code vidéo - anis/jc télécharge la vidéo) dans le container ok
+Remplacé deadpool par un caroussel ok
+
+Page contact : ok
+Enlevé la bordure grise (optimiser à la forme du site)   ok
+Adresse = panel panel-default (intégrer)   ok
+
 PHP sur toute le site a réalisée
 
 Diaporama + cahier des chages
@@ -160,18 +173,6 @@ Rectification a terminée
 
 Page d'admnistration :
 a terminer
-
-Page figurine :
-Modification du modèle de figurine 
-
-Page accueil :
-suppresion du caroussel = a la place vidéo (je pose le code vidéo - anis/jc télécharge la vidéo) dans le container
-Remplacé deadpool par un caroussel
-
-Page contact : 
-Enlevé la bordure grise (optimiser à la forme du site)
-Adresse = panel panel-default (intégrer)
-
 
 Page compte : 
 Structure de page a réaliser concernant l'historique du panier
@@ -186,3 +187,18 @@ Journée 5 : REALISEE
 La modification de la Navbar : centrée icone + fixée la navbar
 magin-top en place sur la navbar : remise en place des structures de page
 
+Page contact : 
+Enlevé la bordure grise (optimiser à la forme du site)
+Adresse = panel panel-default (intégrer)
+
+Page figurine :
+Modification du modèle de figurine 
+
+Page accueil :
+suppresion du caroussel = a la place vidéo (je pose le code vidéo - anis/jc télécharge la vidéo) dans le container 
+Remplacé deadpool par un caroussel 
+
+
+PHP : 
+page d'inscription
+page gestion
