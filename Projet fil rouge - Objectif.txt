@@ -163,10 +163,11 @@ Remplacé deadpool par un caroussel
 
 Page contact : 
 Enlevé la bordure grise (optimiser à la forme du site)
+Adresse = panel panel-default (intégrer)
 
 
 Page compte : 
 Structure de page a réaliser concernant l'historique du panier
 
 Navbar : ajouter un bouton déconnexion (en option)
-
+Fixé en haut en de lécran - même lorsque tu scrolls
