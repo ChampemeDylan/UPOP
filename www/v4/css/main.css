@@ -49,26 +49,19 @@ ul {
 .imgButton {
   max-width : 55px;
   max-height : 55px;
-  
+
 }
 
 .logoBar{
 
   max-width : 100px;
-  max-height : 100px;  
+  max-height : 100px;
 
 }
 
 .menu{
 
   background-color: rgba(254,212,73,0.5);
-
-}
-
-.fond{
-
-  background-color: rgba(203,208,211,0.2);
-  box-shadow: -2px 1px 4px 12px rgba(203,208,211,0.2);
 
 }
 
@@ -98,7 +91,7 @@ ul {
 .btn-primary{
   margin-left: 20px;
   margin-bottom: 10px;
-  
+
 }
 
 .container{
