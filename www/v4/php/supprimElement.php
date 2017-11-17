@@ -17,6 +17,7 @@ $description = $_POST['Description'];
 $prix = $_POST['Prix'];
 $univers = $_POST['Univers'];
 
+
 // On verifie si les données non nulles ne sont pas vides
 
 if(empty($_POST['Reference'])) {
@@ -25,23 +26,16 @@ if(empty($_POST['Reference'])) {
 	if(empty($_POST['Libelle'])) {
 		echo "Le libelle est vide.";
 	} else {
-		if(empty($_POST['Description'])) {
-			echo "La description est vide.";
+		$Requete = mysqli_query($mysqli,"SELECT * FROM FICHE_ARTICLE WHERE libelleUnivers = '".$univers."' AND refArticle = '".$reference."' AND libelleArticle = '".$libelle."'");
+		// si il y a un résultat, mysqli_num_rows() nous donnera alors 1
+		// si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
+		if(mysqli_num_rows($Requete) == 1) {
+			$bdd->exec('DELETE FROM FICHE_ARTICLE WHERE refArticle = "'.$reference.'"');
 		} else {
-			if(empty($_POST['Prix'])) {
-				echo "Le prix est vide.";
-			} else {
-				$Requete = mysqli_query($mysqli,"SELECT * FROM UNIVERS WHERE libelleUnivers = '".$univers."'");
-				// si il y a un résultat, mysqli_num_rows() nous donnera alors 1
-				// si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
-				if(mysqli_num_rows($Requete) == 0) {
-					echo "Cet univers n'existe pas.";
-				} else {
-					$bdd->exec('INSERT INTO FICHE_ARTICLE VALUES (\''.$reference.'\', \''.$libelle.'\', \''.$description.'\', '.$prix.', \''.$univers.'\')');
-				}
-			}
+			echo "Cet element n'existe pas.";
 		}
 	}
 }
+
 
 ?>
