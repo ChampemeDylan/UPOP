@@ -55,63 +55,64 @@
 							<h3 class="panel-title">Formulaire d'inscription</h3>
 						</div>
 						<div class="panel-body">
-							<form role="form">
+							<form role="form" method="post" action="/php/inscription.php">
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="Login" id="loginUser" class="form-control input-sm" placeholder="Login">
+										<input type="text" name="loginUser" id="loginUser" class="form-control input-sm" placeholder="Login">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="Mot de passe" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
+										<input type="text" name="password User" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="Mot de passe 2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
+										<input type="text" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="Nom" id="nomUser" class="form-control input-sm" placeholder="Nom">
+										<input type="text" name="nomUser" id="nomUser" class="form-control input-sm" placeholder="Nom">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="Prénom" id="prenomUser" class="form-control input-sm" placeholder="Prénom">
+										<input type="text" name="prenomUser" id="prenomUser" class="form-control input-sm" placeholder="Prénom">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="Genre" id="genreUser" class="form-control input-sm" placeholder="Genre  (H/F)">
+										<input type="text" name="genreUser" id="genreUser" class="form-control input-sm" placeholder="Genre  (H/F)">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="Date de naissance" id="dateNaissanceUser" class="form-control input-sm" placeholder="Date de naissance">
+										<input type="text" name="dateNaisssanceUser" id="dateNaissanceUser" class="form-control input-sm" placeholder="Date de naissance">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="Adresse" id="adresseUser" class="form-control input-sm" placeholder="Adresse Postale">
+										<input type="text" name="adresseUser" id="adresseUser" class="form-control input-sm" placeholder="Adresse Postale">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="Code Postal" id="cpUser" class="form-control input-sm" placeholder="Code Postal">
+										<input type="text" name="cpUser" id="cpUser" class="form-control input-sm" placeholder="Code Postal">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="Ville" id="villeUser" class="form-control input-sm" placeholder="Ville">
+										<input type="text" name="villeUser" id="villeUser" class="form-control input-sm" placeholder="Ville">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="E-mail" id="mailUser" class="form-control input-sm" placeholder="E-mail">
+										<input type="text" name="mailUser" id="mailUser" class="form-control input-sm" placeholder="E-mail">
 									</div>
 								</div>
 								<button class="btn" type="submit">Valider</button>
+								<button class="btn" onclick="boutonClick2(event)" type="button">Connexion</button>
 							</form>
 						</div>
 					</div>
@@ -129,6 +130,12 @@
     {
         $("#connexion").hide(400);
         $("#inscription").show(400);
+    }
+
+	function boutonClick2(event)
+    {
+        $("#inscription").hide(400);
+        $("#connexion").show(400);
     }
 	</script>
 </html>
