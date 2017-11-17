@@ -168,5 +168,5 @@ Enlevé la bordure grise (optimiser à la forme du site)
 Page compte : 
 Structure de page a réaliser concernant l'historique du panier
 
-Navbar : ajouter un bouton déconnexion
+Navbar : ajouter un bouton déconnexion (en option)
 
