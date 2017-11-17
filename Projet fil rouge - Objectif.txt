@@ -175,10 +175,6 @@ PHP sur toute le site a réalisée
 
 Diaporama + cahier des chages
 
-Navbar : ajouter un bouton déconnexion (en option)
-Fixé en haut en de lécran - même lorsque tu scrolls 
-infos bulles sur les icones
-
 Page d'admnistration : (ajout /suppr produit ok - modification produits en cours)
 a terminer
 
@@ -204,6 +200,11 @@ Rectification a terminée
 
 Page compte : 
 Structure de page a réaliser concernant l'historique du panier 
+
+Navbar : ajouter un bouton déconnexion (en option)
+Fixé en haut en de lécran - même lorsque tu scrolls 
+infos bulles sur les icones 
+----------------> a finalisé plus tard
 
 PHP : 
 page d'inscription
