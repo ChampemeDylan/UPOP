@@ -179,7 +179,7 @@ Navbar : ajouter un bouton déconnexion (en option)
 Fixé en haut en de lécran - même lorsque tu scrolls 
 infos bulles sur les icones
 
-Page d'admnistration :
+Page d'admnistration : (ajout /suppr produit ok - modification produits en cours)
 a terminer
 
 Journée 5 : REALISEE
@@ -193,6 +193,7 @@ Adresse = panel panel-default (intégrer)
 
 Page figurine :
 Modification du modèle de figurine 
+détourage des images (articles)
 
 Page accueil :
 suppresion du caroussel = a la place vidéo (je pose le code vidéo - anis/jc télécharge la vidéo) dans le container 
