@@ -10,9 +10,9 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 // On associe la valeur de l'input name='libelleUnivers' à la variable nom
-$loginUser = $_POST['loginUser'];
-$passwordUser = $_POST['passwordUser'];
-$passwordUser2 = $_POST['passwordUser2'];
+//$loginUser = $_SESSION['loginUser'];
+//$passwordUser = $_SESSION['passwordUser'];
+//$passwordUser2 = $_POST['passwordUser2'];
 $nomUser = $_POST['nomUser'];
 $prenomUser = $_POST['prenomUser'];
 $genreUser = $_POST['genreUser'];
@@ -21,19 +21,10 @@ $adresseUser = $_POST['adresseUser'];
 $cpUser = $_POST['cpUser'];
 $villeUser = $_POST['villeUser'];
 $mailUser = $_POST['mailUser'];
-// On insère des données dans notre table
-if ($passwordUser2===$passwordUser)
-	{
-	$bdd->exec('INSERT INTO fiche_user VALUES (\''.$loginUser.'\',\''.$nomUser.'\',\''.$prenomUser.'\',\''.$genreUser.'\',\''.$dateNaissanceUser.'\',\''.$passwordUser.'\',\''.$adresseUser.'\',\''.$cpUser.'\',\''.$villeUser.'\',\''.$mailUser.'\',0)');
-	}
-	else
-	{
-		echo '<script language="javascript">';
-		echo 'alert("Attention les 2 mots de passe ne sont pas identiques")';
-		echo '</script>';
-		header("Location: ../index.html"); // Redirection du navigateur
-		exit;
-	}
+
+// On update des données dans notre table
+	$bdd->exec("UPDATE fiche_user SET nomUser=\''.$nomUser.'\', prenomUser=\''.$prenomUser.'\', genreUser=\''.$genreUser.'\', dateNaissanceUser=\''.$dateNaissanceUser.'\', adresseUser=\''.$adresseUser.'\', cpUser=\''.$cpUser.'\', villeUser=\''.$villeUser.'\', mailUser=\''.$mailUser.'\' WHERE loginUser='simon' ");
+
 ?>
 <!-- FERMETURE DE LA BALISE PHP -->
 <!-- FIN FICHIER updateunivers.php -->

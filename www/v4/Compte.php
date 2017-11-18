@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="iso-8859-15" ?>
+<?php
+session_start();
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3c.org/TR/xhtml1/DTD/xtmlhtml1-strict.dtd">
 <html>
 	<head>
@@ -8,7 +11,7 @@
 		<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="./css/main.css"/>
 		<!-- fichiers javascript -->
-		<script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
+		<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
 		<script type="application/javascript" src="./js/bootstrap.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>U POP</title>
@@ -33,114 +36,101 @@
 					<li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a></li>
 					<li><a href="compte.html"><img class="imgButton" src="images/compte.png"></a></li>
 					<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a></li>
-					<li><a href="index.html"><img class="imgButton" src="images/compte.png"></a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 <!-- fin barre de navigation -->
 		<!-- contenu de la page -->
-		<div class="container center">
-			<div class="row">
-				<div class="col-xs-12 col-sm-8 col-md-4">
+		<div class="container">
+			<div class="row centered-form">
+				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Formulaire des données personnelles</h3>
+							<h3 class="panel-title">Compte de <?php echo $_SESSION['loginUser']; ?></h3>
+						</div>
+						<div class="panel-body">
+							<form role="form" method="post" action="/php/editCompte.php">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="nomUser" id="nomUser" class="form-control input-sm" value=<?php echo $_SESSION['nomUser']; ?>>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="prenomUser" id="prenomUser" class="form-control input-sm" value=<?php echo $_SESSION['prenomUser']; ?>>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<select name="genreUser" id="genreUser" class="form-control input-sm" value=<?php echo $_SESSION['genreUser']; ?>>
+											<option value="M">Masculin</option>
+											<option value="F">Féminin</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" value=<?php echo $_SESSION['dateNaissanceUser']; ?>>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="adresseUser" id="adresseUser" class="form-control input-sm" value=<?php echo $_SESSION['adresseUser']; ?>>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" value=<?php echo $_SESSION['cpUser']; ?>>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="villeUser" id="villeUser" class="form-control input-sm" value=<?php echo $_SESSION['villeUser']; ?>>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" value=<?php echo $_SESSION['mailUser']; ?>>
+									</div>
+								</div>
+								<button class="btn" type="submit">Valider</button>				
+							</form>
+						</div>
+					</div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Changement de mot de passe</h3>
 						</div>
 						<div class="panel-body">
 							<form role="form">
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="Nom" id="last_name" class="form-control input-sm" placeholder="Nom">
+										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" value=<?php echo $_SESSION['passwordUser']; ?>>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
-										<input type="text" name="Prénom" id="last_name" class="form-control input-sm" placeholder="Prénom">
+										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" value=<?php echo $_SESSION['passwordUser']; ?>>
 									</div>
-								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="Genre" id="last_name" class="form-control input-sm" placeholder="Genre  (H/F)">
-									</div>
-								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="Date de naissance" id="last_name" class="form-control input-sm" placeholder="Date de naissance">
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
-										<input type="text" name="Mot de passe" id="last_name" class="form-control input-sm" placeholder="Mot de passe">
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
-										<input type="text" name="Adresse" id="last_name" class="form-control input-sm" placeholder="Adresse Postale">
-									</div>
-								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="Code Postal" id="last_name" class="form-control input-sm" placeholder="Code Postal">
-									</div>
-								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="Ville" id="last_name" class="form-control input-sm" placeholder="Ville">
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
-										<input type="text" name="E-mail" id="last_name" class="form-control input-sm" placeholder="E-mail">
-									</div>
-								</div>
-								<input type="submit" value="Mettre à jour" class="btn btn-block">
-							</form>
-						</div>
-					</div>
-				</div>
-						<div class="row centered-form">
-					<div class="col-xs-12 col-sm-8 col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-							<h3 class="panel-title">Suivi des commandes</h3>
-						</div>
-
-
-
-							<table class="table"> 
-
-							       <thead> 
-									    <tr> 
-									    	<th>Ref Commande</th> 
-									     	<th>Date</th> 
-									     	<th>Montant</th>
-									     	<th>État</th>
-									    </tr> 
-
-							        </thead> 
-
-
-							         <tbody> 
-							            <tr> 
-							                <td>A</td> 
-							                <td>B</td>
-							                <td>C</td> 
-							                <td>D</td>  
-							            </tr> 
-
-							         </tbody> 
-							</table>
-						
-						</div>
-				</div>
+                                </div>
+                                <button class="btn" type="submit">Valider</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 			</div>
-			</div>
-	</div>
 		</div>
-</div>
+	</div>
 	<!-- fin articles de la page -->
 </div>
 <!-- fin contenu de la page -->
+<script>
+
+
+</script>
+
 </body>
 </html>

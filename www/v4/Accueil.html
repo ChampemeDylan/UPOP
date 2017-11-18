@@ -26,105 +26,47 @@
 <body>
 
 <!-- barre de navigation -->
-	<nav class="navbar navbar-default menu">
-		<div class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container-fluid">
 
-			<div class="nav-header">
-				<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" name="button">
-				 	<img class="imgButton" src="images/iconeupop.png">
-			 	</button>
-			</div>
+            <div class="nav-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" name="button">
+                    <img class="imgButton" src="images/iconeupop.png">
+                </button>
+            </div>
 
-			<div class="collapse navbar-collapse navbar-left" id="menu">
-				<ul class="nav navbar-nav text-center">
-					<li><img class="logoBar" src="images/iconeupop.png"></li>
-					<li><a href="accueil.html" ><img class="imgButton" src="images/home.png"></a>Accueil</li>
-					<li><a href="figurines.html"><img class="imgButton" src="images/figurine.png"></a>Figurines</li>
-					<li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a>Contact</li>
-					<li><a href="compte.html"><img class="imgButton" src="images/compte.png"></a>Compte</li>
-					<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a>Panier</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+            <div class="collapse navbar-collapse navbar-left" id="menu">
+                <ul class="nav navbar-nav text-center">
+                    <li><img class="logoBar" src="images/iconeupop.png"></li>
+                    <li><a href="accueil.html" ><img class="imgButton" src="images/home.png"></a></li>
+                    <li><a href="figurines.html"><img class="imgButton" src="images/figurine.png"></a></li>
+                    <!-- <li><h2 id="titre">Accueil</h2></li> -->
+                    <li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a></li>
+                    <li><a href="compte.html"><img class="imgButton" src="images/compte.png"></a></li>
+                    <li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a></li>
+                    <li><a href="index.html"><img class="imgButton" src="images/compte.png"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 <!-- fin barre de navigation -->
+
 
 <!-- contenu de la page -->
 <div class="container">
 	<div class="row">
-		<!-- Carousel  -->
-    	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+	    <!-- Card -->
+
 		
-			<ol class="carousel-indicators">
-			  	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-			    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-			</ol>
-			<div class="carousel-inner">
-			    <div class="item active">
-			    	<img src="./images/background.jpg" alt="First slide">
-               
-                    <div class="header-text hidden-xs">
-                        <div class="col-md-12 text-center">
-                            <h2>
-                            	<span>Bienvenue sur <strong>U'POP</strong></span>
-                            </h2>
-                            <br>
-                            <h3>
-                            	<span>Le monde des POP'S est ici !</span>
-                            </h3>
-                            <br>
-                            <div class="">
-                            </div>
-                        </div>
-                    </div>
-			    </div>
-			    <div class="item">
-			    	<img src="./images/background.jpg" alt="Second slide">
-			    
-                    <div class="header-text hidden-xs">
-                        <div class="col-md-12 text-center">
-                            <h2>
-                              	<span>Bienvenue sur <strong>U'POP</strong></span>
-                            </h2>
-                            <br>
-                            <h3>
-                            	<span>Le monde des POP'S est ici !</span>
-                            </h3>
-                            <br>
-                            <div class="">
-                            </div>
-                        </div>
-                    </div>
-			    </div>
-			    <div class="item">
-			    	<img src="./images/background.jpg" alt="Third slide">
-			    	
-                    <div class="header-text hidden-xs">
-                        <div class="col-md-12 text-center">
-                            <h2>
-                             	<span>Bienvenue sur <strong>U'POP</strong></span>
-                            </h2>
-                            <br>
-                            <h3>
-                            	<span>Le monde des POP'S est ici !</span>
-                            </h3>
-                            <br>
-                            <div class="">
-                            </div>
-                        </div>
-                    </div>
-			    </div>
-			</div>
-			
-			<a class="controle-caroussel.gauche" href="#carousel-example-generic" data-slide="prev"></a>
-			<a class="right carousel-control" href="#carousel-example-generic" data-slide="next"></a>
+    <div class="container mt-4 mb-5">
+	
+		<!-- debut vidéo responsive -->
+		<div class="video-container">
+		<iframe src="https://www.youtube.com/embed/-K7xC2DiG7w" frameborder="0"></iframe> 
 		</div>
-	 </div>
-</div>
- 
-    <!-- Card -->
-    <div class="container container mt-4 mb-5">
+    </div>
+</div>	
+	<!-- fin vidéo responsive -->	
         <h3 class="display-4 text-center"> Présentation des Produits </h3>
         <hr class="bg-dark mb-4 w-25">
         <div class="row">
@@ -184,11 +126,55 @@
 					<li><i class="fa fa-check"></i> Les dessins-animés</li>
                 </ul>
             </div>
-            <div class="col-md-4 mt-5">
-                <img class="image2" src="./images/Deadpool.png" alt="Card image cap">
-            </div>
-        </div>
+			 <!-- Carousel  -->
+    	<div id="carousel-example-generic" class="carousel slide col-md-4" data-ride="carousel">
+		
+			<ol class="carousel-indicators">
+			  	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+			    <div class="item active">
+			    	<img src="./images/trooper.png" alt="First slide">
+               
+                    <div class="header-text hidden-xs">
+                        <div class="col-md-12 text-center">
+                            <div class="">
+                            </div>
+                        </div>
+                    </div>
+			    </div>
+			    <div class="item">
+			    	<img src="./images/deadpool.png" alt="Second slide">
+			    
+                    <div class="header-text hidden-xs">
+                        <div class="col-md-12 text-center">
+                            <div class="">
+                            </div>
+                        </div>
+                    </div>
+			    </div>
+			    <div class="item">
+			    	<img src="./images/king.png" alt="Third slide">
+			    	
+                    <div class="header-text hidden-xs">
+                        <div class="col-md-12 text-center">
+                            <div class="">
+                            </div>
+                        </div>
+                    </div>
+			    </div>
+			</div>
+			
+			<a class="controle-caroussel.gauche" href="#carousel-example-generic" data-slide="prev"></a>
+			<a class="right carousel-control" href="#carousel-example-generic" data-slide="next"></a>
+		</div>
+	 </div>
+</div>
+        </div
     </div>
+         
 
 <!-- fin articles de la page -->
 	

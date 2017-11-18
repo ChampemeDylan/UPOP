@@ -26,23 +26,25 @@
 <body>
 
 <!-- barre de navigation -->
-	<nav class="navbar navbar-default menu">
+	<nav class="navbar navbar-default navbar-fixed-top menu">
 		<div class="container-fluid">
 
 			<div class="nav-header">
 				<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" name="button">
-					<img class="imgButton" src="images/iconeupop.png">
-				</button>
+				 	<img class="imgButton" src="images/iconeupop.png">
+			 	</button>
 			</div>
 
 			<div class="collapse navbar-collapse navbar-left" id="menu">
 				<ul class="nav navbar-nav text-center">
 					<li><img class="logoBar" src="images/iconeupop.png"></li>
-					<li><a href="accueil.html" ><img class="imgButton" src="images/home.png"></a>Accueil</li>
-					<li><a href="figurines.html"><img class="imgButton" src="images/figurine.png"></a>Figurines</li>
-					<li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a>Contact</li>
-					<li><a href="compte.html"><img class="imgButton" src="images/compte.png"></a>Compte</li>
-					<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a>Panier</li>
+					<li><a href="accueil.html" ><img class="imgButton" src="images/home.png"></a></li>
+					<li><a href="figurines.html"><img class="imgButton" src="images/figurine.png"></a></li>
+                    <!-- <li><h2 id="titre">Accueil</h2></li> -->
+					<li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a></li>
+					<li><a href="compte.html"><img class="imgButton" src="images/compte.png"></a></li>
+					<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a></li>
+					<li><a href="index.html"><img class="imgButton" src="images/compte.png"></a></li>
 				</ul>
 			</div>
 		</div>
@@ -81,7 +83,7 @@
 		</div>
 <!-- Modèle d'article -->
 <!-- /!\ A saupoudrer de requêtes SQL-->
-		<div class="row fond">
+		<div class="row panel panel-default">
 	<!-- Image de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
 				<img class="imageArticle" src="images/got1.jpg">
@@ -89,7 +91,12 @@
 	<!-- Titre et description de la figurine -->
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<p><b>Titre figurine</b></p>
-				<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+				<a href="#describe" class="" data-toggle="collapse">Description...</a>
+				<div id="describe" class="collapse">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				</div>
 				<p class="refColor">Réf : 01010101</p>
 			</div>
 	<!-- Nombre d'articles en stock -->
