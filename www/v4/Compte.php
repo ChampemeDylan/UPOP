@@ -32,30 +32,30 @@ if(isset($_POST['validMdp']))
 <!-- Body -->
 	<body>
 <!-- barre de navigation -->
-		<nav class="navbar navbar-default navbar-fixed-top menu">
-			<div class="container-fluid">
-				<div class="nav-header">
-					<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" name="button">
-						<img class="imgButton" src="images/iconeupop.png">
-					</button>
-				</div>
+	<nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container-fluid">
+            <div class="nav-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" name="button">
+                    <img class="imgButton" src="images/iconeupop.png">
+                </button>
+            </div>
 
-				<div class="collapse navbar-collapse" id="menu">
-					<ul class="nav navbar-nav">
-						<li><img class="logoBar" src="images/iconeupop.png"></li>
-						<li><a href="accueil.html" ><img class="imgButton" src="images/home.png"></a></li>
-						<li><a href="figurines.html"><img class="imgButton" src="images/figurine.png"></a></li>
-						<!-- <li><h2 id="titre">Accueil</h2></li> -->
-						<li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a></li>
-						<li><a href="compte.php"><img class="imgButton" src="images/compte.png"></a></li>
-						<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="nav navbar-nav">
+                    <li><img class="logoBar" src="images/iconeupop.png"></li>
+                    <li><a href="accueil.html" ><img class="imgButton" src="images/home.png"></a></li>
+                    <li><a href="figurines.html"><img class="imgButton" src="images/figurine.png"></a></li>
+                    <!-- <li><h2 id="titre">Accueil</h2></li> -->
+                    <li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"></a></li>
+                	<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a></li>
+                    <li><a href="index.html"><img class="imgButton" src="images/deco.png"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 <!-- contenu de la page -->
 		<div class="container center">
