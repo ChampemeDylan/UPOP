@@ -1,15 +1,12 @@
 <?php
-/*
-Page: connexion.php
-*/
-session_start(); // à mettre tout en haut du fichier .php, cette fonction propre à PHP servira à maintenir la $_SESSION
+session_start(); // sert à maintenir la $_SESSION
 if(isset($_POST['connexion'])) { // si le bouton "Connexion" est appuyé
     // on vérifie que le champ "loginUser" n'est pas vide
-    // empty vérifie à la fois si le champ est vide et si le champ existe belle et bien (is set)
+    // empty vérifie à la fois si le champ est vide et si le champ existe
     if(empty($_POST['loginUser'])) {
         echo "Le champ loginUser est vide.";
     } else {
-        // on vérifie maintenant si le champ "Mot de passe" n'est pas vide"
+        // on vérifie maintenant si le champ "Mot de passe" n'est pas vide
         if(empty($_POST['passwordUser'])) {
             echo "Le champ Mot de passe est vide.";
         } else {
@@ -27,7 +24,8 @@ if(isset($_POST['connexion'])) { // si le bouton "Connexion" est appuyé
                 // si il y a un résultat, mysqli_num_rows() nous donnera alors 1
                 // si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
                 if(mysqli_num_rows($Requete) == 0) {
-                    echo "Le loginUser ou le mot de passe est incorrect, le compte n'a pas été trouvé.";
+                    echo '<body onLoad="alert(\'Désolé votre login ou votre mot de passe est invalide\')">';//"Le loginUser ou le mot de passe est incorrect, le compte n'a pas été trouvé.";
+                    echo '<meta http-equiv="refresh" content="0;URL=../index.html">';
                 } else {
                     // on ouvre la session avec $_SESSION:
                     $_SESSION['loginUser'] = $loginUser; // la session peut être appelée différemment et son contenu aussi peut être autre chose que le loginUser

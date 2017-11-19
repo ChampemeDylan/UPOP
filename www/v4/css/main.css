@@ -99,6 +99,11 @@ ul {
   margin-top: 150px;
 
 }
+
+.navbar{
+  border-bottom: 3px solid rgb(35, 31, 32);
+  border-top: 3px solid rgb(35, 31, 32);
+}
 /*
 .center{
 		margin-left: 300px;

@@ -114,7 +114,8 @@ body {
 
 .video-container iframe,  
 .video-container object,  
-.video-container embed {
+.video-container embed,
+.video-container video {
 	position: absolute;
 	top: 0;
 	left: 0;
