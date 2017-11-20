@@ -49,7 +49,7 @@ try
 			'mailUser' => $mailUser			
 		));
 
-		header("Location: ../index.html"); // Redirection du navigateur
+		header("Location: ../index.php"); // Redirection du navigateur
 	}
 	else
 	{
