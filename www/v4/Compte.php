@@ -6,11 +6,11 @@ if(isset($_POST['validCompte']))
 	include('php/editCompte.php');
 }
 
-if(isset($_POST['validMdp']))
+/*if(isset($_POST['validMdp']))
 {	
 	include('php/editMdp.php');
 }
- 
+*/ 
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3c.org/TR/xhtml1/DTD/xtmlhtml1-strict.dtd">
@@ -22,6 +22,7 @@ if(isset($_POST['validMdp']))
 		<!-- feuilles de style -->
 		<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="./css/main.css"/>
+		<link rel="stylesheet" href="./css/compte.css"/>		
 		<!-- fichiers javascript -->
 		<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
 		<script type="application/javascript" src="./js/bootstrap.min.js"></script>
@@ -70,17 +71,17 @@ if(isset($_POST['validMdp']))
 						<div class="panel-body">
 							<form role="form" method="post" action="Compte.php">
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
+									<div class="form-group"><!-- Nom -->
 										<?php echo '<input type="text" name="nomUser" id="nomUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['nomUser']).'">'; ?>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
+									<div class="form-group"><!-- Prenom -->
 										<?php echo '<input type="text" name="prenomUser" id="prenomUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['prenomUser']).'">'; ?>
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
+									<div class="form-group"><!-- Genre -->
 										<select name="genreUser" id="genreUser" class="form-control input-sm" value=<?php echo $_SESSION['genreUser']; ?>>
 											<option value="M">Masculin</option>
 											<option value="F">Féminin</option>
@@ -88,28 +89,41 @@ if(isset($_POST['validMdp']))
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
+									<div class="form-group"><!-- Date de naissance -->
 										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" value=<?php echo $_SESSION['dateNaissanceUser']; ?>>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
+									<div class="form-group"><!-- Adresse -->
 									<?php echo '<input type="text" name="adresseUser" id="adresseUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['adresseUser']).'">'; ?>
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
+									<div class="form-group"><!-- Code Postal -->
 										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" value=<?php echo $_SESSION['cpUser']; ?>>
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
+									<div class="form-group"><!-- Ville -->
 										<?php echo '<input type="text" name="villeUser" id="villeUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['villeUser']).'">'; ?>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
+									<div class="form-group"><!-- Mail -->
 										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" value=<?php echo $_SESSION['mailUser']; ?>>
+									</div>
+								</div>
+								<div class="panel-heading">
+									<h3 class="panel-title panel-title2">Changement de mot de passe</h3>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group"><!-- Mote de passe -->
+										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group"><!-- Confirmation Mot de passe -->
+										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmation Mot de passe">
 									</div>
 								</div>
 								<button class="btn" name="validCompte" type="submit">Valider</button>				
@@ -118,7 +132,7 @@ if(isset($_POST['validMdp']))
 					</div>
 
 <!-- Formulaire changement mot de passe -->
-					<div class="panel panel-default">
+<!--					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">Changement de mot de passe</h3>
 						</div>
@@ -138,6 +152,7 @@ if(isset($_POST['validMdp']))
 							</form>
 						</div>
 					</div>
+-->
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 

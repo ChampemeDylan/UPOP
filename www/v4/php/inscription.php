@@ -14,6 +14,14 @@ $cpUser = htmlentities($_POST['cpUser'], ENT_QUOTES, "ISO-8859-1");
 $villeUser = htmlentities($_POST['villeUser'], ENT_QUOTES, "ISO-8859-1");
 $mailUser = htmlentities($_POST['mailUser'], ENT_QUOTES, "ISO-8859-1");
 
+function hashPassword($password) {
+	$hash = 'sha512';
+	$salt = 'Upop Rules';
+	return hash_hmac($hash, $password, $salt);
+}
+
+$passwordUserCrypted = hashPassword($passwordUser); // mot de passe haché
+
 try
 {
 	// On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
@@ -33,7 +41,7 @@ if ($passwordUser2===$passwordUser)
 			'prenomUser' => $prenomUser,
 			'genreUser' => $genreUser,
 			'dateNaissanceUser' => $dateNaissanceUser,
-			'passwordUser' => $passwordUser,
+			'passwordUser' => $passwordUserCrypted,
 			'adresseUser' => $adresseUser,
 			'cpUser' => $cpUser,
 			'villeUser' => $villeUser,
