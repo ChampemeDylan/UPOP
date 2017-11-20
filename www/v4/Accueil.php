@@ -67,7 +67,7 @@ session_start();
 <!-- debut vidéo responsive -->
 		<div class="video-container">
             <!-- <iframe src="videos/StrangerThings2pops.mp4" frameborder="0"></iframe> -->
-            <video src="videos/coming soon sonic pops.mp4" type="video/mp4" autoplay loop >Prochainement</video>
+            <video src="videos/coming soon sonic pops.mp4" type="video/mp4" autoplay loop muted>Prochainement</video>
 		</div>
     </div>
 </div>	
