@@ -52,7 +52,7 @@ if(isset($_POST['validCompte']))
                 <ul class="nav navbar-nav navbar-right">
                 	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
                 	<li><a href="panier.php"><img class="imgButton" src="images/panier.png"></a></li>
-                    <li><a href="index.php"><img class="imgButton" src="images/deco.png"></a></li>
+                    <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
                 </ul>
             </div>
         </div>
