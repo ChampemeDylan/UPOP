@@ -63,7 +63,7 @@ try
 			$_SESSION['cpUser'] = $cpUser;
 			$_SESSION['villeUser'] = $villeUser;
 			$_SESSION['mailUser'] = $mailUser;
-			$_SESSION['passwordUser'] = $passwordUser;
+			$_SESSION['passwordUser'] = $passwordUserCrypted;
 			// echo a message to say the UPDATE succeeded
 			//echo $stmt->rowCount() . " records UPDATED successfully";
 		}
