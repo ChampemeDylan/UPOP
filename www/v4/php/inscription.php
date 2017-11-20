@@ -1,6 +1,5 @@
 <?php
 
-
 // On associe la valeur de l'input à la variable
 $loginUser = htmlentities($_POST['loginUser'], ENT_QUOTES, "ISO-8859-1");
 $passwordUser = htmlentities($_POST['passwordUser'], ENT_QUOTES, "ISO-8859-1");
@@ -14,23 +13,25 @@ $cpUser = htmlentities($_POST['cpUser'], ENT_QUOTES, "ISO-8859-1");
 $villeUser = htmlentities($_POST['villeUser'], ENT_QUOTES, "ISO-8859-1");
 $mailUser = htmlentities($_POST['mailUser'], ENT_QUOTES, "ISO-8859-1");
 
+// fonction de hashage du password
 function hashPassword($password) {
-	$hash = 'sha512';
-	$salt = 'Upop Rules';
-	return hash_hmac($hash, $password, $salt);
+    $hash = 'sha512'; // type de hash
+    $salt = 'Upop Rules'; // grain de sel pour le cryptage
+    return hash_hmac($hash, $password, $salt); // retourne le password hashé
 }
 
-$passwordUserCrypted = hashPassword($passwordUser); // mot de passe haché
+$passwordUserCrypted = hashPassword($passwordUser); // mot de passe hashé
 
 try
 {
-	// On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
+	//on se connecte à la base de données
 	$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// On insère des données dans notre table
-if ($passwordUser2===$passwordUser)
+	// On insère des données dans notre table
+	if ($passwordUser2===$passwordUser) //comparaison des 2 passwords rentrés
 	{
+		// on rentre les données du nouvel utilisateur dans la base de données
 		$sql="INSERT INTO fiche_user VALUES (:loginUser, :nomUser, :prenomUser, :genreUser, :dateNaissanceUser, :passwordUser, :adresseUser, :cpUser, :villeUser, :mailUser, 0)";
 		
 		$stmt = $bdd->prepare($sql);

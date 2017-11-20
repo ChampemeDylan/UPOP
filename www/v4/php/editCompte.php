@@ -1,13 +1,13 @@
 <?php
-//session_start();
 
+// fonction de hashage du password
 function hashPassword($password) {
-	$hash = 'sha512';
-	$salt = 'Upop Rules';
-	return hash_hmac($hash, $password, $salt);
+    $hash = 'sha512'; // type de hash
+    $salt = 'Upop Rules'; // grain de sel pour le cryptage
+    return hash_hmac($hash, $password, $salt); // retourne le password hashé
 }
 
-
+// On associe la valeur de l'input à la variable
 $loginUser = $_SESSION['loginUser'];
 $nomUser = htmlentities($_POST['nomUser'], ENT_QUOTES, "ISO-8859-1");
 $prenomUser = htmlentities($_POST['prenomUser'], ENT_QUOTES, "ISO-8859-1");
@@ -22,7 +22,7 @@ $passwordUser2 = htmlentities($_POST['passwordUser2'], ENT_QUOTES, "ISO-8859-1")
 
 try
 {
-	// connexion à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
+	//on se connecte à la base de données
 	$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
@@ -64,8 +64,7 @@ try
 			$_SESSION['villeUser'] = $villeUser;
 			$_SESSION['mailUser'] = $mailUser;
 			$_SESSION['passwordUser'] = $passwordUserCrypted;
-			// echo a message to say the UPDATE succeeded
-			//echo $stmt->rowCount() . " records UPDATED successfully";
+			
 		}
 	}
 }

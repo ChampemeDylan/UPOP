@@ -1,22 +1,21 @@
-<?xml version="1.0" encoding="iso-8859-15" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3c.org/TR/xhtml1/DTD/xtmlhtml1-strict.dtd">
+<!DOCTYPE html>
 
 <html>
+
 <!-- Header -->
-<head>
-	<meta charset='utf-8'>
-	<link rel="icon" type="image/png" href="Images\iconeupop.png"/>
-	<!-- feuilles de style -->
-	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="./css/main.css"/>
-	<link rel="stylesheet" href="./css/index.css"/>
-	<!-- fichiers javascript -->
-	<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
-	<script type="application/javascript" src="./js/bootstrap.min.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bienvenue sur U'POP</title>
-</head>
+	<head>
+		<meta charset='utf-8'>
+		<link rel="icon" type="image/png" href="Images\iconeupop.png"/>
+		<!-- feuilles de style -->
+		<link rel="stylesheet" href="./css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="./css/main.css"/>
+		<link rel="stylesheet" href="./css/index.css"/>
+		<!-- fichiers javascript -->
+		<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
+		<script type="application/javascript" src="./js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Bienvenue sur U'POP</title>
+	</head>
 
 <!-- corps de texte -->
 	<body>
@@ -64,61 +63,61 @@
 						<div class="panel-body">
 							<form role="form" method="post" action="/php/inscription.php"><!-- appel du php d'inscription -->
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
+									<div class="form-group"><!-- Login -->
 										<input type="text" name="loginUser" id="loginUser" class="form-control input-sm" placeholder="Login">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
+									<div class="form-group"><!-- Mot de passe -->
 										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
-										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
+									<div class="form-group"><!-- Confirmation Mot de passe -->
+										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe"><!-- format de type password -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
+									<div class="form-group"><!-- Nom -->
 										<input type="text" name="nomUser" id="nomUser" class="form-control input-sm" placeholder="Nom">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
+									<div class="form-group"><!-- Prenom -->
 										<input type="text" name="prenomUser" id="prenomUser" class="form-control input-sm" placeholder="Prénom">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<select name="genreUser" id="genreUser" class="form-control input-sm">
+									<div class="form-group"><!-- Genre -->
+										<select name="genreUser" id="genreUser" class="form-control input-sm"><!-- selection de choix -->
 											<option value="M">Masculin</option>
 											<option value="F">Féminin</option>
 										</select>
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" placeholder="Date de naissance">
+									<div class="form-group"><!-- Date de naissance -->
+										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" placeholder="Date de naissance"><!-- format de type date -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
+									<div class="form-group"><!-- Adresse -->
 										<input type="text" name="adresseUser" id="adresseUser" class="form-control input-sm" placeholder="Adresse Postale">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" placeholder="Code Postal">
+									<div class="form-group"><!-- Code Postal -->
+										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" placeholder="Code Postal"><!-- number limité à 5 caractères -->
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
+									<div class="form-group"><!-- Ville -->
 										<input type="text" name="villeUser" id="villeUser" class="form-control input-sm" placeholder="Ville">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
-										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" placeholder="E-mail">
+									<div class="form-group"><!-- Mail -->
+										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" placeholder="E-mail"><!-- format de type email -->
 									</div>
 								</div>
 								<button class="btn" type="submit">Valider</button>
