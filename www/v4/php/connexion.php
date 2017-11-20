@@ -4,11 +4,11 @@ if(isset($_POST['connexion'])) { // si le bouton "Connexion" est appuyé
     // on vérifie que le champ "loginUser" n'est pas vide
     // empty vérifie à la fois si le champ est vide et si le champ existe
     if(empty($_POST['loginUser'])) {
-        echo "Le champ loginUser est vide.";
+        header("Location: ../index.php?erreurlogin=bad_login");
     } else {
         // on vérifie maintenant si le champ "Mot de passe" n'est pas vide
         if(empty($_POST['passwordUser'])) {
-            echo "Le champ Mot de passe est vide.";
+            header("Location: ../index.php?erreurpass=bad_password");
         } else {
             // les champs sont bien posté et pas vide, on sécurise les données entrées par le membre:
             $loginUser = htmlentities($_POST['loginUser'], ENT_QUOTES, "ISO-8859-1"); // le htmlentities() passera les guillemets en entités HTML, ce qui empêchera les injections SQL
@@ -17,15 +17,14 @@ if(isset($_POST['connexion'])) { // si le bouton "Connexion" est appuyé
             $mysqli = mysqli_connect("localhost", "root", "root", "uPop");
             //on vérifie que la connexion s'effectue correctement:
             if(!$mysqli){
-                echo "Erreur de connexion à la base de données.";
+                header("Location: ../index.php?erreurbdd=error_bdd");
             } else {
                 // on fait maintenant la requête dans la base de données pour rechercher si ces données existe et correspondent:
                 $Requete = mysqli_query($mysqli,"SELECT * FROM FICHE_USER WHERE loginUser = '".$loginUser."' AND passwordUser = '".$passwordUser."'");
                 // si il y a un résultat, mysqli_num_rows() nous donnera alors 1
                 // si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
                 if(mysqli_num_rows($Requete) == 0) {
-                    echo '<body onLoad="alert(\'Désolé votre login ou votre mot de passe est invalide\')">';//"Le loginUser ou le mot de passe est incorrect, le compte n'a pas été trouvé.";
-                    echo '<meta http-equiv="refresh" content="0;URL=../index.html">';
+                    header("Location: ../index.php?erreurconnexion=error"); // Redirection du navigateur
                 } else {
                     // on ouvre la session avec $_SESSION:
                     $_SESSION['loginUser'] = $loginUser; // la session peut être appelée différemment et son contenu aussi peut être autre chose que le loginUser
@@ -41,7 +40,7 @@ if(isset($_POST['connexion'])) { // si le bouton "Connexion" est appuyé
                     $_SESSION['villeUser'] = $Row[8];
                     $_SESSION['mailUser'] = $Row[9];
                     
-                    header("Location: ../Accueil.html"); // Redirection du navigateur
+                    header("Location: ../Accueil.php"); // Redirection du navigateur
                     exit;
                 }
             }
