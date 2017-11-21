@@ -39,8 +39,10 @@ try
                 {
                 die('<br />Erreur : ' . $e->getMessage());
                 }
-
+                
+                //ancien code ( on se connecte a la base de données) :
                 //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960;charset=utf8', 'dbo708219960', 'dbo708219960');
+
                 $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 //on vérifie que la connexion s'effectue correctement
                 if(!$bdd){
