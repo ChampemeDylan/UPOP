@@ -16,7 +16,7 @@ session_start()
     <link rel="stylesheet" href="./css/figurines.css">
 
 <!-- fichiers javascript -->
-    <script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
+    <script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
     <script type="application/javascript" src="./js/bootstrap.min.js"></script>
 
 
@@ -60,61 +60,75 @@ session_start()
 		<div class="row text-center">
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<a href=""><img class="imgButton2" src="images/jeux.png"></br>Jeux Vidéos</a>
+				<a href="" class="filtre"><img class="imgButton2" src="images/jeux.png"></br><b>Jeux Vidéos</b></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<a href=""><img class="imgButton2" src="images/serie.png"></br>Séries</a>
+				<a href=""><img class="imgButton2" src="images/serie.png"></br><b>Séries</b></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL  ( href ) -->
-				<a href=""><img class="imgButton2" src="images/film.png"></br>Films</a>
+				<a href=""><img class="imgButton2" src="images/film.png"></br><b>Films</b></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<a href=""><img class="imgButton2" src="images/anime.png"></br>Animés</a>
+				<a href=""><img class="imgButton2" src="images/anime.png"></br><b>Animés</b></a>
 			</div>
 		</div>
-		<div class="col-xs-12"><hr></div>
+		<div class="col-xs-12"></div><br />
 <!-- fin de choix de la catégorie -->
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-<!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<h2>A remplir en fonction de la requête SQL</h2>
-			</div>
-			<div class="col-xs-12"><hr></div>
-		</div>
+		<?php
+			try
+			{
+				// On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
+				$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+			}
+			catch(Exception $e)
+			{
+				// En cas d'erreur, on affiche un message et on arrête tout
+			        die('Erreur : '.$e->getMessage());
+			}
+			// On récupère tout le contenu de la table
+			$reponse = $bdd->query('select fiche_article.refArticle,descriptifArticle,libelleArticle,fiche_article.libelleUnivers,stockArticle,prixArticle,libelleCategorie from fiche_article,univers_categorie,stock_article where fiche_article.libelleUnivers = univers_categorie.libelleUnivers and fiche_article.refArticle = stock_article.refArticle order by libelleCategorie;');
+			// On affiche chaque entrée une à une qu'on affiche
+			while ($donnees = $reponse->fetch())
+			{
+		?>
 <!-- Modèle d'article -->
 <!-- /!\ A saupoudrer de requêtes SQL-->
-		<div class="row panel panel-default">
-	<!-- Image de l'article -->
+		
+		<div class="row panel panel-default article <?php echo $donnees['libelleCategorie']?>">
+		<!-- Image de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<img class="imageArticle" src="images/got1.jpg">
+				<img class="imageArticle" src=<?php echo 'images/'.$donnees['refArticle'].'.png' ?>>
 			</div>
 	<!-- Titre et description de la figurine -->
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<p><b>Titre figurine</b></p>
-				<a href="#describe" class="" data-toggle="collapse">Description...</a>
-				<div id="describe" class="collapse">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				<p><b><?php echo $donnees['libelleArticle']; ?> (<?php echo $donnees['libelleUnivers']; ?>)</b></p>
+				<div id="describe">
+					<?php echo $donnees['descriptifArticle']; ?>
 				</div>
-				<p class="refColor">Réf : 01010101</p>
+				<p class="refColor"><b>Réf :</b> <?php echo $donnees['refArticle']; ?></p>
 			</div>
 	<!-- Nombre d'articles en stock -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<p>En stock</p>
+				<p><b>Stock</b></p>
+				<p><?php echo $donnees['stockArticle']; ?></p>
 			</div>
 	<!-- Prix de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<p>Prix</p>
+				<p><b>Prix</b></p>
+				<p><?php echo $donnees['prixArticle'].' €'; ?></p>
 			</div>
 	<!-- Bouton d'ajout au panier -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<button>Add Cart</button>
+				<button>Ajouter au panier</button>
 			</div>
 		</div>
+		<?php
+			}
+			$reponse->closeCursor(); // Termine le traitement de la requête
+		?>
 		<div><hr></div>
 <!-- Fin Modèle d'article -->
 	</div>
@@ -122,4 +136,7 @@ session_start()
 <!-- fin contenu de la page -->
 
 </body>
+<script>
+
+</script>
 </html>
