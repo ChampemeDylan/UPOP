@@ -27,6 +27,7 @@ sendmail_path = "C:\Wamp64\sendmail\sendmail.exe -t - -->
 
 session_start();
 
+require "./php/verifConnexion.php";
 /*
 	********************************************************************************************
 	CONFIGURATION
@@ -157,7 +158,7 @@ if (($err_formulaire) || (!isset($_POST['envoi'])))
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3c.org/TR/xhtml1/DTD/xtmlhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
 

@@ -1,6 +1,7 @@
-<?php
+<?php 
 session_start();
 
+require "./php/verifConnexion.php";
 
 // test bouton validCompte appuyé
 if(isset($_POST['validCompte']))
