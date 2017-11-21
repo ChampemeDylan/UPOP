@@ -1,8 +1,9 @@
 <?php 
 session_start();
+
+require "./php/verifConnexion.php";
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3c.org/TR/xhtml1/DTD/xtmlhtml1-strict.dtd">
+<!DOCTYPE html>
 
 
 <html>
