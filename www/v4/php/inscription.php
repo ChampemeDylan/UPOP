@@ -24,18 +24,20 @@ $passwordUserCrypted = hashPassword($passwordUser); // mot de passe hashé
 
 try
 {
-  //on se connecte à la base de données:
+
   try
   {
-    $bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+	//on se connecte à la base de données
+	// en local
+	$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+	
+	//en online
+	//$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
   }
   catch (Exception $e)
   {
   die('<br />Erreur : ' . $e->getMessage());
   }
-  //ancienne connexion a la base de donnée
-	//$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
-
 
 	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

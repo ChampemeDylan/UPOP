@@ -1,8 +1,12 @@
 <?php
 try
 {
-	// On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
-	$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'user');
+	//on se connecte à la base de données
+	// en local
+	$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+	
+	//en online
+	//$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
 }
 catch(Exception $e)
 {
