@@ -1,6 +1,4 @@
-<?php 
-session_start();
-?>
+<?xml version="1.0" encoding="iso-8859-15" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3c.org/TR/xhtml1/DTD/xtmlhtml1-strict.dtd">
 
@@ -39,39 +37,36 @@ session_start();
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav">
                     <li><img class="logoBar" src="images/iconeupop.png"></li>
-                    <li><a href="accueil.php" ><img class="imgButton" src="images/home.png"></a></li>
-                    <li><a href="figurines.php"><img class="imgButton" src="images/figurine.png"></a></li>
+                    <li><a href="accueil.html" ><img class="imgButton" src="images/home.png"></a></li>
+                    <li><a href="figurines.html"><img class="imgButton" src="images/figurine.png"></a></li>
                     <!-- <li><h2 id="titre">Accueil</h2></li> -->
-                    <li><a href="contact.php"><img class="imgButton" src="images/contact.png"></a></li>
+                    <li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
-                	<li><a href="panier.php"><img class="imgButton" src="images/panier.png"></a></li>
-                    <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
+                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"></a></li>
+                	<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a></li>
+                    <li><a href="index.html"><img class="imgButton" src="images/deco.png"></a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
-   <!-- fin barre de navigation -->
-
 
 <!-- contenu de la page -->
 <div class="container">
 	<div class="row">
 	    <!-- Card -->
 
-		
+
     <div class="container mt-4 mb-5">
-	
+
 <!-- debut vidéo responsive -->
 		<div class="video-container">
             <!-- <iframe src="videos/StrangerThings2pops.mp4" frameborder="0"></iframe> -->
-            <video src="videos/coming soon sonic pops.mp4" type="video/mp4" autoplay loop muted>Prochainement</video>
+            <video src="videos/coming soon sonic pops.mp4" type="video/mp4" autoplay loop muted >Prochainement</video>
 		</div>
     </div>
-</div>	
-	<!-- fin vidéo responsive -->	
+</div>
+<!-- fin vidéo responsive -->
         <h3 class="display-4 text-center"> Présentation des Produits </h3>
         <hr class="bg-dark mb-4 w-25">
         <div class="row">
@@ -119,7 +114,7 @@ session_start();
                 </p>
                 <p>
                 Nous suivons et partageons leur actualité depuis 2014, et sommes nous-même collectionneurs. Nous publions en permanence de nouvelles U'POP
-				(personnages de séries, films ou jeux vidéo, etc...). Nous traitons l'actualité des Funko Pop, enfin, nous publions régulièrement des articles 
+				(personnages de séries, films ou jeux vidéo, etc...). Nous traitons l'actualité des Funko Pop, enfin, nous publions régulièrement des articles
 				spécialisés : il y a par exemple nos conseils pour trouver des figurines U'POP sur notre sites composés en différents onglets.
                 <br>
 				Les différentes catégories présentent sur notre sites sont :
@@ -133,7 +128,7 @@ session_start();
             </div>
 			 <!-- Carousel  -->
     	<div id="carousel-example-generic" class="carousel slide col-md-4" data-ride="carousel">
-		
+
 			<ol class="carousel-indicators">
 			  	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
@@ -142,7 +137,7 @@ session_start();
 			<div class="carousel-inner">
 			    <div class="item active">
 			    	<img src="./images/trooper.png" alt="First slide">
-               
+
                     <div class="header-text hidden-xs">
                         <div class="col-md-12 text-center">
                             <div class="">
@@ -152,7 +147,7 @@ session_start();
 			    </div>
 			    <div class="item">
 			    	<img src="./images/deadpool.png" alt="Second slide">
-			    
+
                     <div class="header-text hidden-xs">
                         <div class="col-md-12 text-center">
                             <div class="">
@@ -162,7 +157,7 @@ session_start();
 			    </div>
 			    <div class="item">
 			    	<img src="./images/king.png" alt="Third slide">
-			    	
+
                     <div class="header-text hidden-xs">
                         <div class="col-md-12 text-center">
                             <div class="">
@@ -171,7 +166,7 @@ session_start();
                     </div>
 			    </div>
 			</div>
-			
+
 			<a class="controle-caroussel.gauche" href="#carousel-example-generic" data-slide="prev"></a>
 			<a class="right carousel-control" href="#carousel-example-generic" data-slide="next"></a>
 		</div>
@@ -179,12 +174,11 @@ session_start();
 </div>
         </div
     </div>
-         
+
 
 <!-- fin articles de la page -->
-	
+
 <!-- fin contenu de la page -->
 
 </body>
 </html>
-
