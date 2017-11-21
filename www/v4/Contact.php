@@ -33,7 +33,7 @@ session_start();
 	********************************************************************************************
 */
 // destinataire est votre adresse mail. Pour envoyer à plusieurs à la fois, séparez-les par une virgule
-$destinataire = 'annissu@gmail.com';
+$destinataire = 'udevpromo2017@gmail.com';
 
 // copie ? (envoie une copie au visiteur)
 $copie = 'oui';
@@ -151,8 +151,12 @@ if (isset($_POST['envoi']))
 
 if (($err_formulaire) || (!isset($_POST['envoi'])))
 {
-	// afficher le formulaire
-	echo ' 		
+	
+};
+?>
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3c.org/TR/xhtml1/DTD/xtmlhtml1-strict.dtd">
 <html>
 	<head>
@@ -164,7 +168,7 @@ if (($err_formulaire) || (!isset($_POST['envoi'])))
 		<link rel="stylesheet" href="./css/main.css"/>
 		<link rel="stylesheet" href="./css/contact.css">
 		<!-- fichiers javascript -->
-		<script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
+		<script type="application/javascript" src="./js/jquery-3.1.1.min.js"></script>
 		<script type="application/javascript" src="./js/bootstrap.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -191,7 +195,7 @@ if (($err_formulaire) || (!isset($_POST['envoi'])))
                     <li><a href="contact.php"><img class="imgButton" src="images/contact.png"></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png">'.stripslashes($_SESSION['loginUser']).'</a></li>
+                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser']?></a></li>
                 	<li><a href="panier.php"><img class="imgButton" src="images/panier.png"></a></li>
                     <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
                 </ul>
@@ -201,7 +205,7 @@ if (($err_formulaire) || (!isset($_POST['envoi'])))
 
 	
 <!-- Formulaire à envoyer -->			
-			<form id="contact" method="post" action="'.$form_action.'">
+			<form id="contact" method="post" action="<?php echo ' '.$form_action?>"> 
 				<div class="container">
 					<div class="row">
 						<div class="col-md-8">
@@ -211,26 +215,26 @@ if (($err_formulaire) || (!isset($_POST['envoi'])))
 										<div class="col-md-6">
 											<div class="form-group">	
 																																		
-												<fieldset><p><label for="nom ">Nom : </label> <input type="text" id="nom" name="nom" value="'.stripslashes($nom).'" tabindex="1" /></p>
+												<fieldset><p><label for="nom ">Nom : </label> <input type="text" id="nom" name="nom" value="<?php echo ' '.stripslashes($nom)?>" tabindex="1" /></p>
 													<p>
 														<div class="input-group">
 															<span class="input-group-addon">
 																<span class="glyphicon glyphicon-envelope">
 																</span>
 															</span>
-																<input type="email" class="form-control" id="email" placeholder="E-mail" name="email" value="'.stripslashes($email).'" tabindex="2" />
+																<input type="email" class="form-control" id="email" placeholder="E-mail" name="email" value="<?php echo ' '.stripslashes($email)?>" tabindex="2" />
 														</div>
 													</p>
 												</fieldset>
 
 												
-												<p><label for="objet">Objet :</label> <input type="text" id="objet" name="objet" value="'.stripslashes($objet).'" tabindex="3" />
+												<p><label for="objet">Objet :</label> <input type="text" id="objet" name="objet" value="<?php echo ' '.stripslashes($objet)?>" tabindex="3" />
 												</p>
 										<p>
 
 											<fieldset><legend>Votre message :</legend>
 
-											<textarea id="message" name="message" tabindex="4" cols="60" rows="4">'.stripslashes($message).'</textarea>
+											<textarea id="message" name="message" tabindex="4" cols="60" rows="4"><?php echo ' '.stripslashes($message)?></textarea>
 										</p>
 											</fieldset>
 
@@ -273,5 +277,3 @@ if (($err_formulaire) || (!isset($_POST['envoi'])))
 		</form>
 	</body>
 </html>';
-};
-?>
