@@ -24,8 +24,19 @@ $passwordUserCrypted = hashPassword($passwordUser); // mot de passe hashé
 
 try
 {
-	//on se connecte à la base de données
-	$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+  //on se connecte à la base de données:
+  try
+  {
+    $bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+  }
+  catch (Exception $e)
+  {
+  die('<br />Erreur : ' . $e->getMessage());
+  }
+  //ancienne connexion a la base de donnée
+	//$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+
+
 	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 	// On insère des données dans notre table
@@ -33,9 +44,9 @@ try
 	{
 		// on rentre les données du nouvel utilisateur dans la base de données
 		$sql="INSERT INTO fiche_user VALUES (:loginUser, :nomUser, :prenomUser, :genreUser, :dateNaissanceUser, :passwordUser, :adresseUser, :cpUser, :villeUser, :mailUser, 0)";
-		
+
 		$stmt = $bdd->prepare($sql);
-		
+
 		$stmt->execute(array(
 			'loginUser' => $loginUser,
 			'nomUser' => $nomUser,
@@ -46,7 +57,7 @@ try
 			'adresseUser' => $adresseUser,
 			'cpUser' => $cpUser,
 			'villeUser' => $villeUser,
-			'mailUser' => $mailUser			
+			'mailUser' => $mailUser
 		));
 
 		header("Location: ../index.php"); // Redirection du navigateur
