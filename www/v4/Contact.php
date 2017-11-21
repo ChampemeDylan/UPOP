@@ -276,4 +276,4 @@ if (($err_formulaire) || (!isset($_POST['envoi'])))
 			</div>
 		</form>
 	</body>
-</html>';
+</html>
