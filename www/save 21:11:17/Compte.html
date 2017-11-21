@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="iso-8859-15" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3c.org/TR/xhtml1/DTD/xtmlhtml1-strict.dtd">
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<link rel="icon" type="image/png" href="Images\iconeupop.png"/>
+		<!-- feuilles de style -->
+		<link rel="stylesheet" href="./css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="./css/main.css"/>
+		<!-- fichiers javascript -->
+		<script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
+		<script type="application/javascript" src="./js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>U POP</title>
+	</head>
+	<body>
+<!-- barre de navigation -->
+	<nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container-fluid">
+            <div class="nav-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" name="button">
+                    <img class="imgButton" src="images/iconeupop.png">
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="nav navbar-nav">
+                    <li><img class="logoBar" src="images/iconeupop.png"></li>
+                    <li><a href="accueil.html" ><img class="imgButton" src="images/home.png"></a></li>
+                    <li><a href="figurines.html"><img class="imgButton" src="images/figurine.png"></a></li>
+                    <!-- <li><h2 id="titre">Accueil</h2></li> -->
+                    <li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"></a></li>
+                	<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a></li>
+                    <li><a href="index.html"><img class="imgButton" src="images/deco.png"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!-- fin barre de navigation -->
+		<!-- contenu de la page -->
+		<div class="container center">
+			<div class="row">
+				<div class="col-xs-12 col-sm-8 col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Formulaire des données personnelles</h3>
+						</div>
+						<div class="panel-body">
+							<form role="form">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Nom" id="last_name" class="form-control input-sm" placeholder="Nom">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Prénom" id="last_name" class="form-control input-sm" placeholder="Prénom">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="Genre" id="last_name" class="form-control input-sm" placeholder="Genre  (H/F)">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="Date de naissance" id="last_name" class="form-control input-sm" placeholder="Date de naissance">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Mot de passe" id="last_name" class="form-control input-sm" placeholder="Mot de passe">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="Adresse" id="last_name" class="form-control input-sm" placeholder="Adresse Postale">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="Code Postal" id="last_name" class="form-control input-sm" placeholder="Code Postal">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="Ville" id="last_name" class="form-control input-sm" placeholder="Ville">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="form-group">
+										<input type="text" name="E-mail" id="last_name" class="form-control input-sm" placeholder="E-mail">
+									</div>
+								</div>
+								<input type="submit" value="Mettre à jour" class="btn btn-block">
+							</form>
+						</div>
+					</div>
+				</div>
+						<div class="row centered-form">
+					<div class="col-xs-12 col-sm-8 col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							<h3 class="panel-title">Suivi des commandes</h3>
+						</div>
+
+
+
+							<table class="table"> 
+
+							       <thead> 
+									    <tr> 
+									    	<th>Ref Commande</th> 
+									     	<th>Date</th> 
+									     	<th>Montant</th>
+									     	<th>État</th>
+									    </tr> 
+
+							        </thead> 
+
+
+							         <tbody> 
+							            <tr> 
+							                <td>A</td> 
+							                <td>B</td>
+							                <td>C</td> 
+							                <td>D</td>  
+							            </tr> 
+
+							         </tbody> 
+							</table>
+						
+						</div>
+				</div>
+			</div>
+			</div>
+	</div>
+		</div>
+</div>
+	<!-- fin articles de la page -->
+</div>
+<!-- fin contenu de la page -->
+</body>
+</html>
