@@ -1,19 +1,17 @@
 <?php
 session_start();
 
+
+// test bouton validCompte appuyé
 if(isset($_POST['validCompte']))
 {
+	// inclu editCompte.php à la page courante
 	include('php/editCompte.php');
 }
 
-/*if(isset($_POST['validMdp']))
-{	
-	include('php/editMdp.php');
-}
-*/ 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3c.org/TR/xhtml1/DTD/xtmlhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
 <!-- Header -->
 	<head>
@@ -66,13 +64,13 @@ if(isset($_POST['validCompte']))
 <!-- Formulaire infos personnelles -->
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Compte de <?php echo $_SESSION['loginUser']; ?></h3>
+							<h3 class="panel-title">Compte de <?php echo $_SESSION['loginUser']; ?></h3><!-- insert de code php pour afficher la variable de session -->
 						</div>
 						<div class="panel-body">
 							<form role="form" method="post" action="Compte.php">
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Nom -->
-										<?php echo '<input type="text" name="nomUser" id="nomUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['nomUser']).'">'; ?>
+										<?php echo '<input type="text" name="nomUser" id="nomUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['nomUser']).'">'; ?><!-- htmlspecialchars pour pouvoir récupérer la donnée pouvant contenir des caractères spéciaux -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
@@ -82,7 +80,7 @@ if(isset($_POST['validCompte']))
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Genre -->
-										<select name="genreUser" id="genreUser" class="form-control input-sm" value=<?php echo $_SESSION['genreUser']; ?>>
+										<select name="genreUser" id="genreUser" class="form-control input-sm" value=<?php echo $_SESSION['genreUser']; ?>><!-- selection de choix -->
 											<option value="M">Masculin</option>
 											<option value="F">Féminin</option>
 										</select>
@@ -90,7 +88,7 @@ if(isset($_POST['validCompte']))
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Date de naissance -->
-										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" value=<?php echo $_SESSION['dateNaissanceUser']; ?>>
+										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" value=<?php echo $_SESSION['dateNaissanceUser']; ?>><!-- format de type date -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
@@ -100,7 +98,7 @@ if(isset($_POST['validCompte']))
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Code Postal -->
-										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" value=<?php echo $_SESSION['cpUser']; ?>>
+										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" value=<?php echo $_SESSION['cpUser']; ?>><!-- number limité à 5 caractères -->
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -110,15 +108,15 @@ if(isset($_POST['validCompte']))
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Mail -->
-										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" value=<?php echo $_SESSION['mailUser']; ?>>
+										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" value=<?php echo $_SESSION['mailUser']; ?>><!-- format de type email -->
 									</div>
 								</div>
 								<div class="panel-heading">
 									<h3 class="panel-title panel-title2">Changement de mot de passe</h3>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group"><!-- Mote de passe -->
-										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
+									<div class="form-group"><!-- Mot de passe -->
+										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe"><!-- format de type password -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
@@ -130,29 +128,6 @@ if(isset($_POST['validCompte']))
 							</form>
 						</div>
 					</div>
-
-<!-- Formulaire changement mot de passe -->
-<!--					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Changement de mot de passe</h3>
-						</div>
-						<div class="panel-body">
-							<form role="form" method="post" action="/php/editMdp.php">
-								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
-										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" value=<?php echo $_SESSION['passwordUser']; ?>>
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-12">
-									<div class="form-group">
-										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" value=<?php echo $_SESSION['passwordUser']; ?>>
-									</div>
-								</div>
-								<button class="btn" name="validMdp" type="submit">Valider</button>
-							</form>
-						</div>
-					</div>
--->
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 
