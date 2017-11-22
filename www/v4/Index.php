@@ -21,7 +21,7 @@
 	<body>
 		<div class="container">
 <!-- page de connexion -->
-			<div id="connexion" class="row centered-form">
+			<div id="connexion" class="row">
 				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
 					<form class="form-login" method="post" action="php/connexion.php"><!-- appel du php de connexion -->
 						<img src="images/iconeupop.png" width="400px" class="img-responsive"/>
