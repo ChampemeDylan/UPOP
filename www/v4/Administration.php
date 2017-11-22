@@ -11,8 +11,6 @@ if(isset($_POST['Chercher']))
 }
 ?>
 
-
-
 <!DOCTYPE html>
 
 <html>
@@ -23,51 +21,13 @@ if(isset($_POST['Chercher']))
 <!-- feuilles de style -->
 	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./css/main.css"/>
+    <link rel="stylesheet" href="./css/administration.css">
 
 <!-- fichiers javascript -->
     <script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
     <script type="application/javascript" src="./js/bootstrap.min.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<style>
-		#onglets{
-			display: none;
-		}
-		#onglets li{
-			position: relative;
-			float: left;
-			list-style: none;
-			padding: 2px 5px 6px;
-			margin-right: 5px;
-			border: 1px solid Black;
-			cursor: pointer;
-			background-color: rgb(136,206,98);
-			color: white;
-			z-index: 1;
-			border-bottom: none;
-			border-top-left-radius: 15px;
-			border-top-right-radius: 15px;
-		}
-			#onglets .actif{
-			border-bottom: none;
-			font-weight: bold;
-			z-index: 10;
-		}
-			#contenu{
-			clear: both;
-			position: relative;
-			margin: 0 20px;
-			padding: 10px;
-			border: 3px solid Black;
-			z-index: 5;
-			top: -3px;
-			color: Black;
-			width: calc(100% - 45px);
-			overflow: hidden;
-			border-radius: 15px;
-		}
-	</style>
 	<script>
 		$(function() {
 			$('#onglets').css('display', 'block');
@@ -85,9 +45,6 @@ if(isset($_POST['Chercher']))
 			}
 			setDisplay();
 		});
-		
-		
-		
 	</script>
 	<title>Administration</title>
 </head>
@@ -111,6 +68,12 @@ if(isset($_POST['Chercher']))
                     <li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                	<!-- Insertion du logo Admin sous condition -->
+                    <?php 
+                        if ($_SESSION['typeUser']>0) {
+                            echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
+                        }
+                    ?>
                 	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
                 	<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a></li>
                     <li><a href="index.html"><img class="imgButton" src="images/deco.png"></a></li>
