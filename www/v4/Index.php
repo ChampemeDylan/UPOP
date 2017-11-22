@@ -14,17 +14,17 @@
 		<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
 		<script type="application/javascript" src="./js/bootstrap.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Bienvenue sur U'POP</title>
+		<title>Bienvenue sur 'POP</title>
 	</head>
 
 <!-- corps de texte -->
 	<body>
 		<div class="container">
 <!-- page de connexion -->
-			<div id="connexion" class="row centered-form">
-				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+			<div id="connexion" class="row">
+				<div class="col-xs-12 col-sm-8 col-md-4">
 					<form class="form-login" method="post" action="php/connexion.php"><!-- appel du php de connexion -->
-						<img src="images/iconeupop.png" width="400px" class="img-responsive center-block"/>
+						<img src="images/iconeupop.png" width="400px" class="img-responsive"/>
 						<h4>Bienvenue sur U'POP</h4>
 						<input type="text" id="loginUser" name="loginUser" class="form-control input-sm chat-input" placeholder="Pseudo" />
 						</br>
@@ -43,16 +43,16 @@
 						?>
 						</br>
 						<div class="wrapper">
-							<span class="group-btn">  
+							<span class="group-btn">
 								<br>
 								<button href="#" class="btn" type="submit" name="connexion">Se connecter</button>
 								<button class="btn" type="button" onclick="boutonClick(event)">Inscription</button><!-- appel fonction de bascule sur div inscription -->
 							</span>
 						</div>
-					</form>					
+					</form>
 				</div>
 			</div>
-			
+
 <!-- page d'inscription -->
 			<div id="inscription" class="row centered-form">
 				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -133,7 +133,7 @@
 	//cache par défaut la div d'inscription
 	$(document).ready(function()
     {
-        $("#inscription").hide(); 
+        $("#inscription").hide();
     });
 
 	//bascule de connexion à inscription
@@ -149,6 +149,6 @@
         $("#inscription").hide(400);
         $("#connexion").show(400);
     }
-	
+
 	</script>
 </html>

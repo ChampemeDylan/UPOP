@@ -8,7 +8,7 @@ body {
 
 .container {
     padding: 25px;
-    opacity : 0.9;    
+    opacity : 0.9;
 }
 
 
@@ -26,11 +26,11 @@ body {
 }
 
 .panel-default{
-    background-color: rgb(254, 212, 73);    
+    background-color: rgb(254, 212, 73);
 }
 
-h4 { 
- border:0 solid #fff; 
+h4 {
+ border:0 solid #fff;
  border-bottom-width:1px;
  padding-bottom:10px;
  text-align: center;
