@@ -8,6 +8,7 @@ require "./php/verifConnexion.php";
 <html>
 <head>
 	<meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="Images\iconeupop.png"/>
 
 <!-- feuilles de style -->
@@ -19,14 +20,10 @@ require "./php/verifConnexion.php";
     <script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
     <script type="application/javascript" src="./js/bootstrap.min.js"></script>
 
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<title>U POP</title>
 </head>
 
 <body>
-
 <!-- barre de navigation -->
 	<nav class="navbar navbar-default navbar-fixed-top menu">
         <div class="container-fluid">
@@ -60,22 +57,50 @@ require "./php/verifConnexion.php";
 		<div class="row text-center">
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<a href="" class="filtre"><img class="imgButton2" src="images/jeux.png"></br><b>Jeux Vidéos</b></a>
+				<a href="?categorie=jeux"><img class="imgButton2" src="images/jeux.png"></br><b>Jeux Vidéos</b></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<a href=""><img class="imgButton2" src="images/serie.png"></br><b>Séries</b></a>
+				<a href="?categorie=series"><img class="imgButton2" src="images/serie.png"></br><b>Séries</b></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL  ( href ) -->
-				<a href=""><img class="imgButton2" src="images/film.png"></br><b>Films</b></a>
+				<a href="?categorie=films"><img class="imgButton2" src="images/film.png"></br><b>Films</b></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<a href=""><img class="imgButton2" src="images/anime.png"></br><b>Animés</b></a>
+				<a href="?categorie=animes"><img class="imgButton2" src="images/anime.png"></br><b>Animés</b></a>
 			</div>
 		</div>
-		<div class="col-xs-12"></div><br />
+		<div class="row">
+			<?php 
+				if(isset($_GET['categorie'])){
+				switch ($_GET['categorie']) {
+					case 'films':
+						// On récupère tout le contenu de la table via la requête suivante
+						echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Films</b></h2></div>';
+						break;
+					case 'jeux':
+						// On récupère tout le contenu de la table via la requête suivante
+						echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Jeux vidéos</b></h2></div>';
+						break;
+					case 'series':
+						// On récupère tout le contenu de la table via la requête suivante
+						echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Séries</b></h2></div>';
+						break;
+					case 'animes':
+						// On récupère tout le contenu de la table via la requête suivante
+						echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Animés</b></h2></div>';
+						break;
+				}	
+			} else {
+				echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Tous nos produits</b></h2></div>';
+			}
+
+
+			?>
+		</div>
+		<br/>
 <!-- fin de choix de la catégorie -->
 		<?php
 			try
@@ -85,44 +110,85 @@ require "./php/verifConnexion.php";
 			}
 			catch(Exception $e)
 			{
-				// En cas d'erreur, on affiche un message et on arrête tout
+					// En cas d'erreur, on affiche un message et on arrête tout
 			        die('Erreur : '.$e->getMessage());
 			}
-			// On récupère tout le contenu de la table
-			$reponse = $bdd->query('select fiche_article.refArticle,descriptifArticle,libelleArticle,fiche_article.libelleUnivers,stockArticle,prixArticle,libelleCategorie from fiche_article,univers_categorie,stock_article where fiche_article.libelleUnivers = univers_categorie.libelleUnivers and fiche_article.refArticle = stock_article.refArticle order by libelleCategorie;');
-			// On affiche chaque entrée une à une qu'on affiche
+			// On vérifie si la categorie apparaît dans l'URL pour afficher les produits ciblés...
+			if(isset($_GET['categorie'])){
+				// SELON la valeur de $_GET['categorie'], le libellé prend une valeur différente
+				switch ($_GET['categorie']) {
+					case 'films':
+						$libelle = 'Film';
+						break;
+					case 'jeux':
+						$libelle = 'Jeu vidéo';
+						break;
+					case 'series':
+						$libelle = 'Série';
+						break;
+					case 'animes':
+						$libelle = 'Dessin Animé';
+						break;
+				}	
+				// Requête que l'on va utiliser en fonction de la catégorie choisie
+				$reponse = $bdd->query('select fiche_article.refArticle,descriptifArticle,libelleArticle,fiche_article.libelleUnivers,stockArticle,prixArticle,libelleCategorie from fiche_article,univers_categorie,stock_article where fiche_article.libelleUnivers = univers_categorie.libelleUnivers and fiche_article.refArticle = stock_article.refArticle and libelleCategorie="'.$libelle.'";');
+			// ... sinon on affiche tous les produits
+			} else {
+				$reponse = $bdd->query('select * from fiche_article,stock_article where fiche_article.refArticle=stock_article.refArticle order by libelleArticle;');
+			}
+		
+			// On affiche chaque entrée une à une qu'on récupère dans le conteneur $reponse
 			while ($donnees = $reponse->fetch())
 			{
 		?>
-<!-- Modèle d'article -->
-<!-- /!\ A saupoudrer de requêtes SQL-->
-		
-		<div class="row panel panel-default article <?php echo $donnees['libelleCategorie']?>">
+<!-- Modèle d'article -->		
+		<div class="row panel panel-default">
 		<!-- Image de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<img class="imageArticle" src=<?php echo 'images/'.$donnees['refArticle'].'.png' ?>>
+				<img class="imageArticle" src=<?php echo 'images/'.$donnees['refArticle'].'.png' ?>> <!-- Insertion PHP de la refArticle pour l'affichage de la bonne image -->
 			</div>
 	<!-- Titre et description de la figurine -->
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<p><b><?php echo $donnees['libelleArticle']; ?> (<?php echo $donnees['libelleUnivers']; ?>)</b></p>
+				<p>
+					<b>	<!-- Insertion PHP du titre et du libellé de la figurine -->
+						<?php echo $donnees['libelleArticle']; ?> (<?php echo $donnees['libelleUnivers']; ?>)
+					</b>
+				</p> 
 				<div id="describe">
-					<?php echo $donnees['descriptifArticle']; ?>
+					<!-- Insertion PHP de la description de la figurine -->
+					<?php echo $donnees['descriptifArticle']; ?> 
 				</div>
-				<p class="refColor"><b>Réf :</b> <?php echo $donnees['refArticle']; ?></p>
+				<p class="refColor">
+					<b>Réf :</b> <!-- Insertion PHP de la refArticle -->
+					<?php echo $donnees['refArticle']; ?>
+				</p> 
 			</div>
 	<!-- Nombre d'articles en stock -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<p><b>Stock</b></p>
-				<p><?php echo $donnees['stockArticle']; ?></p>
+				<p>
+					<b>Stock</b>
+				</p>
+				<p> 
+					<?php 
+					if ($donnees['stockArticle']>0)
+					{
+						echo $donnees['stockArticle'];
+					} else {
+						echo 'Indisponible';} 
+					?>	
+				</p> 
 			</div>
 	<!-- Prix de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
 				<p><b>Prix</b></p>
-				<p><?php echo $donnees['prixArticle'].' €'; ?></p>
+				<!-- Insertion PHP du prix de l'article -->
+				<p><?php echo $donnees['prixArticle'].' €'; ?></p> 
 			</div>
 	<!-- Bouton d'ajout au panier -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<button>Ajouter au panier</button>
+				<?php if ($donnees['stockArticle']>0)
+					echo '<button>Ajouter au panier</button>';
+				 ?>
 			</div>
 		</div>
 		<?php
@@ -134,9 +200,8 @@ require "./php/verifConnexion.php";
 	</div>
 
 <!-- fin contenu de la page -->
-
 </body>
-<script>
+	<script>
 
-</script>
+	</script>
 </html>
