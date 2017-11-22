@@ -49,6 +49,12 @@ if(isset($_POST['validCompte']))
                     <li><a href="contact.php"><img class="imgButton" src="images/contact.png"></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                	<!-- Insertion du logo Admin sous condition -->
+                    <?php 
+                        if ($_SESSION['typeUser']>0) {
+                            echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
+                        }
+                    ?>
                 	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
                 	<li><a href="panier.php"><img class="imgButton" src="images/panier.png"></a></li>
                     <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>

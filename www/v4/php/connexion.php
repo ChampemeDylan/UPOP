@@ -77,7 +77,7 @@ try
                         $_SESSION['cpUser'] = $row['cpUser'];
                         $_SESSION['villeUser'] = $row['villeUser'];
                         $_SESSION['mailUser'] = $row['mailUser'];
-
+                        $_SESSION['typeUser'] = $row['typeUser'];
                         header("Location: ../Accueil.php"); // Redirection du navigateur
                         exit;
                     }

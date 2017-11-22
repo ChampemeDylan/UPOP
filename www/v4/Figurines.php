@@ -42,6 +42,12 @@ require "./php/verifConnexion.php";
                     <li><a href="contact.php"><img class="imgButton" src="images/contact.png"></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                	<!-- Insertion du logo Admin sous condition -->
+                    <?php 
+                        if ($_SESSION['typeUser']>0) {
+                            echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
+                        }
+                    ?>
                 	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
                 	<li><a href="panier.php"><img class="imgButton" src="images/panier.png"></a></li>
                     <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
@@ -136,7 +142,6 @@ require "./php/verifConnexion.php";
 			} else {
 				$reponse = $bdd->query('select * from fiche_article,stock_article where fiche_article.refArticle=stock_article.refArticle order by libelleArticle;');
 			}
-		
 			// On affiche chaque entrée une à une qu'on récupère dans le conteneur $reponse
 			while ($donnees = $reponse->fetch())
 			{
