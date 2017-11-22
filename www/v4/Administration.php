@@ -62,10 +62,10 @@ if(isset($_POST['Chercher']))
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav">
                     <li><img class="logoBar" src="images/iconeupop.png"></li>
-                    <li><a href="accueil.html" ><img class="imgButton" src="images/home.png"></a></li>
-                    <li><a href="figurines.html"><img class="imgButton" src="images/figurine.png"></a></li>
+                    <li><a href="accueil.php" ><img class="imgButton" src="images/home.png"></a></li>
+                    <li><a href="figurines.php"><img class="imgButton" src="images/figurine.png"></a></li>
                     <!-- <li><h2 id="titre">Accueil</h2></li> -->
-                    <li><a href="contact.html"><img class="imgButton" src="images/contact.png"></a></li>
+                    <li><a href="contact.php"><img class="imgButton" src="images/contact.png"></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 	<!-- Insertion du logo Admin sous condition -->
@@ -75,8 +75,8 @@ if(isset($_POST['Chercher']))
                         }
                     ?>
                 	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
-                	<li><a href="panier.html"><img class="imgButton" src="images/panier.png"></a></li>
-                    <li><a href="index.html"><img class="imgButton" src="images/deco.png"></a></li>
+                	<li><a href="panier.php"><img class="imgButton" src="images/panier.png"></a></li>
+                    <li><a href="index.php"><img class="imgButton" src="images/deco.png"></a></li>
                 </ul>
             </div>
         </div>
