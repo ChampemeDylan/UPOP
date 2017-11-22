@@ -14,15 +14,15 @@
 		<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
 		<script type="application/javascript" src="./js/bootstrap.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Bienvenue sur 'POP</title>
+		<title>Bienvenue sur U'POP</title>
 	</head>
 
 <!-- corps de texte -->
 	<body>
 		<div class="container">
 <!-- page de connexion -->
-			<div id="connexion" class="row">
-				<div class="col-xs-12 col-sm-8 col-md-4">
+			<div id="connexion" class="row centered-form">
+				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
 					<form class="form-login" method="post" action="php/connexion.php"><!-- appel du php de connexion -->
 						<img src="images/iconeupop.png" width="400px" class="img-responsive"/>
 						<h4>Bienvenue sur U'POP</h4>
