@@ -156,7 +156,7 @@ require "./php/verifConnexion.php";
 				</p> 
 				<div id="describe">
 					<!-- Insertion PHP de la description de la figurine -->
-					<?php echo $donnees['descriptifArticle']; ?> 
+					<?php echo nl2br($donnees['descriptifArticle']); ?> 
 				</div>
 				<p class="refColor">
 					<b>Réf :</b> <!-- Insertion PHP de la refArticle -->
