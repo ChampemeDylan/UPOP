@@ -78,6 +78,7 @@ try
                         $_SESSION['villeUser'] = $row['villeUser'];
                         $_SESSION['mailUser'] = $row['mailUser'];
                         $_SESSION['typeUser'] = $row['typeUser'];
+                        $_SESSION['refArticle'] = "010101";
                         header("Location: ../Accueil.php"); // Redirection du navigateur
                         exit;
                     }
