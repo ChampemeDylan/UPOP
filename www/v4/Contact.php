@@ -140,7 +140,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 										<p><label for="objet">Objet :</label> <input type="text" id="objet" name="objet" value="<?php echo ' '.stripslashes($objet)?>" tabindex="3" />
 										</p>
 										<p>
-											<!-- Variable qui récupère le texte -->
+<!-- Variable qui récupère le texte -->
 											<fieldset><legend>Votre message :</legend>
 
 												<textarea id="message" name="message" tabindex="4" " rows="4"><?php echo ' '.stripslashes($message)?></textarea>
@@ -198,7 +198,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 																		};
 
 																		}else{
-// Si une des 3 variables (ou plus) est vide --> Erreur
+// Si une des 3 variables est vide --> Erreur
 																		echo '<p>'.$message_formulaire_invalide.'</p>';
 																		$err_formulaire 
 																		= true;
