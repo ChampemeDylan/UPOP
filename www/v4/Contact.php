@@ -73,10 +73,10 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 	<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
 	<script type="application/javascript" src="./js/bootstrap.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 
 	<title>U POP</title>
-	
+
 </head>
 <body>
 	<!-- barre de navigation -->
@@ -98,7 +98,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<!-- Insertion du logo Admin sous condition -->
-                    <?php 
+                    <?php
                         if ($_SESSION['typeUser']>0) {
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                         }
@@ -111,9 +111,9 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 		</div>
 	</nav>
 
-	
-	<!-- Formulaire à envoyer -->			
-	<form id="contact" method="post" action="<?php echo ' '.$form_action?>"> 
+
+	<!-- Formulaire à envoyer -->
+	<form id="contact" class="marginTopPage" method="post" action="<?php echo ' '.$form_action?>">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
@@ -121,8 +121,8 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 						<form>
 							<div class="row">
 								<div class="col-md-6">
-									<div class="form-group">	
-										<!-- Variable qui récupère le nom -->																																		
+									<div class="form-group">
+										<!-- Variable qui récupère le nom -->
 										<fieldset><p><label for="nom ">Nom : </label> <input type="text" id="nom" name="nom" value="<?php echo ' '.stripslashes($nom)?>" tabindex="1" /></p>
 											<p>
 												<div class="input-group">
@@ -130,7 +130,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 														<span class="glyphicon glyphicon-envelope">
 														</span>
 													</span>
-													<!-- Variable qui récupère le mail -->															
+													<!-- Variable qui récupère le mail -->
 													<input type="email" class="form-control" id="email" placeholder="E-mail" name="email" value="<?php echo ' '.stripslashes($email)?>" tabindex="2" />
 												</div>
 											</p>
@@ -146,10 +146,10 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 												<textarea id="message" name="message" tabindex="4" " rows="4"><?php echo ' '.stripslashes($message)?></textarea>
 											</p>
 										</fieldset>
-									</div>     
+									</div>
 
 
-												<span class="erreurEnvoie">  
+												<span class="erreurEnvoie">
 
 																<?php	if (isset($_POST['envoi'])){
 																		if (($nom != '') && ($email != '') && ($objet != '') && ($message != '')){
@@ -200,10 +200,10 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 																		}else{
 // Si une des 3 variables est vide --> Erreur
 																		echo '<p>'.$message_formulaire_invalide.'</p>';
-																		$err_formulaire 
+																		$err_formulaire
 																		= true;
 																		};
-																		}; 
+																		};
 
 																	?>
 												</span>
@@ -217,7 +217,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 							</div>
 						</form>
 						<div class="erreurEvnoie">
-						</div>								
+						</div>
 					</div>
 				</div>
 				<div class="well well-sm panel panel-default test col-md-4">

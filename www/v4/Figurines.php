@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require "./php/verifConnexion.php";
@@ -43,7 +43,7 @@ require "./php/verifConnexion.php";
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 	<!-- Insertion du logo Admin sous condition -->
-                    <?php 
+                    <?php
                         if ($_SESSION['typeUser']>0) {
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                         }
@@ -58,28 +58,28 @@ require "./php/verifConnexion.php";
 <!-- fin barre de navigation -->
 
 <!-- contenu de la page -->
-	<div class="container">
+	<div class="container marginTopPage">
 <!-- choix de la catégorie -->
 		<div class="row text-center">
-			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
 				<a href="?categorie=jeux"><img class="imgButton2" src="images/jeux.png"></br><b>Jeux Vidéos</b></a>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
 				<a href="?categorie=series"><img class="imgButton2" src="images/serie.png"></br><b>Séries</b></a>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL  ( href ) -->
 				<a href="?categorie=films"><img class="imgButton2" src="images/film.png"></br><b>Films</b></a>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
 				<a href="?categorie=animes"><img class="imgButton2" src="images/anime.png"></br><b>Animés</b></a>
 			</div>
 		</div>
 		<div class="row">
-			<?php 
+			<?php
 				if(isset($_GET['categorie'])){
 				switch ($_GET['categorie']) {
 					case 'films':
@@ -98,7 +98,7 @@ require "./php/verifConnexion.php";
 						// On récupère tout le contenu de la table via la requête suivante
 						echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Animés</b></h2></div>';
 						break;
-				}	
+				}
 			} else {
 				echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Tous nos produits</b></h2></div>';
 			}
@@ -135,7 +135,7 @@ require "./php/verifConnexion.php";
 					case 'animes':
 						$libelle = 'Dessin Animé';
 						break;
-				}	
+				}
 				// Requête que l'on va utiliser en fonction de la catégorie choisie
 				$reponse = $bdd->query('select fiche_article.refArticle,descriptifArticle,libelleArticle,fiche_article.libelleUnivers,stockArticle,prixArticle,libelleCategorie from fiche_article,univers_categorie,stock_article where fiche_article.libelleUnivers = univers_categorie.libelleUnivers and fiche_article.refArticle = stock_article.refArticle and libelleCategorie="'.$libelle.'";');
 			// ... sinon on affiche tous les produits
@@ -146,7 +146,7 @@ require "./php/verifConnexion.php";
 			while ($donnees = $reponse->fetch())
 			{
 		?>
-<!-- Modèle d'article -->		
+<!-- Modèle d'article -->
 		<div class="row panel panel-default">
 		<!-- Image de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
@@ -158,36 +158,36 @@ require "./php/verifConnexion.php";
 					<b>	<!-- Insertion PHP du titre et du libellé de la figurine -->
 						<?php echo $donnees['libelleArticle']; ?> (<?php echo $donnees['libelleUnivers']; ?>)
 					</b>
-				</p> 
+				</p>
 				<div id="describe">
 					<!-- Insertion PHP de la description de la figurine -->
-					<?php echo nl2br($donnees['descriptifArticle']); ?> 
+					<?php echo nl2br($donnees['descriptifArticle']); ?>
 				</div>
 				<p class="refColor">
 					<b>Réf :</b> <!-- Insertion PHP de la refArticle -->
 					<?php echo $donnees['refArticle']; ?>
-				</p> 
+				</p>
 			</div>
 	<!-- Nombre d'articles en stock -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
 				<p>
 					<b>Stock</b>
 				</p>
-				<p> 
-					<?php 
+				<p>
+					<?php
 					if ($donnees['stockArticle']>0)
 					{
 						echo $donnees['stockArticle'];
 					} else {
-						echo 'Indisponible';} 
-					?>	
-				</p> 
+						echo 'Indisponible';}
+					?>
+				</p>
 			</div>
 	<!-- Prix de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
 				<p><b>Prix</b></p>
 				<!-- Insertion PHP du prix de l'article -->
-				<p><?php echo $donnees['prixArticle'].' €'; ?></p> 
+				<p><?php echo $donnees['prixArticle'].' €'; ?></p>
 			</div>
 	<!-- Bouton d'ajout au panier -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
