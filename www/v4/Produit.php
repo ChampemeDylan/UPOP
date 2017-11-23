@@ -54,64 +54,88 @@ require "./php/verifConnexion.php";
   	</nav>
 
 <!-- Fin de Barre de navigation -->
-    <div class="container marginTopPage panel-default">
-
+<div class="container marginTopPage panel-default">
+<?php
+  try
+  {
+    // On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
+    $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+  }
+  catch(Exception $e)
+  {
+      // En cas d'erreur, on affiche un message et on arrête tout
+          die('Erreur : '.$e->getMessage());
+  }
+  $refA = $_GET['refArticle'];
+  $reponse = $bdd->query('select * from fiche_article,stock_article where fiche_article.refArticle=stock_article.refArticle and fiche_article.refArticle="'.$refA.'";');
+  $donnees = $reponse->fetch();
+  ?>
 <!-- Nom de l'article -->
-      <div class="row panel-heading">
-        <div class="col-xs-12 panel-title">
-          <h2>Nom de l'article <?php echo $donnees['libelleArticle']; ?> (<?php echo $donnees['libelleUnivers']; ?>Univers)</h2>
-        </div>
-      </div>
-      <div class="row">
+  <div class="row panel-heading">
+    <div class="col-xs-12 panel-title">
+      <h2> <?php echo $donnees['libelleArticle']; ?> (<?php echo $donnees['libelleUnivers']; ?>)</h2>
+    </div>
+  </div>
+  <div class="row">
 
 <!-- Photo de l'article -->
-        <div class="col-xs-12 col-md-4">
-          <img src="./images/010101.png" class="imageProduit">
-          <img src="<?php echo 'images/'.$donnees['refArticle'].'.png' ?>" class="imageProduit">
-        </div>
-
-<!-- Description de l'article -->
-        <div class="col-xs-12 col-md-6">
-          <p>lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet
-          </p>
-          <p><?php echo nl2br($donnees['descriptifArticle']); ?></p>
-          <p><b>Réf : </b><?php echo $donnees['refArticle']; ?>999999</p>
-        </div>
-
-<!-- Prix Quantité AddCart -->
-        <div class="col-xs-12 col-md-2">
-          <div class="row">
-
-            <!-- Prix de l'article -->
-            <div class="col-xs-12">
-              <p><b>Prix : </b><?php echo $donnees['prixArticle'].' €'; ?></p>
-            </div>
-
-            <!-- Quantité -->
-            <div class="col-xs-12">
-              <p><b>Qté : </b><?php
-  							if ($donnees['stockArticle']>0)
-  								{
-  									echo $donnees['stockArticle'];
-  								} else {
-  									echo 'Indisponible';
-  								}
-  						?></p>
-            </div>
-
-            <!-- Bouton ajout au panier -->
-            <div class="col-xs-12">
-              <?php
-      				if ($donnees['stockArticle']>0)
-      					echo '<a href="#"><img class="imgButton" src="./images/panier.png"></a>';
-      		 		?>
-            </div>
-          </div>
-
-        </div>
-      </div>
+    <div class="col-xs-12 col-md-4">
+      <img src="<?php echo 'images/'.$donnees['refArticle'].'.png' ?>" class="imageProduit">
     </div>
 
+<!-- Description de l'article -->
+    <div class="col-xs-12 col-md-6">
+      <!--<p>lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet
+      </p>-->
+      <p><?php echo nl2br($donnees['descriptifArticle']); ?></p>
+      <p><b>Réf : </b><?php echo $donnees['refArticle']; ?></p>
+    </div>
 
-  </body>
+<!-- Prix Quantité AddCart -->
+    <div class="col-xs-12 col-md-2">
+      <div class="row">
+
+        <!-- Prix de l'article -->
+        <div class="col-xs-12">
+          <p><b>Prix : </b><?php echo $donnees['prixArticle'].' €'; ?></p>
+        </div>
+
+        <!-- Quantité -->
+        <div class="col-xs-12">
+          <p><b>Qté : </b><?php
+            if ($donnees['stockArticle']>0)
+              {
+                echo $donnees['stockArticle'];
+              } else {
+                echo 'Indisponible';
+              }
+          ?></p>
+        </div>
+
+        <!-- Bouton ajout au panier -->
+        <div class="col-xs-12">
+          <?php
+          if ($donnees['stockArticle']>0)
+            echo '<button class=" validationPanier" value='.$donnees['refArticle'].' type="submit"><img class="imgButton" src="./images/panier.png"></button>';
+           ?>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+<script>
+$(".validationPanier").click(function(){
+  var ref = $(this).val();
+  $.ajax({
+    url: 'php/ajoutPanier.php',
+      data: 'refArticle='+ ref,
+      success: function(reponse) {
+        alert(reponse); // reponse contient l'affichage du fichier PHP (soit echo)
+      }
+  });
+})
+</script>
+
 </html>

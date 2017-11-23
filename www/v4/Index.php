@@ -154,7 +154,13 @@ if(isset($_SESSION['loginUser'])) {
 				</div>
 			</div>
 		</div>
+		<div class="footer">
+			<div class="container-fluid">
+				© 2017 Copyright: U'Pop -- Ce site est un projet étudiant et non un site de vente
+			</div>
+		</div>
 	</body>
+
 	<script>
 	//cache par défaut la div d'inscription
 	$(document).ready(function()

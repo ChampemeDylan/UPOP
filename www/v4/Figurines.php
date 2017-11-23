@@ -151,7 +151,7 @@ require "./php/verifConnexion.php";
 
 <!-- Titre et description de la figurine -->
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<a href="#">
+				<a href="produit.php?refArticle=<?php echo $donnees['refArticle']; ?>">
 					<b><!-- Insertion PHP du titre et du libellé de la figurine -->
 						<?php echo $donnees['libelleArticle']; ?> (<?php echo $donnees['libelleUnivers']; ?>)
 					</b>
