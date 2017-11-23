@@ -3,7 +3,7 @@ try
 {
 	//on se connecte à la base de données
 	// en local
-	$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', '');
+	$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 	
 	//en online
 	//$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
