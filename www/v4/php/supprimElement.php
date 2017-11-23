@@ -53,6 +53,7 @@ if(empty($_POST['refArticle'])) {
 			$stmt->execute(array(
 				'refArticle' => $refArticle
 			));
+			header("Location: ../administration.php?successsupelem=good_supelem");
 		}
 	}
 }

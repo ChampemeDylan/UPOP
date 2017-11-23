@@ -64,6 +64,7 @@ if(empty($_POST['refArticle'])) {
 						'prixArticle' => $prixArticle,
 						'libelleUnivers' => $libelleUnivers
 					));
+					header("Location: ../administration.php?successajoutelem");
 				}
 			}
 		}

@@ -55,7 +55,7 @@ if(empty($_POST['libelleUnivers'])) {
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers
 			));
-			echo "Univers supprimer";
+			header("Location: ../administration.php?successsupuniv=good_supuniv");
 		}
 	}
 

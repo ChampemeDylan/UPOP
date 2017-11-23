@@ -1,14 +1,25 @@
 <?php
 session_start();
 
-//require "./php/verifConnexion.php";
+require "./php/verifConnexion.php";
+//require "./php/setArticle.php";
+
+function debug_to_console($data) {
+    if(is_array($data) || is_object($data))
+	{
+		echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
+	} else {
+		echo("<script>console.log('PHP: ".$data."');</script>");
+	}
+}
 
 // test bouton Chercher appuyé
-if(isset($_POST['Chercher']))
+/* if(isset($_POST['Chercher']))
 {
 	// inclu editCompte.php à la page courante
 	include('php/modifElement.php');
 }
+?> */
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +35,7 @@ if(isset($_POST['Chercher']))
     <link rel="stylesheet" href="./css/administration.css">
 
 <!-- fichiers javascript -->
-    <script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
+    <script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
     <script type="application/javascript" src="./js/bootstrap.min.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,12 +98,12 @@ if(isset($_POST['Chercher']))
 <!-- titre d'en tete -->
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-				<h1>Administration</h1>
+				<h1></h1>
 				<div class="col-xs-12"><hr></div>
 			</div>
 		</div>
 		
-		<h1>Gestion des produits</h1>
+		<h1>Gestion des produits</h1><br />
 		<ul id="onglets">
 			<li class="actif">Ajouter un element</li>
 			<li>Modifier un element</li>
@@ -105,33 +116,56 @@ if(isset($_POST['Chercher']))
 					<div class="col-xs-12 col-sm-4 col-md-4  col-md-offset-2">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Ajouter un element.</h3>
+<!-- Ajouter element -->
+								<h3 class="panel-title">Ajouter un article.</h3>
 							</div>
 							<div class="panel-body">
 								<form role="form" method="post" action="php/ajoutElement.php">
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="text" name="Reference"  class="form-control input-sm" placeholder="Reference">
+											<input type="text" name="refArticle"  class="form-control input-sm" placeholder="Reference">
+											<?php if(isset($_GET['erreurref'])){
+												echo '<div style="text-align:center;color:red;">Aucune reference</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="text" name="Libelle" class="form-control input-sm" placeholder="Libelle">
+											<input type="text" name="libelleArticle" class="form-control input-sm" placeholder="Libelle">
+											<?php if(isset($_GET['erreurlibelle'])){
+												echo '<div style="text-align:center;color:red;">Aucun libelle</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="text" name="Description"  class="form-control input-sm" placeholder="Description">
+											<input type="text" name="descriptifArticle"  class="form-control input-sm" placeholder="Description">
+											<?php if(isset($_GET['erreurarticle'])){
+												echo '<div style="text-align:center;color:red;">Aucune description</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="text" name="Prix"  class="form-control input-sm" placeholder="Prix">
+											<input type="text" name="prixArticle"  class="form-control input-sm" placeholder="Prix">
+											<?php if(isset($_GET['erreurprix'])){
+												echo '<div style="text-align:center;color:red;">Aucun prix</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="text" name="Univers"  class="form-control input-sm" placeholder="Univers">							
+											<input type="text" name="libelleUnivers"  class="form-control input-sm" placeholder="Univers">
+											<?php if(isset($_GET['erreurexist'])){
+												echo '<div style="text-align:center;color:red;">Cet univers n\'existe pas</div>';
+											} else if(isset($_GET['successajoutelem'])){
+												echo '<div style="text-align:center;color:green;">L\'element à été ajouté</div>';
+											}
+											?>
 										</div>
 									</div>
 									<input type="submit" value="Ajouter" class="btn btn-block">   	
@@ -142,33 +176,42 @@ if(isset($_POST['Chercher']))
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
+<!-- ajouter un univers -->
 								<h3 class="panel-title">Ajouter un univers.</h3>
 							</div>
 							<div class="panel-body">
 								<form role="form" method="post" action="php/ajoutUnivers.php">
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="text" name="Univers"  class="form-control input-sm" placeholder="Univers">							
+											<input type="text" name="libelleUnivers"  class="form-control input-sm" placeholder="Univers">							
+											<?php if(isset($_GET['erreurlibelle2'])){
+												echo '<div style="text-align:center;color:red;">Aucun univers</div>';
+											} else if(isset($_GET['erreurexist2'])){
+												echo '<div style="text-align:center;color:red;">Cet univers existe deja</div>';
+											} else if(isset($_GET['successajoutuniv'])){
+												echo '<div style="text-align:center;color:green;">L\'univers à été ajouté</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
-											<input type="checkbox" name="Categ1" value="Jeux vidéos"> Jeux vidéos
+											<input type="checkbox" name="categ1" value="Jeu Vidéo"> Jeu Vidéo
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
-											<input type="checkbox" name="Categ2" value="Séries"> Séries
+											<input type="checkbox" name="categ2" value="Série"> Série
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
-											<input type="checkbox" name="Categ3" value="Films"> Films
+											<input type="checkbox" name="categ3" value="Film"> Film
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
-											<input type="checkbox" name="Categ4" value="Animés"> Animés
+											<input type="checkbox" name="categ4" value="Dessin Animé"> Dessin Animé
 										</div>
 									</div>
 									<input type="submit" value="Ajouter" class="btn btn-block">   	
@@ -183,42 +226,39 @@ if(isset($_POST['Chercher']))
 					<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 						<div class="panel panel-default">
 							<div class="panel-heading">
+<!-- modifier un element -->
 								<h3 class="panel-title">Modifier un element.</h3>
 							</div>
 							<div class="panel-body">
 								<form role="form">
 									<div class="col-xs-7 col-sm-7 col-md-7">
-										<div class="form-group" method="post" action="php/modifElement.php">
-											<?php echo '<input type="text" name="Reference"  class="form-control input-sm" placeholder="refArticle"  value="'.htmlspecialchars($SESSION['refArticle']).'">'; ?>
+										<div class="form-group" method="post" action="Administration.php">
+											<?php echo '<input type="text" name="refArticle"  class="form-control input-sm" placeholder="refArticle"  value="'.htmlspecialchars($_SESSION['refArticle']).'">'; ?>
 										</div>
 									</div>
 									<div class="col-xs-5 col-sm-5 col-md-5">
 										<div class="form-group">
-											<input type="submit" value="Chercher" class="btn btn-block"> 
+											<input type="submit" name="Chercher" class="btn btn-block" onclick = <?php /* include('./php/setArticle.php'); */ ?> > 
 										</div>
 									</div>
-								</form>
-							</div>
-							<div class="panel-body">
-								<form role="form">
 									<div class="col-xs-12 col-sm-12 col-md-12">
-										<div class="form-group" method="post" action="php/modifElement2.php">
-											<?php echo '<input type="text" name="Libelle"  class="form-control input-sm" placeholder="Libelle"  value="'.htmlspecialchars($SESSION['libelleArticle']).'">'; ?>
+										<div class="form-group" method="post">
+											<?php echo '<input type="text" name="libelleArticle"  class="form-control input-sm" placeholder="Libelle"  value="'.htmlspecialchars($_SESSION['libelleArticle']).'">'; ?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<?php echo '<input type="text" name="Description"  class="form-control input-sm" placeholder="Description" value="'.htmlspecialchars($SESSION['descriptifArticle']).'">'; ?>
+											<?php echo '<textarea cols="40" rows="20" name="descriptifArticle"  class="form-control input-sm" placeholder="Description">'.htmlspecialchars($_SESSION['descriptifArticle']).'</textarea>'; ?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<?php echo '<input type="text" name="Prix"  class="form-control input-sm" placeholder="Prix" value="'.htmlspecialchars($SESSION['prixArticle']).'">'; ?>
+											<?php echo '<input type="text" name="prixArticle"  class="form-control input-sm" placeholder="Prix" value="'.htmlspecialchars($_SESSION['prixArticle']).'">'; ?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<?php echo '<input type="text" name="Univers"  class="form-control input-sm" placeholder="Univers" value="'.htmlspecialchars($SESSION['universArticle']).'">'; ?>
+											<?php echo '<input type="text" name="libelleUnivers"  class="form-control input-sm" placeholder="Univers" value="'.htmlspecialchars($_SESSION['libelleUnivers']).'">'; ?>
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-6 col-md-6">
@@ -250,28 +290,70 @@ if(isset($_POST['Chercher']))
 			</div>
 			<div class="item">
 				<div class="row centered-form">
-					<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+					<div class="col-xs-12 col-sm-4 col-md-4  col-md-offset-2">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Supprimer un element.</h3>
+<!-- supprimer un article -->
+								<h3 class="panel-title">Supprimer un article.</h3>
 							</div>
 							<div class="panel-body">
 								<form role="form" method="post" action="php/supprimElement.php">
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="text" name="Reference"  class="form-control input-sm" placeholder="Reference">
+											<input type="text" name="refArticle"  class="form-control input-sm" placeholder="Reference">
+											<?php if(isset($_GET['erreurref2'])){
+												echo '<div style="text-align:center;color:red;">Aucune reference</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="text" name="Libelle"  class="form-control input-sm" placeholder="Libelle">
+											<input type="text" name="libelleArticle"  class="form-control input-sm" placeholder="Libelle">
+											<?php if(isset($_GET['erreurlibelle3'])){
+												echo '<div style="text-align:center;color:red;">Aucun libelle</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="text" name="Univers"  class="form-control input-sm" placeholder="Univers">
+											<input type="text" name="libelleUnivers"  class="form-control input-sm" placeholder="Univers">
+											<?php if(isset($_GET['erreurexist3'])){
+												echo '<div style="text-align:center;color:red;">Cet univers n\'existe pas</div>';
+											} else if(isset($_GET['successsupelem'])){
+												echo '<div style="text-align:center;color:green;">L\'element à été supprimé</div>';
+											}
+											?>
 										</div>
 									</div>
+									<input type="submit" value="Supprimer" class="btn btn-block">   		
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+<!-- supprimer un element -->
+								<h3 class="panel-title">Supprimer un univers.</h3>
+							</div>
+							<div class="panel-body">
+								<form role="form" method="post" action="php/supprimUnivers.php">
+									<div class="col-xs-12 col-sm-12 col-md-12">
+										<div class="form-group">
+											<input type="text" name="libelleUnivers"  class="form-control input-sm" placeholder="Univers">
+											<?php if(isset($_GET['erreurexist4'])){
+												echo '<div style="text-align:center;color:red;">Aucun univers</div>';
+											} else if(isset($_GET['erreurexist5'])){
+												echo '<div style="text-align:center;color:red;">Cet univers n\'existe pas</div>';
+											} else if(isset($_GET['successsupuniv'])){
+												echo '<div style="text-align:center;color:green;">L\'univers à été supprimé</div>';
+											}
+											?>
+										</div>
+									</div>
+									<div> Attention, toute supression d'univers entraine la surpression des articles liés !</div>
 									<input type="submit" value="Supprimer" class="btn btn-block">   		
 								</form>
 							</div>

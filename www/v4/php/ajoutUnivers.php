@@ -84,6 +84,7 @@ if(empty($_POST['libelleUnivers'])) {
 				'categ4' => $categ4
 			));
 		}
+		header("Location: ../administration.php?successajoutuniv");
 	}
 }
 ?>
