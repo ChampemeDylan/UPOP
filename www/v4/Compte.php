@@ -129,6 +129,12 @@ if(isset($_POST['validCompte']))
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Confirmation Mot de passe -->
 										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmation Mot de passe">
+										<?php if(isset($_GET['erreurpassword'])){
+											echo '<div style="text-align:center;color:red;">Les 2 mots de passe ne sont pas identiques</div>';
+										} else {
+											echo '<br>';
+										}
+										?>
 									</div>
 								</div>
 								<button class="btn" name="validCompte" type="submit">Valider</button>
