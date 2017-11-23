@@ -76,6 +76,9 @@ try
 		$_SESSION['passwordUser'] = $passwordUserCrypted;
 
 	}
+	else {
+		header("Location: ../Compte.php?erreurpassword=error_password");
+	}
 }
 catch(PDOException $e)
 {
