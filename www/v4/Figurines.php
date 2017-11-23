@@ -63,19 +63,19 @@ require "./php/verifConnexion.php";
 		<div class="row text-center">
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<a href="?categorie=jeux"><img class="imgButton2" src="images/jeux.png"></br><b>Jeux Vidéos</b></a>
+				<a href="?categorie=jeux"><img class="imgButton2" src="images/jeux.png"></a>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<a href="?categorie=series"><img class="imgButton2" src="images/serie.png"></br><b>Séries</b></a>
+				<a href="?categorie=series"><img class="imgButton2" src="images/serie.png"></a>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL  ( href ) -->
-				<a href="?categorie=films"><img class="imgButton2" src="images/film.png"></br><b>Films</b></a>
+				<a href="?categorie=films"><img class="imgButton2" src="images/film.png"></a>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 <!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
-				<a href="?categorie=animes"><img class="imgButton2" src="images/anime.png"></br><b>Animés</b></a>
+				<a href="?categorie=animes"><img class="imgButton2" src="images/anime.png"></a>
 			</div>
 		</div>
 		<div class="row">
@@ -191,7 +191,7 @@ require "./php/verifConnexion.php";
 			</div>
 	<!-- Bouton d'ajout au panier -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<?php 
+				<?php
 				if ($donnees['stockArticle']>0)
 					echo '<button class="validationPanier" value='.$donnees['refArticle'].' type="submit">Ajouter au panier</button>';
 				 ?>
