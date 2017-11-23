@@ -56,6 +56,9 @@ if(isset($_POST['validCompte']))
                         }
                     ?>
                 	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
+                	<?php
+                		
+                	?>
                 	<li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle">45</span></a></li>
                     <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
                 </ul>
@@ -158,14 +161,51 @@ if(isset($_POST['validCompte']))
 									<th>État</th>
 								</tr>
 							</thead>
+							<?php
+								try
+								{
+									// On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
+									$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+								}
+								catch(Exception $e)
+								{
+										// En cas d'erreur, on affiche un message et on arrête tout
+								        die('Erreur : '.$e->getMessage());
+								}
+								// récupération des commandes de l'utilisateur connecté
+								$sql = "SELECT * FROM commande WHERE loginUser=:loginUser ORDER BY dateCommande DESC";
+								$stmt = $bdd->prepare($sql);
+								$stmt->execute(array(
+								    'loginUser' => $_SESSION['loginUser']
+								));
+								// On affiche chaque entrée une à une qu'on récupère dans le conteneur $reponse
+								while ($donnees = $stmt->fetch())
+								{
+									// récupération de la liste des articles de la commande pour calcul du montant total
+									$sql2 = "SELECT * FROM commande_article,fiche_article WHERE fiche_article.refArticle=commande_article.refArticle AND numeroCommande=:numeroCommande";
+									$stmt2 = $bdd->prepare($sql2);
+									$stmt2->execute(array(
+										'numeroCommande' => $donnees['numeroCommande']
+									));
+									$montantTotal = '';
+									while($donnees2 = $stmt2->fetch())
+									{
+										$montantTotal = $montantTotal + ($donnees2['prixArticle']*$donnees2['quantiteArticle']);
+									}
+									$stmt2->closeCursor();
+							?>
 							<tbody>
 								<tr>
-									<td>A</td>
-									<td>B</td>
-									<td>C</td>
-									<td>D</td>
+									<td><?php echo $donnees['numeroCommande'] ?></td> 
+									<td><?php echo $donnees['dateCommande'] ?></td>
+									<td><?php echo $montantTotal ?> €</td>
+									<td><?php echo $donnees['etatCommande'] ?></td>
 								</tr>
 							</tbody>
+							<?php
+								}
+								$stmt->closeCursor(); // Termine le traitement de la requête
+							?>
 						</table>
 					</div>
 				</div>
