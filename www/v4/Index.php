@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if(isset($_SESSION['loginUser'])) {
+  header("Location: accueil.php");
+  exit();
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -23,7 +33,7 @@
 <!-- page de connexion -->
 			<div id="connexion" class="row">
 				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-					<form class="form-login" method="post" action="php/connexion.php"><!-- appel du php de connexion -->
+					<form class="form-login" method="post" action="./php/connexion.php"><!-- appel du php de connexion -->
 						<div class="row">
 							<img src="images/iconeupop.png" width="400px" class="img-responsive col-xs-12"/>
 						</div>
@@ -65,7 +75,7 @@
 							<h3 class="panel-title">Formulaire d'inscription</h3>
 						</div>
 						<div class="panel-body">
-							<form role="form" method="post" action="/php/inscription.php"><!-- appel du php d'inscription -->
+							<form role="form" method="post" action="./php/inscription.php"><!-- appel du php d'inscription -->
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Login -->
 										<input type="text" name="loginUser" id="loginUser" class="form-control input-sm" placeholder="Login">
