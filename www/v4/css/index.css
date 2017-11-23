@@ -7,11 +7,9 @@ body {
   }
 
 .container {
-    padding: 25px;
-    opacity : 0.9;
+  padding: 25px;
+  opacity : 0.9;
 }
-
-
 
 .form-login {
     background-color: rgb(254, 212, 73);

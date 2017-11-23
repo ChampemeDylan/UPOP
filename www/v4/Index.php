@@ -24,7 +24,9 @@
 			<div id="connexion" class="row">
 				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
 					<form class="form-login" method="post" action="php/connexion.php"><!-- appel du php de connexion -->
-						<img src="images/iconeupop.png" width="400px" class="img-responsive"/>
+						<div class="row">
+							<img src="images/iconeupop.png" width="400px" class="img-responsive col-xs-12"/>
+						</div>
 						<h4>Bienvenue sur U'POP</h4>
 						<input type="text" id="loginUser" name="loginUser" class="form-control input-sm chat-input" placeholder="Pseudo" />
 						</br>
