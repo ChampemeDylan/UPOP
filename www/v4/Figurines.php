@@ -7,20 +7,22 @@ require "./php/verifConnexion.php";
 
 <html>
 <head>
+
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="Images\iconeupop.png"/>
 
 <!-- feuilles de style -->
 	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./css/main.css"/>
-    <link rel="stylesheet" href="./css/figurines.css">
+  <link rel="stylesheet" href="./css/main.css"/>
+  <link rel="stylesheet" href="./css/figurines.css">
 
 <!-- fichiers javascript -->
-    <script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
-    <script type="application/javascript" src="./js/bootstrap.min.js"></script>
+  <script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
+  <script type="application/javascript" src="./js/bootstrap.min.js"></script>
 
 	<title>U POP</title>
+
 </head>
 
 <body>
@@ -38,11 +40,10 @@ require "./php/verifConnexion.php";
                     <li><img class="logoBar" src="images/iconeupop.png"></li>
                     <li><a href="accueil.php" ><img class="imgButton" src="images/home.png"></a></li>
                     <li><a href="figurines.php"><img class="imgButton" src="images/figurine.png"></a></li>
-                    <!-- <li><h2 id="titre">Accueil</h2></li> -->
                     <li><a href="contact.php"><img class="imgButton" src="images/contact.png"></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                	<!-- Insertion du logo Admin sous condition -->
+<!-- Insertion du logo Admin sous condition -->
                     <?php
                         if ($_SESSION['typeUser']>0) {
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
@@ -62,19 +63,15 @@ require "./php/verifConnexion.php";
 <!-- choix de la catégorie -->
 		<div class="row text-center">
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-<!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
 				<a href="?categorie=jeux"><img class="imgButton2" src="images/jeux.png"></a>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-<!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
 				<a href="?categorie=series"><img class="imgButton2" src="images/serie.png"></a>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-<!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL  ( href ) -->
 				<a href="?categorie=films"><img class="imgButton2" src="images/film.png"></a>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-<!-- /!\ WARNING A COMPLETER AVEC REQUETE SQL ( href ) -->
 				<a href="?categorie=animes"><img class="imgButton2" src="images/anime.png"></a>
 			</div>
 		</div>
@@ -146,56 +143,78 @@ require "./php/verifConnexion.php";
 			while ($donnees = $reponse->fetch())
 			{
 		?>
+
+
+
+
+
+
+
+
 <!-- Modèle d'article -->
 		<div class="row panel panel-default">
-		<!-- Image de l'article -->
-			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<img class="imageArticle" src=<?php echo 'images/'.$donnees['refArticle'].'.png' ?>> <!-- Insertion PHP de la refArticle pour l'affichage de la bonne image -->
+<!-- Image de l'article -->
+			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1 ">
+				<img class="imageArticle" src=<?php echo 'images/'.$donnees['refArticle'].'.png' ?>><!-- Insertion PHP de la refArticle pour l'affichage de la bonne image -->
 			</div>
-	<!-- Titre et description de la figurine -->
+
+
+<!-- Titre et description de la figurine -->
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<p>
-					<b>	<!-- Insertion PHP du titre et du libellé de la figurine -->
+				<a href="#">
+					<b><!-- Insertion PHP du titre et du libellé de la figurine -->
 						<?php echo $donnees['libelleArticle']; ?> (<?php echo $donnees['libelleUnivers']; ?>)
 					</b>
-				</p>
-				<div id="describe">
-					<!-- Insertion PHP de la description de la figurine -->
-					<?php echo nl2br($donnees['descriptifArticle']); ?>
-				</div>
+				</a>
+
+
+
+
+
+
+<!-- Insertion PHP de la description de la figurine -->
+				<!-- <div id="describe"> -->
+				<?php // echo nl2br($donnees['descriptifArticle']); ?>
+				<!-- </div> -->
+
+
+
+
+
+<!-- Insertion PHP de la refArticle -->
 				<p class="refColor">
-					<b>Réf :</b> <!-- Insertion PHP de la refArticle -->
+					<b>Réf :</b>
 					<?php echo $donnees['refArticle']; ?>
 				</p>
 			</div>
-	<!-- Nombre d'articles en stock -->
-			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<p>
-					<b>Stock</b>
-				</p>
-				<p>
-					<?php
-					if ($donnees['stockArticle']>0)
-					{
-						echo $donnees['stockArticle'];
-					} else {
-						echo 'Indisponible';}
-					?>
-				</p>
-			</div>
-	<!-- Prix de l'article -->
-			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<p><b>Prix</b></p>
+<!-- Nombre d'articles en stock -->
+			<div class="col-sm-3 col-sm-3 col-md-3 col-lg-3">
+				<div class="row">
+					<p>
+						<b>Stock : </b>
+						<?php
+							if ($donnees['stockArticle']>0)
+								{
+									echo $donnees['stockArticle'];
+								} else {
+									echo 'Indisponible';
+								}
+						?>
+					</p>
+				</div>
+<!-- Prix de l'article -->
+			<div class="row">
+				<p><b>Prix : </b><?php echo $donnees['prixArticle'].' €'; ?></p>
 				<!-- Insertion PHP du prix de l'article -->
-				<p><?php echo $donnees['prixArticle'].' €'; ?></p>
 			</div>
-	<!-- Bouton d'ajout au panier -->
-			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
+<!-- Bouton d'ajout au panier -->
+			<div class="row">
 				<?php
 				if ($donnees['stockArticle']>0)
-					echo '<button class="validationPanier" value='.$donnees['refArticle'].' type="submit">Ajouter au panier</button>';
-				 ?>
+					echo '<button class="validationPanier btn btn-default" value='.$donnees['refArticle'].' type="submit">Ajouter au panier</button>';
+		 		?>
 			</div>
+		</div>
 		</div>
 		<?php
 			}
@@ -203,6 +222,22 @@ require "./php/verifConnexion.php";
 		?>
 		<div><hr></div>
 <!-- Fin Modèle d'article -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	</div>
 
 <!-- fin contenu de la page -->
