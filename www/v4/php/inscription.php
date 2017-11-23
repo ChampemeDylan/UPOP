@@ -71,6 +71,25 @@ try
 				'mailUser' => $mailUser
 			));
 
+//Récupération des vriables du formulaire :
+				$mailUser = $_POST['mailUser'];
+				$loginUser = $_POST['loginUser'];
+				 
+// Mail :
+				$objet = 	'Confirmation de votre inscription UPop' ;
+				$contenu =  'Votre inscription a été bien prise en compte.';
+				$headers  = 'MIME-Version: 1.0' . "\r\n";
+				$headers .= 'From:'.$loginUser.' <'.$mailUser.'>' . "\r\n" .
+							'Reply-To:'.$mailUser. "\r\n" .
+							'Content-Type: text/plain; charset="utf-8"; DelSp="Yes"; format=flowed '."\r\n" .
+							'Content-Disposition: inline'. "\r\n" .
+							'Content-Transfer-Encoding: 7bit'." \r\n" .
+							'X-Mailer:PHP/'.phpversion();
+                         
+//Envoi du mail :
+
+			mail($mailUser, $objet, $contenu, $headers);
+
 			header("Location: ../index.php?validinscription=validee"); // Redirection du navigateur
 		}
 		else
@@ -86,3 +105,6 @@ catch(PDOException $e)
 
 $bdd = null;
 ?>
+
+
+
