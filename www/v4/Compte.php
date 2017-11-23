@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require "./php/verifConnexion.php";
@@ -21,7 +21,7 @@ if(isset($_POST['validCompte']))
 		<!-- feuilles de style -->
 		<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="./css/main.css"/>
-		<link rel="stylesheet" href="./css/compte.css"/>		
+		<link rel="stylesheet" href="./css/compte.css"/>
 		<!-- fichiers javascript -->
 		<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
 		<script type="application/javascript" src="./js/bootstrap.min.js"></script>
@@ -50,7 +50,7 @@ if(isset($_POST['validCompte']))
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 	<!-- Insertion du logo Admin sous condition -->
-                    <?php 
+                    <?php
                         if ($_SESSION['typeUser']>0) {
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                         }
@@ -64,7 +64,7 @@ if(isset($_POST['validCompte']))
     </nav>
 
 <!-- contenu de la page -->
-		<div class="container center">
+		<div class="container center marginTopPage">
 			<div class="row">
 				<div class="col-xs-12 col-sm-4 col-md-6">
 
@@ -131,7 +131,7 @@ if(isset($_POST['validCompte']))
 										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmation Mot de passe">
 									</div>
 								</div>
-								<button class="btn" name="validCompte" type="submit">Valider</button>				
+								<button class="btn" name="validCompte" type="submit">Valider</button>
 							</form>
 						</div>
 					</div>
@@ -143,24 +143,24 @@ if(isset($_POST['validCompte']))
 						<div class="panel-heading">
 							<h3 class="panel-title">Suivi des commandes</h3>
 						</div>
-						<table class="table"> 
-							<thead> 
-								<tr> 
-									<th>Ref Commande</th> 
-									<th>Date</th> 
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Ref Commande</th>
+									<th>Date</th>
 									<th>Montant</th>
 									<th>État</th>
-								</tr> 
-							</thead> 
-							<tbody> 
-								<tr> 
-									<td>A</td> 
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>A</td>
 									<td>B</td>
-									<td>C</td> 
-									<td>D</td>  
-								</tr> 
-							</tbody> 
-						</table>						
+									<td>C</td>
+									<td>D</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
