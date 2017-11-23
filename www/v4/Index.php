@@ -67,16 +67,28 @@
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Login -->
 										<input type="text" name="loginUser" id="loginUser" class="form-control input-sm" placeholder="Login">
+										<?php if(isset($_GET['loginexistant'])){
+											echo '<div style="text-align:center;color:red;">Login déjà existant</div>';
+										} else {
+											echo '<br>';
+										}
+										?>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Mot de passe -->
-										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
+										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe"><!-- format de type password -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Confirmation Mot de passe -->
-										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe"><!-- format de type password -->
+										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
+										<?php if(isset($_GET['erreurpassword'])){
+											echo '<div style="text-align:center;color:red;">Les 2 mots de passe ne sont pas identiques</div>';
+										} else {
+											echo '<br>';
+										}
+										?>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
@@ -135,7 +147,20 @@
 	//cache par défaut la div d'inscription
 	$(document).ready(function()
     {
-        $("#inscription").hide();
+		var passError = 
+			<?php
+			 if (isset($_GET['erreurpassword']) or isset($_GET['loginexistant']))
+			 { echo 1; }
+			 else
+			 { echo 0; }
+			 ?>;
+		if (passError == 1){
+			$("#connexion").hide();
+        	$("#inscription").show();
+		}
+		else{
+        	$("#inscription").hide();
+		}
     });
 
 	//bascule de connexion à inscription
