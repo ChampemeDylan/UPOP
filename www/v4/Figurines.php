@@ -191,8 +191,9 @@ require "./php/verifConnexion.php";
 			</div>
 	<!-- Bouton d'ajout au panier -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1">
-				<?php if ($donnees['stockArticle']>0)
-					echo '<button>Ajouter au panier</button>';
+				<?php 
+				if ($donnees['stockArticle']>0)
+					echo '<button value='.$donnees['refArticle'].' type="submit">Ajouter au panier</button>';
 				 ?>
 			</div>
 		</div>
@@ -207,6 +208,15 @@ require "./php/verifConnexion.php";
 <!-- fin contenu de la page -->
 </body>
 	<script>
-
+		$("button").click(function(){
+			var ref = $(this).val();
+			$.ajax({
+				url: 'php/ajoutPanier.php',
+	    		data: 'refArticle='+ ref,
+	    		success: function(reponse) {
+	    			alert(reponse); // reponse contient l'affichage du fichier PHP (soit echo)
+	  			}
+			});
+		})
 	</script>
 </html>
