@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require "./php/verifConnexion.php";
@@ -46,7 +46,7 @@ require "./php/verifConnexion.php";
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 	<!-- Insertion du logo Admin sous condition -->
-                    <?php 
+                    <?php
                         if ($_SESSION['typeUser']>0) {
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                         }
@@ -62,20 +62,20 @@ require "./php/verifConnexion.php";
 
 <!-- contenu de la page -->
 
-		<div class="container">
+		<div class="container marginTopPage">
 			<div class="row">
 				<div class="col-xs-12 col-sm-8 col-md-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">Panier</h3>
-						</div>						
+						</div>
 
 							<div class="panel-body">
 
 								<div class="col-xs-12 col-sm-12 col-md-12">
 
 									<div class="row fond">
-										
+
 										<div class="col-xs-6 col-sm-4 col-md-1">
 											<img id="ImgPerso" src="./images/got1.jpg" alt="" />
 										</div>
@@ -83,13 +83,13 @@ require "./php/verifConnexion.php";
 
 
 											<div class="col-xs-6 col-sm-4 col-md-3">
-												<p id="personnage">Khalissi</p>			
+												<p id="personnage">Khalissi</p>
 												<p id="refArticle">Ref</p>
 											</div>
 
 
 												<div class="col-xs-4 col-sm-4 col-md-4">
-															<p>Prix<b id="prixArticle"></b></p>				
+															<p>Prix<b id="prixArticle"></b></p>
 															<p>Quantité<select name="" id="">Qauntité
 																			<option value="valeur récuperée à l'ajout">1</option>
 																			<option value="">2</option>
@@ -103,26 +103,25 @@ require "./php/verifConnexion.php";
 																			<option value="">10</option>
 																		</select>
 															</p>
-															
-														
+
+
 												</div>
 									</div><br />
 
 									<div class="col-xs-12 col-sm-12 col-md-12 text-right">
 										<input type="button" value="Commander" class="btn" />
-									</div>	
+									</div>
 
-								</div>					
+								</div>
 							</div>
 				</div>
 			</div>
 		</div>
 	</div>
-		
-			
-	
+
+
+
 <!-- fin contenu de la page -->
 
 </body>
 </html>
-
