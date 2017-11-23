@@ -39,6 +39,8 @@
 							echo '<div style="text-align:center;color:red;">Aucun mot de passe</div>';
 						} else if(isset($_GET['erreurbdd'])){
 							echo '<div style="text-align:center;color:red;">Erreur de connexion à la base</div>';
+						} else if(isset($_GET['validinscription'])) {
+							echo '<div style="text-align:center;color:green;">Inscription validée</div>';
 						} else {
 							echo '<br>';
 						}

@@ -71,7 +71,7 @@ try
 				'mailUser' => $mailUser
 			));
 
-			header("Location: ../index.php"); // Redirection du navigateur
+			header("Location: ../index.php?validinscription=validee"); // Redirection du navigateur
 		}
 		else
 		{
