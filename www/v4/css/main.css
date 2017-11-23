@@ -16,6 +16,10 @@ ul {
   text-align      : left;
 }
 
+.refColor {
+	color: grey;
+	font-size: 10px;
+}
 
 .imgButton2 {
   max-width       : 100%;

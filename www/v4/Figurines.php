@@ -99,8 +99,6 @@ require "./php/verifConnexion.php";
 			} else {
 				echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Tous nos produits</b></h2></div>';
 			}
-
-
 			?>
 		</div>
 		<br/>
@@ -144,20 +142,12 @@ require "./php/verifConnexion.php";
 			{
 		?>
 
-
-
-
-
-
-
-
 <!-- Modèle d'article -->
 		<div class="row panel panel-default">
 <!-- Image de l'article -->
 			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1 ">
 				<img class="imageArticle" src=<?php echo 'images/'.$donnees['refArticle'].'.png' ?>><!-- Insertion PHP de la refArticle pour l'affichage de la bonne image -->
 			</div>
-
 
 <!-- Titre et description de la figurine -->
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -167,19 +157,10 @@ require "./php/verifConnexion.php";
 					</b>
 				</a>
 
-
-
-
-
-
 <!-- Insertion PHP de la description de la figurine -->
 				<!-- <div id="describe"> -->
 				<?php // echo nl2br($donnees['descriptifArticle']); ?>
 				<!-- </div> -->
-
-
-
-
 
 <!-- Insertion PHP de la refArticle -->
 				<p class="refColor">
@@ -187,6 +168,7 @@ require "./php/verifConnexion.php";
 					<?php echo $donnees['refArticle']; ?>
 				</p>
 			</div>
+
 <!-- Nombre d'articles en stock -->
 			<div class="col-sm-3 col-sm-3 col-md-3 col-lg-3">
 				<div class="row">
@@ -202,11 +184,13 @@ require "./php/verifConnexion.php";
 						?>
 					</p>
 				</div>
+
 <!-- Prix de l'article -->
 			<div class="row">
 				<p><b>Prix : </b><?php echo $donnees['prixArticle'].' €'; ?></p>
 				<!-- Insertion PHP du prix de l'article -->
 			</div>
+
 <!-- Bouton d'ajout au panier -->
 			<div class="row">
 				<?php
@@ -221,23 +205,8 @@ require "./php/verifConnexion.php";
 			$reponse->closeCursor(); // Termine le traitement de la requête
 		?>
 		<div><hr></div>
+
 <!-- Fin Modèle d'article -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	</div>
 
 <!-- fin contenu de la page -->
