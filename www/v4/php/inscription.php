@@ -72,18 +72,42 @@ try
 			));
 
 //Récupération des vriables du formulaire :
-				$mailUser = $_POST['mailUser'];
+				$mailUser  = $_POST['mailUser'];
 				$loginUser = $_POST['loginUser'];
 				 
 // Mail :
-				$objet = 	'Confirmation de votre inscription UPop' ;
-				$contenu =  'Votre inscription a été bien prise en compte.';
+				$objet = 	'Confirmation de votre inscription UPop';
+				$contenu =  '<html>
+								<head>
+									<div>
+										<span>
+											<img src="http://upop.champemedylan.fr/images/iconeupop.png" style="width: 140px;"></img>
+										</span>
+									</div>
+									
+									<hr>
+								</head>
+									<body>
+									    <p style="font-size: 22px;">	Bonjour '.$prenomUser.',
+											vous venez de vous inscrire sur Upop et on vous en remercie.
+											Merci de votre confiance et à bientôt sur Upop.
+										</p><br>
+										<p style="font-size: 22px;">
+											Cordialement l\'équipe U\'pop
+										</p>
+											<hr>
+										<p style="font-size: 12px;">
+											© 2017 Copyright: U\'Pop -- Ce site est un projet étudiant et non un site de vente
+										</p>
+
+									</body>
+							</html>';
 				$headers  = 'MIME-Version: 1.0' . "\r\n";
 				$headers .= 'From:'.$loginUser.' <'.$mailUser.'>' . "\r\n" .
 							'Reply-To:'.$mailUser. "\r\n" .
-							'Content-Type: text/plain; charset="utf-8"; DelSp="Yes"; format=flowed '."\r\n" .
+							'Content-Type: text/html; charset="utf-8"; DelSp="Yes"; format=flowed '."\r\n" .
 							'Content-Disposition: inline'. "\r\n" .
-							'Content-Transfer-Encoding: 7bit'." \r\n" .
+							'Content-Transfer-Encoding: 8bit'." \r\n" .
 							'X-Mailer:PHP/'.phpversion();
                          
 //Envoi du mail :
