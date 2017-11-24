@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require "./php/verifConnexion.php";
@@ -45,7 +45,7 @@ require "./php/verifConnexion.php";
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Insertion du logo Admin sous condition -->
-                    <?php 
+                    <?php
                         if ($_SESSION['typeUser']>0) {
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                         }
@@ -66,47 +66,44 @@ require "./php/verifConnexion.php";
 	<div class="row">
 	    <!-- Card -->
 
-		
+
     <div class="container mt-4 mb-5">
-	
+
 <!-- debut vidéo responsive -->
 		<div class="video-container">
             <!-- <iframe src="videos/StrangerThings2pops.mp4" frameborder="0"></iframe> -->
             <video src="videos/coming soon sonic pops.mp4" type="video/mp4" autoplay loop muted>Prochainement</video>
 		</div>
     </div>
-</div>	
-	<!-- fin vidéo responsive -->	
+</div>
+	<!-- fin vidéo responsive -->
         <h3 class="display-4 text-center"> Présentation des Produits </h3>
         <hr class="bg-dark mb-4 w-25">
         <div class="row">
             <div class="col-md-4">
                 <div class="card panel panel-default">
-                    <img class="image1" src="./images/King.png" alt="Card image cap">
+                    <img class="image1" src="./images/King.png">
                     <div class="card-block p-3">
                         <h4 class="card-title">Nouveautées !</h4>
                         <p class="card-text">De nouveaux produits sont en stocks dans nos rayons, venez vite les découvrir avant que tous nos U'POPS partent !</p>
-                        <a href="#" class="btn btn-primary rounded-0 mb-2">Voir les produits</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card panel panel-default">
-                    <img class="image1" src="./images/Trooper.png" alt="Card image cap">
+                    <img class="image1" src="./images/Trooper.png">
                     <div class="card-block p-3">
                         <h4 class="card-title">A nouveau présent !</h4>
                         <p class="card-text">Les U'POPS de la catégorie STARS WARS ont été victimes de leurs succès ! Mais grâce à notre réactivité, ils sont à nouveau disponible !</p>
-                        <a href="#" class="btn btn-primary rounded-0 mb-2">Voir les produits</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card panel panel-default">
-                    <img class="image1" src="./images/Snow.png" alt="Card image cap">
+                    <img class="image1" src="./images/Snow.png">
                     <div class="card-block p-3">
                         <h4 class="card-title">Winter is COMING ! </h4>
                         <p class="card-text">Le mois de décembre arrive à grand pas ! N'hésitez pas vous équiper en conséquence ! Toutes notre collections U'POP est présente !</p>
-                        <a href="#" class="btn btn-primary rounded-0 mb-2">Voir les produits</a>
                     </div>
                 </div>
             </div>
@@ -124,7 +121,7 @@ require "./php/verifConnexion.php";
                 </p>
                 <p>
                 Nous suivons et partageons leur actualité depuis 2014, et sommes nous-même collectionneurs. Nous publions en permanence de nouvelles U'POP
-				(personnages de séries, films ou jeux vidéo, etc...). Nous traitons l'actualité des Funko Pop, enfin, nous publions régulièrement des articles 
+				(personnages de séries, films ou jeux vidéo, etc...). Nous traitons l'actualité des Funko Pop, enfin, nous publions régulièrement des articles
 				spécialisés : il y a par exemple nos conseils pour trouver des figurines U'POP sur notre sites composés en différents onglets.
                 <br>
 				Les différentes catégories présentent sur notre sites sont :
@@ -138,7 +135,7 @@ require "./php/verifConnexion.php";
             </div>
 			 <!-- Carousel  -->
     	<div id="carousel-example-generic" class="carousel slide col-md-4" data-ride="carousel">
-		
+
 			<ol class="carousel-indicators">
 			  	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
@@ -147,7 +144,7 @@ require "./php/verifConnexion.php";
 			<div class="carousel-inner">
 			    <div class="item active">
 			    	<img src="./images/trooper.png" alt="First slide">
-               
+
                     <div class="header-text hidden-xs">
                         <div class="col-md-12 text-center">
                             <div class="">
@@ -157,7 +154,7 @@ require "./php/verifConnexion.php";
 			    </div>
 			    <div class="item">
 			    	<img src="./images/deadpool.png" alt="Second slide">
-			    
+
                     <div class="header-text hidden-xs">
                         <div class="col-md-12 text-center">
                             <div class="">
@@ -167,7 +164,7 @@ require "./php/verifConnexion.php";
 			    </div>
 			    <div class="item">
 			    	<img src="./images/king.png" alt="Third slide">
-			    	
+
                     <div class="header-text hidden-xs">
                         <div class="col-md-12 text-center">
                             <div class="">
@@ -176,7 +173,7 @@ require "./php/verifConnexion.php";
                     </div>
 			    </div>
 			</div>
-			
+
 			<a class="controle-caroussel.gauche" href="#carousel-example-generic" data-slide="prev"></a>
 			<a class="right carousel-control" href="#carousel-example-generic" data-slide="next"></a>
 		</div>
@@ -184,12 +181,11 @@ require "./php/verifConnexion.php";
 </div>
         </div
     </div>
-         
+
 
 <!-- fin articles de la page -->
-	
+
 <!-- fin contenu de la page -->
 
 </body>
 </html>
-
