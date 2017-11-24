@@ -78,61 +78,52 @@ require "./php/verifConnexion.php";
 		</div>
 		<div class="row">
 			<?php
-				if(isset($_GET['categorie'])){
-				switch ($_GET['categorie']) {
-					case 'films':
-						// On récupère tout le contenu de la table via la requête suivante
-						echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Films</b></h2></div>';
-						break;
-					case 'jeux':
-						// On récupère tout le contenu de la table via la requête suivante
-						echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Jeux vidéos</b></h2></div>';
-						break;
-					case 'series':
-						// On récupère tout le contenu de la table via la requête suivante
-						echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Séries</b></h2></div>';
-						break;
-					case 'animes':
-						// On récupère tout le contenu de la table via la requête suivante
-						echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Animés</b></h2></div>';
-						break;
+				try
+				{
+					// On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
+					$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 				}
-			} else {
-				echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Tous nos produits</b></h2></div>';
-			}
+				catch(Exception $e)
+				{
+						// En cas d'erreur, on affiche un message et on arrête tout
+				        die('Erreur : '.$e->getMessage());
+				}
+				if(isset($_GET['categorie'])){
+					switch ($_GET['categorie']) {
+						case 'films':
+							// On récupère tout le contenu de la table via la requête suivante
+							echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Films</b></h2></div>';
+							$libelle = 'Film';
+							break;
+						case 'jeux':
+							// On récupère tout le contenu de la table via la requête suivante
+							echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Jeux vidéos</b></h2></div>';
+							$libelle = 'Jeu vidéo';
+							break;
+						case 'series':
+							// On récupère tout le contenu de la table via la requête suivante
+							echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Séries</b></h2></div>';
+							$libelle = 'Série';
+							break;
+						case 'animes':
+							// On récupère tout le contenu de la table via la requête suivante
+							echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Animés</b></h2></div>';
+							$libelle = 'Dessin Animé';
+							break;
+					}
+				}
+			 	else
+			 	{
+					echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Tous nos produits</b></h2></div>';
+				}
 			?>
 			<div class="col-xs-12"><hr/></div>
 		</div>
 		<br/>
 <!-- fin de choix de la catégorie -->
 		<?php
-			try
-			{
-				// On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
-				$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
-			}
-			catch(Exception $e)
-			{
-					// En cas d'erreur, on affiche un message et on arrête tout
-			        die('Erreur : '.$e->getMessage());
-			}
 			// On vérifie si la categorie apparaît dans l'URL pour afficher les produits ciblés...
 			if(isset($_GET['categorie'])){
-				// SELON la valeur de $_GET['categorie'], le libellé prend une valeur différente
-				switch ($_GET['categorie']) {
-					case 'films':
-						$libelle = 'Film';
-						break;
-					case 'jeux':
-						$libelle = 'Jeu vidéo';
-						break;
-					case 'series':
-						$libelle = 'Série';
-						break;
-					case 'animes':
-						$libelle = 'Dessin Animé';
-						break;
-				}
 				// Requête que l'on va utiliser en fonction de la catégorie choisie
 				$reponse = $bdd->query('select fiche_article.refArticle,descriptifArticle,libelleArticle,fiche_article.libelleUnivers,stockArticle,prixArticle,libelleCategorie from fiche_article,univers_categorie,stock_article where fiche_article.libelleUnivers = univers_categorie.libelleUnivers and fiche_article.refArticle = stock_article.refArticle and libelleCategorie="'.$libelle.'";');
 			// ... sinon on affiche tous les produits
