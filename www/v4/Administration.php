@@ -138,7 +138,7 @@ function debug_to_console($data) {
 		<div id="contenu">
 			<div class="item">
 				<div class="row centered-form">
-					<div class="col-xs-12 col-sm-5 col-md-5  col-md-offset-1">
+					<div class="col-xs-12 col-sm-5 col-md-5  col-sm-offset-1">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 <!-- Ajouter element -->
@@ -331,7 +331,7 @@ function debug_to_console($data) {
 			</div>
 			<div class="item">
 				<div class="row centered-form">
-					<div class="col-xs-12 col-sm-5 col-md-5  col-md-offset-1">
+					<div class="col-xs-12 col-sm-5 col-md-5  col-sm-offset-1">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 <!-- supprimer un article -->
