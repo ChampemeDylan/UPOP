@@ -51,7 +51,7 @@ require "./php/verifConnexion.php";
                     ?>
                 	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
                 	<li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle">45</span></a></li>
-                    <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
+                  <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
                 </ul>
             </div>
         </div>
@@ -74,6 +74,7 @@ require "./php/verifConnexion.php";
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 				<a href="?categorie=animes"><img class="imgButton2" src="images/anime.png"></a>
 			</div>
+			<div class="col-xs-12"><hr/></div>
 		</div>
 		<div class="row">
 			<?php
@@ -100,6 +101,7 @@ require "./php/verifConnexion.php";
 				echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><h2><b>Tous nos produits</b></h2></div>';
 			}
 			?>
+			<div class="col-xs-12"><hr/></div>
 		</div>
 		<br/>
 <!-- fin de choix de la catégorie -->
