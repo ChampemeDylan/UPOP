@@ -78,7 +78,7 @@ if(isset($_SESSION['loginUser'])) {
 							<form role="form" method="post" action="./php/inscription.php"><!-- appel du php d'inscription -->
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Login -->
-										<input type="text" name="loginUser" id="loginUser" class="form-control input-sm" placeholder="Login">
+										<input type="text" minlength="5" name="loginUser" id="loginUser" class="form-control input-sm" placeholder="Login">
 										<?php if(isset($_GET['loginexistant'])){
 											echo '<div style="text-align:center;color:red;">Login déjà existant</div>';
 										} else {
@@ -89,12 +89,12 @@ if(isset($_SESSION['loginUser'])) {
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Mot de passe -->
-										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe"><!-- format de type password -->
+										<input type="password" minlength="8" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe"><!-- format de type password -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Confirmation Mot de passe -->
-										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
+										<input type="password" minlength="8" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
 										<?php if(isset($_GET['erreurpassword'])){
 											echo '<div style="text-align:center;color:red;">Les 2 mots de passe ne sont pas identiques</div>';
 										} else {
@@ -105,12 +105,12 @@ if(isset($_SESSION['loginUser'])) {
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Nom -->
-										<input type="text" name="nomUser" id="nomUser" class="form-control input-sm" placeholder="Nom">
+										<input type="text" minlength="2" name="nomUser" id="nomUser" class="form-control input-sm" placeholder="Nom">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Prenom -->
-										<input type="text" name="prenomUser" id="prenomUser" class="form-control input-sm" placeholder="Prénom">
+										<input type="text" minlength="2" name="prenomUser" id="prenomUser" class="form-control input-sm" placeholder="Prénom">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -123,27 +123,27 @@ if(isset($_SESSION['loginUser'])) {
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Date de naissance -->
-										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" placeholder="Date de naissance"><!-- format de type date -->
+										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" value="1970-01-01"><!-- format de type date -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Adresse -->
-										<input type="text" name="adresseUser" id="adresseUser" class="form-control input-sm" placeholder="Adresse Postale">
+										<input type="text" minlength="2" name="adresseUser" id="adresseUser" class="form-control input-sm" placeholder="Adresse Postale">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Code Postal -->
-										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" placeholder="Code Postal"><!-- number limité à 5 caractères -->
+										<input type="number" minlength="5" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" placeholder="Code Postal"><!-- number limité à 5 caractères -->
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Ville -->
-										<input type="text" name="villeUser" id="villeUser" class="form-control input-sm" placeholder="Ville">
+										<input type="text" minlength="2" name="villeUser" id="villeUser" class="form-control input-sm" placeholder="Ville">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Mail -->
-										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" placeholder="E-mail"><!-- format de type email -->
+										<input type="email" minlength="2" name="mailUser" id="mailUser" class="form-control input-sm" placeholder="E-mail"><!-- format de type email -->
 									</div>
 								</div>
 								<button class="btn" type="submit">Valider</button>

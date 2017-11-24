@@ -80,12 +80,12 @@ if(isset($_POST['validCompte']))
 							<form role="form" method="post" action="Compte.php">
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Nom -->
-										<?php echo '<input type="text" name="nomUser" id="nomUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['nomUser']).'">'; ?><!-- htmlspecialchars pour pouvoir récupérer la donnée pouvant contenir des caractères spéciaux -->
+										<?php echo '<input type="text" minlength="2" name="nomUser" id="nomUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['nomUser']).'">'; ?><!-- htmlspecialchars pour pouvoir récupérer la donnée pouvant contenir des caractères spéciaux -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Prenom -->
-										<?php echo '<input type="text" name="prenomUser" id="prenomUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['prenomUser']).'">'; ?>
+										<?php echo '<input type="text" minlength="2" name="prenomUser" id="prenomUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['prenomUser']).'">'; ?>
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -103,12 +103,12 @@ if(isset($_POST['validCompte']))
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Adresse -->
-									<?php echo '<input type="text" name="adresseUser" id="adresseUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['adresseUser']).'">'; ?>
+									<?php echo '<input type="text" minlength="2" name="adresseUser" id="adresseUser" class="form-control input-sm" value="'.htmlspecialchars($_SESSION['adresseUser']).'">'; ?>
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Code Postal -->
-										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" value=<?php echo $_SESSION['cpUser']; ?>><!-- number limité à 5 caractères -->
+										<input type="number" minlength="5" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" value=<?php echo $_SESSION['cpUser']; ?>><!-- number limité à 5 caractères -->
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -118,7 +118,7 @@ if(isset($_POST['validCompte']))
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Mail -->
-										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" value=<?php echo $_SESSION['mailUser']; ?>><!-- format de type email -->
+										<input type="email" minlength="2" name="mailUser" id="mailUser" class="form-control input-sm" value=<?php echo $_SESSION['mailUser']; ?>><!-- format de type email -->
 									</div>
 								</div>
 								<div class="panel-heading">
@@ -126,12 +126,12 @@ if(isset($_POST['validCompte']))
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Mot de passe -->
-										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe"><!-- format de type password -->
+										<input type="password" minlength="8" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe"><!-- format de type password -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Confirmation Mot de passe -->
-										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmation Mot de passe">
+										<input type="password" minlength="8" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmation Mot de passe">
 										<?php if(isset($_GET['erreurpassword'])){
 											echo '<div style="text-align:center;color:red;">Les 2 mots de passe ne sont pas identiques</div>';
 										} else {
