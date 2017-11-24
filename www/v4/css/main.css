@@ -104,7 +104,7 @@ ul {
   border-top: 3px solid rgb(35, 31, 32);
 }
 
-.countArticle{
+#countArticle,#login{
   position:relative;
   z-index:1000;
   color: red;
@@ -113,6 +113,11 @@ ul {
   font-size: 1.2em;
   font-weight: bold;
   font-stretch: semi-condensed;
+}
+
+#compteur{
+  width:40px;
+  display:none;
 }
 
 .navbar-default .navbar-toggle:focus {
