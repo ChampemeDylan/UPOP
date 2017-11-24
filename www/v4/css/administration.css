@@ -35,18 +35,10 @@
 			border-radius: 15px;
 		}
 		
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
-input::-webkit-inner-spin-button,
-input::-webkit-outer-spin-button { 
-	-webkit-appearance: none;
-	margin:0;
-}
-
-input::-o-inner-spin-button,
-input::-o-outer-spin-button { 
-	-o-appearance: none;
-	margin:0
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
 }
