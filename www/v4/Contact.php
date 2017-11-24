@@ -104,7 +104,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
                         }
                     ?>
 					<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser']?></a></li>
-					<li><a href="panier.php"><img class="imgButton" src="images/panier.png"></a></li>
+					<li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle">45</span></a></li>
 					<li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
 				</ul>
 			</div>
