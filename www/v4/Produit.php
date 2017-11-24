@@ -115,10 +115,13 @@ require "./php/verifConnexion.php";
 
           <!-- Bouton ajout au panier -->
           <div class="col-xs-12">
+
+
             <?php
-            if ($donnees['stockArticle']>0)
-              echo '<img class=" validationPanier" value='.$donnees['refArticle'].' type="submit"><img class="imgButton" src="./images/panier.png"></img>';
-            ?>
+    				if ($donnees['stockArticle']>0)
+    					echo '<button class="validationPanier btn btn-default" value='.$donnees['refArticle'].' type="submit">Ajouter au panier</button>';
+    		 		?>
+            
           </div>
 
         </div>
