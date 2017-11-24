@@ -144,7 +144,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <legend>Votre message :</legend><!-- Message -->
-                                    <textarea class="form-control" rows="12" id="message" name="message" ><?php echo ' '.stripslashes($message)?></textarea>
+                                    <textarea class="form-control" style="overflow:auto;resize:none" rows="12" id="message" name="message" ><?php echo ' '.stripslashes($message)?></textarea>
                                 </div>
                             </div>
                             <span class="erreurEnvoie">
