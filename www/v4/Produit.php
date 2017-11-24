@@ -85,42 +85,44 @@ require "./php/verifConnexion.php";
 
 <!-- Description de l'article -->
     <div class="col-xs-12 col-md-6">
-      <!--<p>lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet lorem ipsum dolir sit amet
-      </p>-->
-      <p><?php echo nl2br($donnees['descriptifArticle']); ?></p>
-      <p><b>Réf : </b><?php echo $donnees['refArticle']; ?></p>
+      <div class="paddingArticle">
+        <p><?php echo nl2br($donnees['descriptifArticle']); ?></p>
+        <p class="refColor"><b>Réf : </b><?php echo $donnees['refArticle']; ?></p>
+      </div>
     </div>
 
 <!-- Prix Quantité AddCart -->
     <div class="col-xs-12 col-md-2">
       <div class="row">
+        <div class="paddingArticle">
 
-        <!-- Prix de l'article -->
-        <div class="col-xs-12">
-          <p><b>Prix : </b><?php echo $donnees['prixArticle'].' €'; ?></p>
-        </div>
+          <!-- Prix de l'article -->
+          <div class="col-xs-12">
+            <p><b>Prix : </b><?php echo $donnees['prixArticle'].' €'; ?></p>
+          </div>
 
-        <!-- Quantité -->
-        <div class="col-xs-12">
-          <p><b>Qté : </b><?php
+          <!-- Quantité -->
+          <div class="col-xs-12">
+            <p><b>Qté : </b><?php
+              if ($donnees['stockArticle']>0)
+                {
+                  echo $donnees['stockArticle'];
+                } else {
+                  echo 'Indisponible';
+                }
+              ?></p>
+          </div>
+
+          <!-- Bouton ajout au panier -->
+          <div class="col-xs-12">
+            <?php
             if ($donnees['stockArticle']>0)
-              {
-                echo $donnees['stockArticle'];
-              } else {
-                echo 'Indisponible';
-              }
-          ?></p>
-        </div>
+              echo '<img class=" validationPanier" value='.$donnees['refArticle'].' type="submit"><img class="imgButton" src="./images/panier.png"></img>';
+            ?>
+          </div>
 
-        <!-- Bouton ajout au panier -->
-        <div class="col-xs-12">
-          <?php
-          if ($donnees['stockArticle']>0)
-            echo '<button class=" validationPanier" value='.$donnees['refArticle'].' type="submit"><img class="imgButton" src="./images/panier.png"></button>';
-           ?>
         </div>
       </div>
-
     </div>
   </div>
 </div>

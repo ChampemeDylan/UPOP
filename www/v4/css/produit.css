@@ -4,5 +4,11 @@
 }
 
 .paddingArticle {
-  padding: 20px;
+  padding: 10px;
+}
+
+.paddingRef {
+  padding: 0px;
+  color: grey;
+  font-size: 10px;
 }
