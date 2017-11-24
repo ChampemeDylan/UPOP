@@ -132,7 +132,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <!-- Mail -->
-                                    <input type="email" id="email" placeholder="E-mail" name="email" value="<?php echo ' '.stripslashes($email)?>" tabindex="2" />
+                                    <?php echo '<input type="email" id="email" placeholder="E-mail" name="email" value="'.htmlspecialchars($_SESSION['mailUser']).'" tabindex="2" />' ?>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -153,8 +153,8 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
                                     if (($nom != '') && ($email != '') && ($objet != '') && ($message != '')){
                                         // Les 4 variables sont remplies, on génère puis l'envoie le mail
                                         $headers  = 'MIME-Version: 1.0' . "\r\n";
-                                        $headers .= 'From:'.$_POST["nom"].' <'.$email.'>' . "\r\n" .
-                                                    'Reply-To:'.$email. "\r\n" .
+                                        $headers .= 'From:'.$_POST["nom"].' <'.$_SESSION['mailUser'].'>' . "\r\n" .
+                                                    'Reply-To:'.$_SESSION['mailUser']. "\r\n" .
                                                     'Content-Type: text/plain; charset="utf-8"; DelSp="Yes"; format=flowed '."\r\n" .
                                                     'Content-Disposition: inline'. "\r\n" .
                                                     'Content-Transfer-Encoding: 7bit'." \r\n" .
@@ -162,7 +162,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
                                         // L'envoie d'une copie à l'éxpediteur
                                             if ($copie == 'oui')
                                             {
-                                                $cible = $destinataire.';'.$email;
+                                                $cible = $destinataire.';'.$_SESSION['mailUser'];
                                             }
                                             else
                                             {
