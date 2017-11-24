@@ -66,25 +66,25 @@ require "./php/verifConnexion.php";
 						<div class="row fond">
 							<div class="col-xs-1 col-sm-1 col-md-1">				
 							</div>
-							<div class="col-xs-1 col-sm-1 col-md-1">	
+							<div class="col-xs-2 col-sm-2 col-md-2">	
 								<p><b>Ref. Article</b></p>			
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-3">				
+							<div class="col-xs-4 col-sm-4 col-md-4">				
 								<p><b>Titre de l'article</b></p>
 							</div>
-							<div class="col-xs-2 col-sm-2 col-md-2">				
-								<p><b>Prix unitaire</b></p>
+							<div class="col-xs-1 col-sm-1 col-md-1">				
+								<p><b>Prix Unit. (en €)</b></p>
 							</div>
 							<div class="col-xs-1 col-sm-1 col-md-1">				
 								<p><b>Quantité</b></p>
 							</div>
-							<div class="col-xs-2 col-sm-2 col-md-2">				
-								<p><b>Prix total</b></p>
+							<div class="col-xs-1 col-sm-1 col-md-1">				
+								<p><b>Prix Total (en €)</b></p>
 							</div>
 							<div class="col-xs-2 col-sm-2 col-md-2">				
-							</div>
-							<hr>
+							</div>	
 						</div>
+						<hr>
 						<?php 
 							try
 							{
@@ -98,8 +98,7 @@ require "./php/verifConnexion.php";
 							catch (Exception $e)
 							{
 							die('<br />Erreur : ' . $e->getMessage());
-							}
-							                
+							}                
 							$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 							//on vérifie que la connexion s'effectue correctement
 							if(!$bdd){
@@ -122,16 +121,16 @@ require "./php/verifConnexion.php";
 							<div class="col-xs-1 col-sm-1 col-md-1">				
 								<img id="ImgPerso" src=<?php echo 'images/'.$row['refArticle'].'.png' ?>>
 							</div>
-							<div class="col-xs-1 col-sm-1 col-md-1">	
+							<div class="col-xs-2 col-sm-2 col-md-2">	
 								<p><?php echo $row['refArticle']; ?></p>			
 							</div>
 							<!-- libellé de l'article du panier -->
-							<div class="col-xs-3 col-sm-3 col-md-3">				
+							<div class="col-xs-4 col-sm-4 col-md-4">				
 								<p><?php echo $row['libelleArticle']; ?></p>
 								<p><?php echo $row['libelleUnivers']; ?></p>
 							</div>
 							<!-- prix unitaire de l'article du panier -->
-							<div class="col-xs-2 col-sm-2 col-md-2">				
+							<div class="col-xs-1 col-sm-1 col-md-1">				
 								<p><?php echo $row['prixArticle']; ?></p>
 							</div>
 							<!-- quantite de l'article du panier -->
@@ -139,14 +138,13 @@ require "./php/verifConnexion.php";
 								<select name="" id=""><?php echo $row['quantiteArticle']; ?></select>			
 							</div>
 							<!-- montant total pour cet article du panier -->
-							<div class="col-xs-2 col-sm-2 col-md-2">				
+							<div class="col-xs-1 col-sm-1 col-md-1">				
 								<p><?php echo $row['prixArticle']; ?></p>
 							</div>
 							<!-- suppresion de l'article du panier -->
 							<div class="col-xs-2 col-sm-2 col-md-2">
 								<input type="button" value="Supprimer" class="btn">				
 							</div>
-							
 						</div>
 						<hr>
 						<?php
@@ -154,9 +152,10 @@ require "./php/verifConnexion.php";
 							$stmt->closeCursor(); // Termine le traitement de la requête
 						}
 						?>	
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 text-right">
-						<input type="button" value="Commander" class="btn">
+
+						<div class="col-xs-12 col-sm-12 col-md-12 text-right">
+							<input type="button" value="Commander" class="btn">
+						</div>
 					</div>
 				</div>
 			</div>
