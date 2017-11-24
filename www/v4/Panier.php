@@ -3,30 +3,24 @@ session_start();
 
 require "./php/verifConnexion.php";
 ?>
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset='utf-8'>
 	<link rel="icon" type="image/png" href="Images\iconeupop.png"/>
-
 <!-- feuilles de style -->
 	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./css/main.css"/>
     <link rel="stylesheet" href="./css/panier.css"/>
-
 <!-- fichiers javascript -->
     <script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
     <script type="application/javascript" src="./js/bootstrap.min.js"></script>
-
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<title>U POP</title>
 </head>
 
 <body>
-
 <!-- barre de navigation -->
 	<nav class="navbar navbar-default navbar-fixed-top menu">
         <div class="container-fluid">
@@ -35,7 +29,6 @@ require "./php/verifConnexion.php";
                     <img class="imgButton" src="images/iconeupop.png">
                 </button>
             </div>
-
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav">
                     <li><img class="logoBar" src="images/iconeupop.png"></li>
@@ -61,67 +54,114 @@ require "./php/verifConnexion.php";
 <!-- fin barre de navigation -->
 
 <!-- contenu de la page -->
-
-		<div class="container marginTopPage">
-			<div class="row">
-				<div class="col-xs-12 col-sm-8 col-md-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Panier</h3>
-						</div>
-
-							<div class="panel-body">
-
-								<div class="col-xs-12 col-sm-12 col-md-12">
-
-									<div class="row fond">
-
-										<div class="col-xs-6 col-sm-4 col-md-1">
-											<img id="ImgPerso" src="./images/got1.jpg" alt="" />
-										</div>
-
-
-
-											<div class="col-xs-6 col-sm-4 col-md-3">
-												<p id="personnage">Khalissi</p>
-												<p id="refArticle">Ref</p>
-											</div>
-
-
-												<div class="col-xs-4 col-sm-4 col-md-4">
-															<p>Prix<b id="prixArticle"></b></p>
-															<p>Quantité<select name="" id="">Qauntité
-																			<option value="valeur récuperée à l'ajout">1</option>
-																			<option value="">2</option>
-																			<option value="">3</option>
-																			<option value="">4</option>
-																			<option value="">5</option>
-																			<option value="">6</option>
-																			<option value="">7</option>
-																			<option value="">8</option>
-																			<option value="">9</option>
-																			<option value="">10</option>
-																		</select>
-															</p>
-
-
-												</div>
-									</div><br />
-
-									<div class="col-xs-12 col-sm-12 col-md-12 text-right">
-										<input type="button" value="Commander" class="btn" />
-									</div>
-
-								</div>
+	<div class="container marginTopPage">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Panier</h3>
+					</div>
+					<div class="panel-body">
+						<!-- bloc titre des colonnes du panier -->
+						<div class="row fond">
+							<div class="col-xs-1 col-sm-1 col-md-1">				
 							</div>
+							<div class="col-xs-1 col-sm-1 col-md-1">	
+								<p><b>Ref. Article</b></p>			
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-3">				
+								<p><b>Titre de l'article</b></p>
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2">				
+								<p><b>Prix unitaire</b></p>
+							</div>
+							<div class="col-xs-1 col-sm-1 col-md-1">				
+								<p><b>Quantité</b></p>
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2">				
+								<p><b>Prix total</b></p>
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2">				
+							</div>
+							<hr>
+						</div>
+						<?php 
+							try
+							{
+							    //on se connecte à la base de données
+							    // en local
+							    $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+
+							    //en online
+							    //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+							}
+							catch (Exception $e)
+							{
+							die('<br />Erreur : ' . $e->getMessage());
+							}
+							                
+							$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							//on vérifie que la connexion s'effectue correctement
+							if(!$bdd){
+							    header("Location: ../panier.php?erreurbdd=error_bdd");
+							}
+							else 
+							{
+							    // VERIFICATION DE LA COMMANDE EN COURS
+							    $sql = "SELECT * FROM commande,commande_article,fiche_article WHERE fiche_article.refArticle=commande_article.refArticle AND commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours'";
+							    $stmt = $bdd->prepare($sql);
+							    $stmt->execute(array(
+							        'loginUser' => $_SESSION['loginUser']
+							    ));
+							    while ($row = $stmt->fetch())
+							    	{
+						?>
+						<!-- bloc d'un article du panier -->
+						<div class="row fond">
+							<!-- image de l'article du panier -->
+							<div class="col-xs-1 col-sm-1 col-md-1">				
+								<img id="ImgPerso" src=<?php echo 'images/'.$row['refArticle'].'.png' ?>>
+							</div>
+							<div class="col-xs-1 col-sm-1 col-md-1">	
+								<p><?php echo $row['refArticle']; ?></p>			
+							</div>
+							<!-- libellé de l'article du panier -->
+							<div class="col-xs-3 col-sm-3 col-md-3">				
+								<p><?php echo $row['libelleArticle']; ?></p>
+								<p><?php echo $row['libelleUnivers']; ?></p>
+							</div>
+							<!-- prix unitaire de l'article du panier -->
+							<div class="col-xs-2 col-sm-2 col-md-2">				
+								<p><?php echo $row['prixArticle']; ?></p>
+							</div>
+							<!-- quantite de l'article du panier -->
+							<div class="col-xs-1 col-sm-1 col-md-1">	
+								<select name="" id=""><?php echo $row['quantiteArticle']; ?></select>			
+							</div>
+							<!-- montant total pour cet article du panier -->
+							<div class="col-xs-2 col-sm-2 col-md-2">				
+								<p><?php echo $row['prixArticle']; ?></p>
+							</div>
+							<!-- suppresion de l'article du panier -->
+							<div class="col-xs-2 col-sm-2 col-md-2">
+								<input type="button" value="Supprimer" class="btn">				
+							</div>
+							
+						</div>
+						<hr>
+						<?php
+							}
+							$stmt->closeCursor(); // Termine le traitement de la requête
+						}
+						?>	
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right">
+						<input type="button" value="Commander" class="btn">
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
 <!-- fin contenu de la page -->
-
 </body>
 </html>
