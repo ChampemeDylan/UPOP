@@ -175,7 +175,7 @@ function debug_to_console($data) {
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="number" style="-moz-appearance: textfield;" name="prixArticle"  class="form-control input-sm" placeholder="Prix">
+											<input type="number" name="prixArticle"  class="form-control input-sm" placeholder="Prix">
 											<?php if(isset($_GET['erreurprix'])){
 												echo '<div style="text-align:center;color:red;">Aucun prix</div>';
 											}
@@ -306,7 +306,7 @@ function debug_to_console($data) {
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<?php echo '<input type="number" style="-moz-appearance: textfield;" name="prixArticle"  class="form-control input-sm" placeholder="Prix" value="'.htmlspecialchars($_SESSION['prixArticle']).'">'; ?>
+											<?php echo '<input type="number" name="prixArticle"  class="form-control input-sm" placeholder="Prix" value="'.htmlspecialchars($_SESSION['prixArticle']).'">'; ?>
 											<?php if(isset($_GET['erreurprix6'])){
 												echo '<div style="text-align:center;color:red;">Aucun prix</div>';
 											}
