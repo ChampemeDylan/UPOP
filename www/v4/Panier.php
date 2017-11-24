@@ -14,7 +14,7 @@ require "./php/verifConnexion.php";
     <link rel="stylesheet" href="./css/main.css"/>
     <link rel="stylesheet" href="./css/panier.css"/>
 <!-- fichiers javascript -->
-    <script type="application/javascript" src="./js/jquery-2.1.1.min.js"></script>
+    <script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
     <script type="application/javascript" src="./js/bootstrap.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>U POP</title>
