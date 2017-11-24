@@ -43,7 +43,7 @@ require "./php/verifConnexion.php";
                     <li><a href="contact.php"><img class="imgButton" src="images/contact.png"></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-<!-- Insertion du logo Admin sous condition -->
+									<!-- Insertion du logo Admin sous condition -->
                     <?php
                         if ($_SESSION['typeUser']>0) {
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
@@ -145,12 +145,12 @@ require "./php/verifConnexion.php";
 <!-- Modèle d'article -->
 		<div class="row panel panel-default">
 <!-- Image de l'article -->
-			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1 ">
+			<div class="col-sm-1 col-sm-1 col-md-1 col-lg-1 paddingArticle">
 				<img class="imageArticle" src=<?php echo 'images/'.$donnees['refArticle'].'.png' ?>><!-- Insertion PHP de la refArticle pour l'affichage de la bonne image -->
 			</div>
 
 <!-- Titre et description de la figurine -->
-			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 paddingArticle">
 				<a href="produit.php?refArticle=<?php echo $donnees['refArticle']; ?>">
 					<b><!-- Insertion PHP du titre et du libellé de la figurine -->
 						<?php echo $donnees['libelleArticle']; ?> (<?php echo $donnees['libelleUnivers']; ?>)
@@ -170,9 +170,8 @@ require "./php/verifConnexion.php";
 			</div>
 
 <!-- Nombre d'articles en stock -->
-			<div class="col-sm-3 col-sm-3 col-md-3 col-lg-3">
+			<div class="col-sm-3 col-sm-3 col-md-3 col-lg-3 paddingArticle">
 				<div class="row">
-					<p>
 						<b>Stock : </b>
 						<?php
 							if ($donnees['stockArticle']>0)
@@ -182,7 +181,6 @@ require "./php/verifConnexion.php";
 									echo 'Indisponible';
 								}
 						?>
-					</p>
 				</div>
 
 <!-- Prix de l'article -->
@@ -199,7 +197,7 @@ require "./php/verifConnexion.php";
 		 		?>
 			</div>
 		</div>
-		</div>
+	</div>
 		<?php
 			}
 			$reponse->closeCursor(); // Termine le traitement de la requête

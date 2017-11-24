@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 	 //on se connecte à la base de données:
 try
@@ -14,13 +14,13 @@ catch (Exception $e)
 {
 die('<br />Erreur : ' . $e->getMessage());
 }
-                
+
 $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //on vérifie que la connexion s'effectue correctement
 if(!$bdd){
     header("Location: ../figurines.php?erreurbdd=error_bdd");
 }
-else 
+else
 {
     // VERIFICATION DE LA COMMANDE EN COURS
     $sql = "SELECT numeroCommande FROM commande WHERE loginUser=:loginUser AND dateCommande=:dateCommande AND etatCommande='En cours'";
@@ -59,10 +59,10 @@ else
         	'refArticle' => $_GET['refArticle'],
         	'numeroCommande' => $row['numeroCommande']
    		));
-  		echo 'La commende viens d\'aitre craie ! Ajout de l\'article '.$_GET['refArticle'].' à votre panier';
+  		echo 'La commande viens d\'être créée ! L\'article a été ajouté au panier.';
     }
     // ... SINON LA COMMANDE EXISTE
-    else 
+    else
     {
     	$presenceArticle = '';
         // VERIFICATION DES ARTICLES DANS LA COMMANDE EN COURS
@@ -75,7 +75,7 @@ else
    			if ($donnees['refArticle'] == $_GET['refArticle']){
    				$presenceArticle = 1;
    			}
-   		}  	
+   		}
 
         // SI L'ARTICLE EXISTE PAS... ON INSERE DANS LA COMMANDE
    		if ($presenceArticle == 0){
@@ -85,9 +85,9 @@ else
         		'refArticle' => $_GET['refArticle'],
         		'numeroCommande' => $row['numeroCommande']
    			));
-			echo 'Ajout de l\'article '.$_GET['refArticle'].' à votre panier';
-   		} 
-        // SINON ON 
+			echo 'L\'article a été ajouté au panier.';
+   		}
+        // SINON ON
    		else
    		{
    			echo 'Article déjà présent dans votre panier';
