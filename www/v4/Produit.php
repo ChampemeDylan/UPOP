@@ -46,7 +46,38 @@ require "./php/verifConnexion.php";
                           }
                       ?>
   					<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser']?></a></li>
-  					<li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle">45</span></a></li>
+            <?php
+                        try
+                            {
+                                //on se connecte à la base de données
+                                // en local
+                                $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+
+                                //en online
+                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+                            }
+                            catch (Exception $e)
+                            {
+                            die('<br />Erreur : ' . $e->getMessage());
+                            }                
+                            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            //on vérifie que la connexion s'effectue correctement
+                            if(!$bdd){
+                                header("Location: ../panier.php?erreurbdd=error_bdd");
+                            }
+                            else 
+                            {
+                                // VERIFICATION DE LA COMMANDE EN COURS
+                                $sql = "SELECT count(*) FROM commande,commande_article WHERE commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours';";
+                                $stmt = $bdd->prepare($sql);
+                                $stmt->execute(array(
+                                    'loginUser' => $_SESSION['loginUser']
+                                ));
+                                $row = $stmt->fetch();
+                            }
+                                    
+                    ?>
+                    <li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle"><?php echo $row[0] ?></span></a></li>
   					<li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
   				</ul>
   			</div>
