@@ -79,7 +79,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 
 </head>
 <body>
-<!-- barre de navigation -->
+	<!-- barre de navigation -->
 	<nav class="navbar navbar-default navbar-fixed-top menu">
 		<div class="container-fluid">
 			<div class="nav-header">
@@ -103,139 +103,180 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                         }
                     ?>
-					<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser']?></a></li>
-					<li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle">45</span></a></li>
+					<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><span id="login"><?php echo ' '.$_SESSION['loginUser'] ?></span></a></li>
+					<?php
+                        try
+                            {
+                                //on se connecte à la base de données
+                                // en local
+                                $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+
+                                //en online
+                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+                            }
+                            catch (Exception $e)
+                            {
+                            die('<br />Erreur : ' . $e->getMessage());
+                            }                
+                            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            //on vérifie que la connexion s'effectue correctement
+                            if(!$bdd){
+                                header("Location: ../panier.php?erreurbdd=error_bdd");
+                            }
+                            else 
+                            {
+                                // VERIFICATION DE LA COMMANDE EN COURS
+                                $sql = "SELECT count(*) FROM commande,commande_article WHERE commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours';";
+                                $stmt = $bdd->prepare($sql);
+                                $stmt->execute(array(
+                                    'loginUser' => $_SESSION['loginUser']
+                                ));
+                                $row = $stmt->fetch();
+                            }
+                                    
+                    ?>
+                    <li>
+                        <a href="panier.php"><img class="imgButton" src="images/panier.png">
+                        <span id="countArticle"> <?php echo $row[0] ?></span>
+                        </a>
+                    </li>
 					<li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-<!-- contenu de la page -->
-    <div class="container center marginTopPage">
-        <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-6">
 
-<!-- Formulaire à envoyer -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Formulaire de contact</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" method="post" action="<?php echo ' '.$form_action?>">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <!-- Nom -->
-                                    <?php echo '<input type="text" id="nom" name="nom" value="'.htmlspecialchars($_SESSION['nomUser']).'" tabindex="1" />' ?>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <!-- Mail -->
-                                    <?php echo '<input type="email" id="email" placeholder="E-mail" name="email" value="'.htmlspecialchars($_SESSION['mailUser']).'" tabindex="2" />' ?>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="objet">Objet :</label><!-- Objet -->
-                                    <input type="text" id="objet" name="objet" value="<?php echo ' '.stripslashes($objet)?>" tabindex="3" />
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <legend>Votre message :</legend><!-- Message -->
-                                    <textarea class="form-control" style="overflow:auto;resize:none" rows="12" id="message" name="message" ><?php echo ' '.stripslashes($message)?></textarea>
-                                </div>
-                            </div>
-                            <span class="erreurEnvoie">
-                            <?php
-                                if (isset($_POST['envoi'])){
-                                    if (($nom != '') && ($email != '') && ($objet != '') && ($message != '')){
-                                        // Les 4 variables sont remplies, on génère puis l'envoie le mail
-                                        $headers  = 'MIME-Version: 1.0' . "\r\n";
-                                        $headers .= 'From:'.$_POST["nom"].' <'.$_SESSION['mailUser'].'>' . "\r\n" .
-                                                    'Reply-To:'.$_SESSION['mailUser']. "\r\n" .
-                                                    'Content-Type: text/plain; charset="utf-8"; DelSp="Yes"; format=flowed '."\r\n" .
-                                                    'Content-Disposition: inline'. "\r\n" .
-                                                    'Content-Transfer-Encoding: 7bit'." \r\n" .
-                                                    'X-Mailer:PHP/'.phpversion();
-                                        // L'envoie d'une copie à l'éxpediteur
-                                            if ($copie == 'oui')
-                                            {
-                                                $cible = $destinataire.';'.$_SESSION['mailUser'];
-                                            }
-                                            else
-                                            {
-                                                $cible = $destinataire;
-                                            };
-                                        // Remplacement de certains caractères spéciaux
-                                        $message = str_replace("&#039;","'",$message);
-                                        $message = str_replace("&#8217;","'",$message);
-                                        $message = str_replace("&quot;",'"',$message);
-                                        $message = str_replace('<br>','',$message);
-                                        $message = str_replace('<br />','',$message);
-                                        $message = str_replace("&lt;","<",$message);
-                                        $message = str_replace("&gt;",">",$message);
-                                        $message = str_replace("&amp;","&",$message);
-                                        // Envoi du mail
-                                        $num_emails = 0;
-                                        $tmp = explode(';', $cible);
-                                        foreach($tmp as $email_destinataire)
-                                        {
-                                            if (mail($email_destinataire, $objet, $message, $headers))
-                                                $num_emails++;
-                                        }
+	<!-- Formulaire à envoyer -->
+	<form id="contact" class="marginTopPage" method="post" action="<?php echo ' '.$form_action?>">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="well well-sm panel panel-default test">
+						<form>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<!-- Variable qui récupère le nom -->
+										<fieldset><p><label for="nom ">Nom : </label> <input type="text" id="nom" name="nom" value="<?php echo ' '.stripslashes($nom)?>" tabindex="1" /></p>
+											<p>
+												<div class="input-group">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-envelope">
+														</span>
+													</span>
+													<!-- Variable qui récupère le mail -->
+													<input type="email" class="form-control" id="email" placeholder="E-mail" name="email" value="<?php echo ' '.stripslashes($email)?>" tabindex="2" />
+												</div>
+											</p>
+										</fieldset>
 
-                                        if ((($copie == 'oui') && ($num_emails == 2)) || (($copie == 'non') && ($num_emails == 1))){
-                                            echo '<p>'.$message_envoye.'</p>';
-                                        }else{
-                                            echo '<p>'.$message_non_envoye.'</p>';
-                                        };
 
-                                    }else{
-                                    // Si une des 3 variables est vide --> Erreur
-                                    echo '<p>'.$message_formulaire_invalide.'</p>';
-                                    $err_formulaire
-                                    = true;
-                                    };
-                                };
-                            ?>
-                            </span>
-                            <input type="submit" name="envoi" value="Envoyer" class="btn pull-right" id="btnContactUs">
-                        </form>
-                    </div>
-                </div>
-            </div>
-<!-- Infos de contact -->
-            <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Infos de contact</h3>
-                    </div>
-                    <div class="panel-body">
-                        <address>
-                            <strong>UPOP</strong>
-                            <br>
-                            107 rue de lUDEV
-                            <br>
-                            63000 CLERMONT-FERRAND
-                            <br>
-                            Tél :
-                            <abbr title="Phone">
-                                (+33) 9 00 10 12 13
-                            </abbr>
-                        </address>
+										<p><label for="objet">Objet :</label> <input type="text" id="objet" name="objet" value="<?php echo ' '.stripslashes($objet)?>" tabindex="3" />
+										</p>
+										<p>
+<!-- Variable qui récupère le texte -->
+											<fieldset><legend>Votre message :</legend>
 
-                        <address>
-                            <strong>Mail-contact</strong>
-                            <br>
-                            <a href="mailto:#">upop.contact@gmail.com</a>
-                        </address>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+												<textarea id="message" name="message" tabindex="4" " rows="4"><?php echo ' '.stripslashes($message)?></textarea>
+											</p>
+										</fieldset>
+									</div>
+
+
+												<span class="erreurEnvoie">
+
+																<?php	if (isset($_POST['envoi'])){
+																		if (($nom != '') && ($email != '') && ($objet != '') && ($message != '')){
+// Les 4 variables sont remplies, on génère puis l'envoie le mail
+																		$headers  = 'MIME-Version: 1.0' . "\r\n";
+																		$headers .= 'From:'.$nom.' <'.$email.'>' . "\r\n" .
+																					'Reply-To:'.$email. "\r\n" .
+																					'Content-Type: text/plain; charset="utf-8"; DelSp="Yes"; format=flowed '."\r\n" .
+																					'Content-Disposition: inline'. "\r\n" .
+																					'Content-Transfer-Encoding: 7bit'." \r\n" .
+																					'X-Mailer:PHP/'.phpversion();
+
+// L'envoie d'une copie à l'éxpediteur
+																		if ($copie == 'oui')
+																		{
+																			$cible = $destinataire.';'.$email;
+																		}
+																		else
+																		{
+																			$cible = $destinataire;
+																		};
+
+// Remplacement de certains caractères spéciaux
+																		$message = str_replace("&#039;","'",$message);
+																		$message = str_replace("&#8217;","'",$message);
+																		$message = str_replace("&quot;",'"',$message);
+																		$message = str_replace('<br>','',$message);
+																		$message = str_replace('<br />','',$message);
+																		$message = str_replace("&lt;","<",$message);
+																		$message = str_replace("&gt;",">",$message);
+																		$message = str_replace("&amp;","&",$message);
+
+// Envoi du mail
+																		$num_emails = 0;
+																		$tmp = explode(';', $cible);
+																		foreach($tmp as $email_destinataire)
+																		{
+																			if (mail($email_destinataire, $objet, $message, $headers))
+																				$num_emails++;
+																		}
+
+																		if ((($copie == 'oui') && ($num_emails == 2)) || (($copie == 'non') && ($num_emails == 1))){
+																			echo '<p>'.$message_envoye.'</p>';
+																		}else{
+																			echo '<p>'.$message_non_envoye.'</p>';
+																		};
+
+																		}else{
+// Si une des 3 variables est vide --> Erreur
+																		echo '<p>'.$message_formulaire_invalide.'</p>';
+																		$err_formulaire
+																		= true;
+																		};
+																		};
+
+																	?>
+												</span>
+								</div>
+								<div class="col-md-12">
+<!-- Bouton d'envoi du formulaires -->
+									<div style="text-align:center;"><input type="submit" name="envoi" value="Envoyer" class="btn pull-right" id="btnContactUs">
+
+									</div>
+								</div>
+							</div>
+						</form>
+						<div class="erreurEvnoie">
+						</div>
+					</div>
+				</div>
+				<div class="well well-sm panel panel-default test col-md-4">
+					<address>
+						<strong>UPOP</strong>
+						<br>
+						107 rue de lUDEV
+						<br>
+						63000 CLERMONT-FERRAND
+						<br>
+						Tél :
+						<abbr title="Phone">
+							(+33) 9 00 10 12 13
+						</abbr>
+					</address>
+
+					<address>
+						<strong>Mail-contact</strong>
+						<br>
+						<a href="mailto:#">upop.contact@gmail.com</a>
+					</address>
+				</div>
+			</div>
+		</div>
+	</form>
 </body>
 </html>
- 

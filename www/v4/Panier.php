@@ -44,7 +44,7 @@ require "./php/verifConnexion.php";
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                         }
                     ?>
-                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
+                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><span id="login"><?php echo ' '.$_SESSION['loginUser'] ?></span></a></li>
                 	<?php
                         try
                             {
@@ -76,7 +76,13 @@ require "./php/verifConnexion.php";
                             }
                                     
                     ?>
-                    <li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle"><?php echo $row[0] ?></span></a></li>
+                    <li>
+                    	<a href="panier.php"><img class="imgButton" src="images/panier.png">
+                    	<!-- insertion d'un compteur caché au chargement de la page -->
+                    	<input type="number" id="compteur" value=<?php echo $row[0] ?>>
+                    	<span id="countArticle"> </span>
+                    	</a>
+                    </li>
                     <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
                 </ul>
             </div>
@@ -138,7 +144,7 @@ require "./php/verifConnexion.php";
 							else 
 							{
 							    // VERIFICATION DE LA COMMANDE EN COURS
-							    $sql = "SELECT * FROM commande,commande_article,fiche_article WHERE fiche_article.refArticle=commande_article.refArticle AND commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours'";
+							    $sql = "SELECT * FROM commande,commande_article,fiche_article,stock_article WHERE stock_article.refArticle=fiche_article.refArticle AND fiche_article.refArticle=commande_article.refArticle AND commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours'";
 							    $stmt = $bdd->prepare($sql);
 							    $stmt->execute(array(
 							        'loginUser' => $_SESSION['loginUser']
@@ -166,7 +172,7 @@ require "./php/verifConnexion.php";
 							</div>
 							<!-- quantite de l'article du panier -->
 							<div class="col-xs-1 col-sm-1 col-md-1">	
-								<select name="" id=""><?php echo $row['quantiteArticle']; ?></select>			
+								<input style="width:40px;" type="number" max=<?php echo $row['stockArticle'] ?> maxlength="2" value=<?php echo $row['quantiteArticle'] ?>></input>			
 							</div>
 							<!-- montant total pour cet article du panier -->
 							<div class="col-xs-1 col-sm-1 col-md-1">				
@@ -194,4 +200,10 @@ require "./php/verifConnexion.php";
 	</div>
 <!-- fin contenu de la page -->
 </body>
+<script>
+	$(window).on('load',function(){
+    	count = parseInt($("#compteur").val());
+    	$("#countArticle").append(count);
+    });
+</script>
 </html>

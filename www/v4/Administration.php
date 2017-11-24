@@ -78,7 +78,7 @@ function debug_to_console($data) {
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                         }
                     ?>
-                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
+                	<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><span id="login"><?php echo ' '.$_SESSION['loginUser'] ?></span></a></li>
                 	<?php
                         try
                             {
@@ -110,7 +110,11 @@ function debug_to_console($data) {
                             }
                                     
                     ?>
-                    <li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle"><?php echo $row[0] ?></span></a></li>
+                    <li>
+                    	<a href="panier.php"><img class="imgButton" src="images/panier.png">
+                    	<span id="countArticle"> <?php echo $row[0] ?></span>
+                    	</a>
+                    </li>
                     <li><a href="index.php"><img class="imgButton" src="images/deco.png"></a></li>
                 </ul>
             </div>
@@ -138,7 +142,7 @@ function debug_to_console($data) {
 		<div id="contenu">
 			<div class="item">
 				<div class="row centered-form">
-					<div class="col-xs-12 col-sm-5 col-md-5  col-sm-offset-1">
+					<div class="col-xs-12 col-sm-4 col-md-4  col-md-offset-2">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 <!-- Ajouter element -->
@@ -166,7 +170,7 @@ function debug_to_console($data) {
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<textarea cols="40" rows="20" name="descriptifArticle" style="resize:none;" class="form-control input-sm" placeholder="Description"></textarea>
+											<input type="text" name="descriptifArticle"  class="form-control input-sm" placeholder="Description">
 											<?php if(isset($_GET['erreurarticle'])){
 												echo '<div style="text-align:center;color:red;">Aucune description</div>';
 											}
@@ -175,7 +179,7 @@ function debug_to_console($data) {
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<input type="number" name="prixArticle"  class="form-control input-sm" placeholder="Prix">
+											<input type="text" name="prixArticle"  class="form-control input-sm" placeholder="Prix">
 											<?php if(isset($_GET['erreurprix'])){
 												echo '<div style="text-align:center;color:red;">Aucun prix</div>';
 											}
@@ -198,7 +202,7 @@ function debug_to_console($data) {
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-5 col-md-5">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 <!-- ajouter un univers -->
@@ -252,7 +256,7 @@ function debug_to_console($data) {
 						<div class="panel panel-default">
 							<div class="panel-heading">
 <!-- modifier un element -->
-								<h3 class="panel-title">Modifier un article.</h3>
+								<h3 class="panel-title">Modifier un element.</h3>
 							</div>
 							<div class="panel-body">
 <!-- recherche d'un element et affichage -->
@@ -269,7 +273,7 @@ function debug_to_console($data) {
 									</div>
 									<div class="col-xs-5 col-sm-5 col-md-5">
 										<div class="form-group">
-											<?php echo '<input type="submit" name="Chercher" value="Chercher" class="btn btn-block chercher">' ?>
+											<?php echo '<input type="submit" name="Chercher" class="btn btn-block chercher">' ?>
 										</div>
 									</div>
 								</form>
@@ -297,7 +301,7 @@ function debug_to_console($data) {
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<?php echo '<textarea cols="40" rows="20" name="descriptifArticle" style="resize:none;" class="form-control input-sm" placeholder="Description">'.htmlspecialchars($_SESSION['descriptifArticle']).'</textarea>'; ?>
+											<?php echo '<textarea cols="40" rows="20" name="descriptifArticle"  class="form-control input-sm" placeholder="Description">'.htmlspecialchars($_SESSION['descriptifArticle']).'</textarea>'; ?>
 											<?php if(isset($_GET['erreurarticle6'])){
 												echo '<div style="text-align:center;color:red;">Aucune description</div>';
 											}
@@ -306,7 +310,7 @@ function debug_to_console($data) {
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
-											<?php echo '<input type="number" name="prixArticle"  class="form-control input-sm" placeholder="Prix" value="'.htmlspecialchars($_SESSION['prixArticle']).'">'; ?>
+											<?php echo '<input type="text" name="prixArticle"  class="form-control input-sm" placeholder="Prix" value="'.htmlspecialchars($_SESSION['prixArticle']).'">'; ?>
 											<?php if(isset($_GET['erreurprix6'])){
 												echo '<div style="text-align:center;color:red;">Aucun prix</div>';
 											}
@@ -331,7 +335,7 @@ function debug_to_console($data) {
 			</div>
 			<div class="item">
 				<div class="row centered-form">
-					<div class="col-xs-12 col-sm-5 col-md-5  col-sm-offset-1">
+					<div class="col-xs-12 col-sm-4 col-md-4  col-md-offset-2">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 <!-- supprimer un article -->
@@ -373,7 +377,7 @@ function debug_to_console($data) {
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-5 col-md-5">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 <!-- supprimer un element -->

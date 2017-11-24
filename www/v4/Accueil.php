@@ -3,6 +3,7 @@ session_start();
 
 require "./php/verifConnexion.php";
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,7 @@ require "./php/verifConnexion.php";
                             echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                         }
                     ?>
-                    <li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser'] ?></a></li>
+                    <li><a href="compte.php"><img class="imgButton" src="images/compte.png"><span id="login"><?php echo ' '.$_SESSION['loginUser'] ?></span></a></li>
                     <?php
                         try
                             {
@@ -82,7 +83,11 @@ require "./php/verifConnexion.php";
                             }
                                     
                     ?>
-                    <li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle"><?php echo $row[0] ?></span></a></li>
+                    <li>
+                        <a href="panier.php"><img class="imgButton" src="images/panier.png">
+                        <span id="countArticle"> <?php echo $row[0] ?></span>
+                        </a>
+                    </li>
                     <li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
                 </ul>
             </div>

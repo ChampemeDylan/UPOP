@@ -59,7 +59,7 @@ else
         	'refArticle' => $_GET['refArticle'],
         	'numeroCommande' => $row['numeroCommande']
    		));
-  		echo 'L\'article '.$_GET['refArticle'].' a été ajouté au panier.';
+  		echo 'Votre article a été ajouté au panier.';
     }
     // ... SINON LA COMMANDE EXISTE
     else
@@ -85,12 +85,12 @@ else
         		'refArticle' => $_GET['refArticle'],
         		'numeroCommande' => $row['numeroCommande']
    			));
-			echo 'L\'article '.$_GET['refArticle'].' a été ajouté au panier.';
+			echo 'Votre article a été ajouté au panier.';
    		}
         // SINON ON
    		else
    		{
-   			echo 'Article '.$_GET['refArticle'].' déjà présent dans votre panier';
+   			echo 'L\'article est déjà présent dans le panier';
    		}
     }
 }

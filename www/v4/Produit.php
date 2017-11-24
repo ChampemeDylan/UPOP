@@ -45,7 +45,7 @@ require "./php/verifConnexion.php";
                               echo '<li><a href="Administration.php"><img class="imgButton" src="images/admin.png">';
                           }
                       ?>
-  					<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><?php echo ' '.$_SESSION['loginUser']?></a></li>
+  					<li><a href="compte.php"><img class="imgButton" src="images/compte.png"><span id="login"><?php echo ' '.$_SESSION['loginUser'] ?></span></a></li>
             <?php
                         try
                             {
@@ -77,7 +77,13 @@ require "./php/verifConnexion.php";
                             }
                                     
                     ?>
-                    <li><a href="panier.php"><img class="imgButton" src="images/panier.png"><span class="countArticle"><?php echo $row[0] ?></span></a></li>
+                    <li>
+                      <a href="panier.php"><img class="imgButton" src="images/panier.png">
+                      <!-- insertion d'un compteur caché au chargement de la page -->
+                      <input type="number" id="compteur" value=<?php echo $row[0] ?>>
+                      <span id="countArticle"> </span>
+                      </a>
+                    </li>
   					<li><a href="php/deco.php"><img class="imgButton" src="images/deco.png"></a></li>
   				</ul>
   			</div>
@@ -162,16 +168,26 @@ require "./php/verifConnexion.php";
 </div>
 </body>
 <script>
-$(".validationPanier").click(function(){
-  var ref = $(this).val();
-  $.ajax({
-    url: 'php/ajoutPanier.php',
-      data: 'refArticle='+ ref,
-      success: function(reponse) {
-        alert(reponse); // reponse contient l'affichage du fichier PHP (soit echo)
-      }
-  });
-})
+    $(window).on('load',function(){
+      count = parseInt($("#compteur").val());
+      $("#countArticle").append(count);
+    });
+
+    $(".validationPanier").click(function(){
+      var ref = $(this).val();
+      $.ajax({
+        url: 'php/ajoutPanier.php',
+          data: 'refArticle='+ ref,
+          success: function(reponse) {
+            test = reponse.substring(0, 1);
+            if (test==="V") {
+              count+=1;
+              $("#countArticle").html(count);
+            }
+            alert(reponse); // reponse contient l'affichage du fichier PHP (soit echo)
+          }
+      });
+    })
 </script>
 
 </html>
