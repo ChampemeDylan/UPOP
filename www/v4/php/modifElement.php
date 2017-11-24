@@ -1,11 +1,8 @@
 <?php
-
-$loginUser = $_SESSION['loginUser'];
-$refArticle = htmlentities($_POST['refArticle'], ENT_QUOTES, "ISO-8859-1");
-$libelleArticle = htmlentities($_POST['libelleArticle'], ENT_QUOTES, "ISO-8859-1");
-$descriptifArticle = htmlentities($_POST['descriptifArticle'], ENT_QUOTES, "ISO-8859-1");
-$prixArticle = htmlentities($_POST['prixArticle'], ENT_QUOTES, "ISO-8859-1");
-$libelleUnivers = htmlentities($_POST['libelleUnivers'], ENT_QUOTES, "ISO-8859-1");
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
 try
 {
@@ -24,35 +21,75 @@ catch(Exception $e)
 
 //$mysqli = mysqli_connect("localhost", "root", "user", "Upop");
 $refArticle = $_POST['refArticle'];
+$libelleArticle = $_POST['libelleArticle'];
+$descriptifArticle = $_POST['descriptifArticle'];
+$prixArticle = $_POST['prixArticle'];
+$libelleUnivers = $_POST['libelleUnivers'];
+
+// On verifie si les données non nulles ne sont pas vides
 
 if(empty($_POST['refArticle'])) {
-	echo "La reference est vide.";
-}
-else {
-	//$Requete = mysqli_query($mysqli,"SELECT * FROM UNIVERS WHERE refArticle = '".$refArticle."'");
-	$sql = "SELECT * FROM UNIVERS WHERE refArticle = :refArticle";
-	$stmt = $bdd->prepare($sql);
-
-	$stmt->execute(array(
-		'refArticle' => $refArticle
-	));
-
-	// si il y a un résultat, mysqli_num_rows() nous donnera alors 1
-	// si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
-	//if(mysqli_num_rows($Requete) == 0) {
-	if($stmt->rowCount() == 0){
-		echo "Cette reference n'existe pas.";
+	//echo "La reference est vide.";
+	header("Location: ../administration.php?erreurref6=bad_ref");
+} else {
+	if(empty($_POST['libelleArticle'])) {
+		//echo "Le libelle est vide.";
+		header("Location: ../administration.php?erreurlibelle6=bad_lib");
+	} else {
+		if(empty($_POST['descriptifArticle'])) {
+			//echo "La description est vide.";
+			header("Location: ../administration.php?erreurarticle6=bad_article");
+		} else {
+			if(empty($_POST['prixArticle'])) {
+				//echo "Le prix est vide.";
+				header("Location: ../administration.php?erreurprix6=bad_prix");
+			} else {
+				//$Requete = mysqli_query($mysqli,"SELECT * FROM UNIVERS WHERE libelleUnivers = '".$libelleUnivers."'");
+				$sql = "SELECT * FROM UNIVERS WHERE libelleUnivers = :libelleUnivers";
+				$stmt = $bdd->prepare($sql);
+				
+				$stmt->execute(array(
+					'libelleUnivers' => $libelleUnivers
+				));
+				
+				// si il y a un résultat, mysqli_num_rows() nous donnera alors 1
+				// si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
+				//if(mysqli_num_rows($Requete) == 0) {
+				if($stmt->rowcount() == 0){
+					//echo "Cet univers n'existe pas.";
+					header("Location: ../administration.php?erreurexist6=bad_exist");
+				} else {
+					//$bdd->exec('INSERT INTO FICHE_ARTICLE VALUES (\''.$refArticle.'\', \''.$libelleArticle.'\', \''.$descriptifArticle.'\', '.$prixArticle.', \''.$libelleUnivers.'\')');
+					//version 1 ne passe pas !?
+					$sql = "UPDATE FICHE_ARTICLE SET libelleArticle = :libelleArticle, descriptifArticle = :descriptifArticle, prixArticle= :prixArticle, libelleUnivers = :libelleUnivers WHERE refArticle = :refArticle" ;
+					$stmt = $bdd->prepare($sql);
+					$stmt->execute(array(
+						'refArticle' => $refArticle,
+						'libelleArticle' => $libelleArticle,
+						'descriptifArticle' => $descriptifArticle,
+						'prixArticle' => $prixArticle,
+						'libelleUnivers' => $libelleUnivers
+					)); 
+					//version 2
+					//supression ancienne donnée
+					/*$sql = "DELETE FROM FICHE_ARTICLE WHERE refArticle = :refArticle";
+					$stmt = $bdd->prepare($sql);
+					$stmt->execute(array(
+						'refArticle' => $refArticle
+					));
+					//ajout nouvelle donnée
+					$sql = "INSERT INTO FICHE_ARTICLE VALUES (:refArticle, :libelleArticle, :descriptifArticle, :prixArticle, :libelleUnivers)";
+					$stmt = $bdd->prepare($sql);
+					$stmt->execute(array(
+						'refArticle' => $refArticle,
+						'libelleArticle' => $libelleArticle,
+						'descriptifArticle' => $descriptifArticle,
+						'prixArticle' => $prixArticle,
+						'libelleUnivers' => $libelleUnivers
+					));*/
+					header("Location: ../administration.php?successmodifelem");
+				}
+			}
+		}
 	}
-	else {
-		// On récupère le contenu de la table qui correspond a la reference
-		//$reponse = $bdd->query('SELECT libelleArticle, descriptifArticle, prixArticle, libelleUnivers FROM FICHE_ARTICLE WHERE refArticle = "'.$refArticle.'"');
-		$row=$stmt->fetch();
-		// mise a jour
-		$_SESSION['refArticle'] = $row['refArticle'];
-		$_SESSION['libelleArticle'] = $row['libelleArticle'];
-		$_SESSION['descriptifArticle'] = $row['descriptifArticle'];
-		$_SESSION['prixArticle'] = $row['prixArticle'];
-		$_SESSION['libelleUnivers'] = $row['libelleUnivers'];
-	}
 }
-?>

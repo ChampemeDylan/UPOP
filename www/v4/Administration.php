@@ -2,7 +2,7 @@
 session_start();
 
 require "./php/verifConnexion.php";
-//require "./php/setArticle.php";
+require "./php/setArticle.php";
 
 function debug_to_console($data) {
     if(is_array($data) || is_object($data))
@@ -13,13 +13,6 @@ function debug_to_console($data) {
 	}
 }
 
-// test bouton Chercher appuyé
-/* if(isset($_POST['Chercher']))
-{
-	// inclu editCompte.php à la page courante
-	include('php/modifElement.php');
-}
-?> */
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +91,8 @@ function debug_to_console($data) {
 <!-- titre d'en tete -->
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-				<h1></h1>
+				<br />
+				<br />
 				<div class="col-xs-12"><hr></div>
 			</div>
 		</div>
@@ -230,57 +224,73 @@ function debug_to_console($data) {
 								<h3 class="panel-title">Modifier un element.</h3>
 							</div>
 							<div class="panel-body">
-								<form role="form">
-									<div class="col-xs-7 col-sm-7 col-md-7">
-										<div class="form-group" method="post" action="Administration.php">
-											<?php echo '<input type="text" name="refArticle"  class="form-control input-sm" placeholder="refArticle"  value="'.htmlspecialchars($_SESSION['refArticle']).'">'; ?>
+<!-- recherche d'un element et affichage -->
+								<form role="form" method="post">
+									<div class="col-xs-12 col-sm-12 col-md-12">
+										<div class="form-group">
+											<!--<input type="text" name="refArticle"  class="form-control input-sm" placeholder="Reference">-->
+											<?php echo '<input type="text" name="refArticle"  class="form-control input-sm reference" placeholder="Reference"  value="'.htmlspecialchars($_SESSION['refArticle']).'">'; ?>
+											<?php if(isset($_GET['erreurref5'])){
+												echo '<div style="text-align:center;color:red;">Aucune reference</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-5 col-sm-5 col-md-5">
 										<div class="form-group">
-											<input type="submit" name="Chercher" class="btn btn-block" onclick = <?php /* include('./php/setArticle.php'); */ ?> > 
+											<?php echo '<input type="submit" name="Chercher" class="btn btn-block chercher">' ?>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="panel-body">
+<!-- modification d'un element -->
+								<form role="form" method="post" action="php/modifElement.php">
+									<div class="col-xs-12 col-sm-12 col-md-12">
+										<div class="form-group" style="display: none;">
+											<?php echo '<input type="text" name="refArticle"  class="form-control input-sm" placeholder="Libelle"  value="'.htmlspecialchars($_SESSION['refArticle']).'">'; ?>
+											<?php if(isset($_GET['erreurref6'])){
+												echo '<div style="text-align:center;color:red;">Aucune reference</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
-										<div class="form-group" method="post">
+										<div class="form-group">
 											<?php echo '<input type="text" name="libelleArticle"  class="form-control input-sm" placeholder="Libelle"  value="'.htmlspecialchars($_SESSION['libelleArticle']).'">'; ?>
+											<?php if(isset($_GET['erreurlibelle6'])){
+												echo '<div style="text-align:center;color:red;">Aucun libelle</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
 											<?php echo '<textarea cols="40" rows="20" name="descriptifArticle"  class="form-control input-sm" placeholder="Description">'.htmlspecialchars($_SESSION['descriptifArticle']).'</textarea>'; ?>
+											<?php if(isset($_GET['erreurarticle6'])){
+												echo '<div style="text-align:center;color:red;">Aucune description</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
 											<?php echo '<input type="text" name="prixArticle"  class="form-control input-sm" placeholder="Prix" value="'.htmlspecialchars($_SESSION['prixArticle']).'">'; ?>
+											<?php if(isset($_GET['erreurprix6'])){
+												echo '<div style="text-align:center;color:red;">Aucun prix</div>';
+											}
+											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
 											<?php echo '<input type="text" name="libelleUnivers"  class="form-control input-sm" placeholder="Univers" value="'.htmlspecialchars($_SESSION['libelleUnivers']).'">'; ?>
+											<?php if(isset($_GET['erreurexist6'])){
+												echo '<div style="text-align:center;color:red;">Cet univers n\'existe pas</div>';
+											}
+											?>
 										</div>
 									</div>
-									<div class="col-xs-6 col-sm-6 col-md-6">
-										<div class="form-group">
-											<input type="checkbox" name="Categ1" value="Jeux vidéos"> Jeux vidéos
-										</div>
-									</div>
-									<div class="col-xs-6 col-sm-6 col-md-6">
-										<div class="form-group">
-											<input type="checkbox" name="Categ2" value="Séries"> Séries
-										</div>
-									</div>
-									<div class="col-xs-6 col-sm-6 col-md-6">
-										<div class="form-group">
-											<input type="checkbox" name="Categ3" value="Films"> Films
-										</div>
-									</div>
-									<div class="col-xs-6 col-sm-6 col-md-6">
-										<div class="form-group">
-											<input type="checkbox" name="Categ4" value="Animés"> Animés
-										</div>
-									</div> 
 									<input type="submit" value="Modifier" class="btn btn-block">   		
 								</form>
 							</div>
@@ -365,4 +375,14 @@ function debug_to_console($data) {
 	</div>
 <!-- fin contenu de la page -->
 </body>
+<script>
+$(".chercher").click(function(){
+			var ref = $(".reference").val();
+			console.log(ref);
+			$.ajax({
+				url: 'php/setArticle.php',
+	    		data: 'refArticle=' + ref
+			});
+		})
+</script>
 </html>
