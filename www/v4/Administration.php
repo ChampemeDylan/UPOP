@@ -280,14 +280,14 @@ function debug_to_console($data) {
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group" style="display: none;">
 											<?php echo '<input type="text" name="refArticle"  class="form-control input-sm" placeholder="Libelle"  value="'.htmlspecialchars($_SESSION['refArticle']).'">'; ?>
-											<?php if(isset($_GET['erreurref6'])){
-												echo '<div style="text-align:center;color:red;">Aucune reference</div>';
-											}
-											?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<div class="form-group">
+											<?php if(isset($_GET['successmodifelem'])){
+												echo '<div style="text-align:center;color:green;">Modification effectuée</div>';
+											}
+											?>
 											<?php echo '<input type="text" name="libelleArticle"  class="form-control input-sm" placeholder="Libelle"  value="'.htmlspecialchars($_SESSION['libelleArticle']).'">'; ?>
 											<?php if(isset($_GET['erreurlibelle6'])){
 												echo '<div style="text-align:center;color:red;">Aucun libelle</div>';
