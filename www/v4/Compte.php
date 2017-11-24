@@ -167,7 +167,11 @@ if(isset($_POST['validCompte']))
 										<?php if(isset($_GET['erreurpassword'])){
 											echo '<div style="text-align:center;color:red;">Les 2 mots de passe ne sont pas identiques</div>';
 										} else {
-											echo '<br>';
+											if(isset($_GET['validedit'])){
+												echo '<div style="text-align:center;color:green;">Mise à jour effectuée</div>';
+											} else {
+												echo '<br>';
+											}
 										}
 										?>
 									</div>

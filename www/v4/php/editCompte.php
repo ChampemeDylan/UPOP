@@ -75,6 +75,7 @@ try
 		$_SESSION['mailUser'] = $mailUser;
 		$_SESSION['passwordUser'] = $passwordUserCrypted;
 
+		header("Location: ../Compte.php?validedit=validee");
 	}
 	else {
 		header("Location: ../Compte.php?erreurpassword=error_password");
