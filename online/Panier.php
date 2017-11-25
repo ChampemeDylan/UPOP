@@ -127,10 +127,10 @@ require "./php/verifConnexion.php";
 							{
 							    //on se connecte à la base de données
 							    // en local
-							    $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+							    //$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 
 							    //en online
-							    //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+							    $bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
 							}
 							catch (Exception $e)
 							{
@@ -197,17 +197,13 @@ require "./php/verifConnexion.php";
 						<hr>
 						<div class="row fond">
 							<div class="col-xs-12 col-sm-12 col-md-12 text-right">
+									<div>
+											<label>TVA (20%)</label>
+											<div class="totalCommande" id="tvaPanier"></div>
+									</div>
 						    	<div>
-						        	<label>Total HT</label>
+						        	<label>Total TTC</label>
 						      		<div class="totalCommande" id="sousTotalPanier"></div>
-						    	</div>
-						    	<div>
-						    	    <label>TVA (20%)</label>
-						        	<div class="totalCommande" id="tvaPanier"></div>
-						    	</div>
-						    	<div>
-						    	    <label>Total Commande</label>
-						      		<div class="totalCommande" id="totalPanier"></div>
 						    	</div>
 						    	<br>
 							<input type="button" value="Commander" class="btn validationCommande">
