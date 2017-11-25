@@ -116,8 +116,8 @@ ul {
 }
 
 #compteur{
-  width:40px;
-  display:none;
+  width: 0px;
+  display: none;
 }
 
 .navbar-default .navbar-toggle:focus {
