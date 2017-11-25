@@ -102,6 +102,9 @@ try
 
 									</body>
 							</html>';
+
+//Configuration :
+							
 				$headers  = 'MIME-Version: 1.0' . "\r\n";
 				$headers .= 'From:'.$loginUser.' <'.$mailUser.'>' . "\r\n" .
 							'Reply-To:'.$mailUser. "\r\n" .
