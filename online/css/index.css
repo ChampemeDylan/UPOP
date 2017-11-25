@@ -7,11 +7,10 @@ body {
   }
 
 .container {
-    padding: 25px;
-    opacity : 0.9;    
+  padding: 25px;
+  opacity : 0.9;
+  margin-top: 40px;
 }
-
-
 
 .form-login {
     background-color: rgb(254, 212, 73);
@@ -26,11 +25,11 @@ body {
 }
 
 .panel-default{
-    background-color: rgb(254, 212, 73);    
+    background-color: rgb(254, 212, 73);
 }
 
-h4 { 
- border:0 solid #fff; 
+h4 {
+ border:0 solid #fff;
  border-bottom-width:1px;
  padding-bottom:10px;
  text-align: center;
@@ -51,4 +50,21 @@ h4 {
 	background:grey;
 	font:bold 13px Arial;
     color:#fff;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
 }

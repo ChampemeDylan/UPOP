@@ -33,6 +33,11 @@ try
                 //on se connecte à la base de données:
                 try
                 {
+                    //on se connecte à la base de données
+	                // en local
+	                //$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+
+                  //en online
                   $bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
                 }
                 catch (Exception $e)
@@ -40,11 +45,7 @@ try
                 die('<br />Erreur : ' . $e->getMessage());
                 }
 
-                //ancien code ( on se connecte a la base de données) :
-                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960;charset=utf8', 'dbo708219960', 'dbo708219960');
-
                 $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
                 //on vérifie que la connexion s'effectue correctement
                 if(!$bdd){
                     header("Location: ../index.php?erreurbdd=error_bdd");
@@ -76,7 +77,8 @@ try
                         $_SESSION['cpUser'] = $row['cpUser'];
                         $_SESSION['villeUser'] = $row['villeUser'];
                         $_SESSION['mailUser'] = $row['mailUser'];
-
+                        $_SESSION['typeUser'] = $row['typeUser'];
+                        $_SESSION['refArticle'] = "010101";
                         header("Location: ../Accueil.php"); // Redirection du navigateur
                         exit;
                     }

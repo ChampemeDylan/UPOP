@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if(isset($_SESSION['loginUser'])) {
+  header("Location: accueil.php");
+  exit();
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -21,10 +31,12 @@
 	<body>
 		<div class="container">
 <!-- page de connexion -->
-			<div id="connexion" class="row centered-form">
+			<div id="connexion" class="row">
 				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-					<form class="form-login" method="post" action="php/connexion.php"><!-- appel du php de connexion -->
-						<img src="images/iconeupop.png" width="400px" class="img-responsive center-block"/>
+					<form class="form-login" method="post" action="./php/connexion.php"><!-- appel du php de connexion -->
+						<div class="row">
+							<img src="images/iconeupop.png" width="400px" class="img-responsive col-xs-12"/>
+						</div>
 						<h4>Bienvenue sur U'POP</h4>
 						<input type="text" id="loginUser" name="loginUser" class="form-control input-sm chat-input" placeholder="Pseudo" />
 						</br>
@@ -37,22 +49,24 @@
 							echo '<div style="text-align:center;color:red;">Aucun mot de passe</div>';
 						} else if(isset($_GET['erreurbdd'])){
 							echo '<div style="text-align:center;color:red;">Erreur de connexion à la base</div>';
+						} else if(isset($_GET['validinscription'])) {
+							echo '<div style="text-align:center;color:green;">Inscription validée</div>';
 						} else {
 							echo '<br>';
 						}
 						?>
 						</br>
 						<div class="wrapper">
-							<span class="group-btn">  
+							<span class="group-btn">
 								<br>
 								<button href="#" class="btn" type="submit" name="connexion">Se connecter</button>
 								<button class="btn" type="button" onclick="boutonClick(event)">Inscription</button><!-- appel fonction de bascule sur div inscription -->
 							</span>
 						</div>
-					</form>					
+					</form>
 				</div>
 			</div>
-			
+
 <!-- page d'inscription -->
 			<div id="inscription" class="row centered-form">
 				<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -61,30 +75,42 @@
 							<h3 class="panel-title">Formulaire d'inscription</h3>
 						</div>
 						<div class="panel-body">
-							<form role="form" method="post" action="/php/inscription.php"><!-- appel du php d'inscription -->
+							<form role="form" method="post" action="./php/inscription.php"><!-- appel du php d'inscription -->
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Login -->
-										<input type="text" name="loginUser" id="loginUser" class="form-control input-sm" placeholder="Login">
+										<input type="text" minlength="5" name="loginUser" id="loginUser" class="form-control input-sm" placeholder="Login">
+										<?php if(isset($_GET['loginexistant'])){
+											echo '<div style="text-align:center;color:red;">Login déjà existant</div>';
+										} else {
+											echo '<br>';
+										}
+										?>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Mot de passe -->
-										<input type="password" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe">
+										<input type="password" minlength="8" name="passwordUser" id="passwordUser" class="form-control input-sm" placeholder="Mot de passe"><!-- format de type password -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Confirmation Mot de passe -->
-										<input type="password" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe"><!-- format de type password -->
+										<input type="password" minlength="8" name="passwordUser2" id="passwordUser2" class="form-control input-sm" placeholder="Confirmer Mot de passe">
+										<?php if(isset($_GET['erreurpassword'])){
+											echo '<div style="text-align:center;color:red;">Les 2 mots de passe ne sont pas identiques</div>';
+										} else {
+											echo '<br>';
+										}
+										?>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Nom -->
-										<input type="text" name="nomUser" id="nomUser" class="form-control input-sm" placeholder="Nom">
+										<input type="text" minlength="2" name="nomUser" id="nomUser" class="form-control input-sm" placeholder="Nom">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Prenom -->
-										<input type="text" name="prenomUser" id="prenomUser" class="form-control input-sm" placeholder="Prénom">
+										<input type="text" minlength="2" name="prenomUser" id="prenomUser" class="form-control input-sm" placeholder="Prénom">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -97,27 +123,27 @@
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Date de naissance -->
-										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" placeholder="Date de naissance"><!-- format de type date -->
+										<input type="date" name="dateNaissanceUser" id="dateNaissanceUser" class="form-control input-sm" value="1970-01-01"><!-- format de type date -->
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Adresse -->
-										<input type="text" name="adresseUser" id="adresseUser" class="form-control input-sm" placeholder="Adresse Postale">
+										<input type="text" minlength="2" name="adresseUser" id="adresseUser" class="form-control input-sm" placeholder="Adresse Postale">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Code Postal -->
-										<input type="number" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" placeholder="Code Postal"><!-- number limité à 5 caractères -->
+										<input type="number" minlength="5" maxlength="5" name="cpUser" id="cpUser" class="form-control input-sm" placeholder="Code Postal"><!-- number limité à 5 caractères -->
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group"><!-- Ville -->
-										<input type="text" name="villeUser" id="villeUser" class="form-control input-sm" placeholder="Ville">
+										<input type="text" minlength="2" name="villeUser" id="villeUser" class="form-control input-sm" placeholder="Ville">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group"><!-- Mail -->
-										<input type="email" name="mailUser" id="mailUser" class="form-control input-sm" placeholder="E-mail"><!-- format de type email -->
+										<input type="email" minlength="2" name="mailUser" id="mailUser" class="form-control input-sm" placeholder="E-mail"><!-- format de type email -->
 									</div>
 								</div>
 								<button class="btn" type="submit">Valider</button>
@@ -128,12 +154,31 @@
 				</div>
 			</div>
 		</div>
+		<div class="footer">
+			<div class="container-fluid">
+				© 2017 Copyright: U'Pop -- Ce site est un projet étudiant et non un site de vente
+			</div>
+		</div>
 	</body>
+
 	<script>
 	//cache par défaut la div d'inscription
 	$(document).ready(function()
     {
-        $("#inscription").hide(); 
+		var passError = 
+			<?php
+			 if (isset($_GET['erreurpassword']) or isset($_GET['loginexistant']))
+			 { echo 1; }
+			 else
+			 { echo 0; }
+			 ?>;
+		if (passError == 1){
+			$("#connexion").hide();
+        	$("#inscription").show();
+		}
+		else{
+        	$("#inscription").hide();
+		}
     });
 
 	//bascule de connexion à inscription
@@ -149,6 +194,6 @@
         $("#inscription").hide(400);
         $("#connexion").show(400);
     }
-	
+
 	</script>
 </html>

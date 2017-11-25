@@ -1,49 +1,59 @@
 <?php
 try
 {
-	//on se connecte à la base de données:
-	try
-	{
-		$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
-	}
-	catch (Exception $e)
-	{
-	die('<br />Erreur : ' . $e->getMessage());
-	}
+	//on se connecte à la base de données
+	// en local
+	//$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 
-	// ancien : (On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe)
-		// $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'user');
-		//}
-		//catch(Exception $e)
-		//{
-		// En cas d'erreur, on affiche un message et on arrête tout
-  	//die('Erreur : '.$e->getMessage());
-		//}
-
+	//en online
+	$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+}
+catch(Exception $e)
+{
+	// En cas d'erreur, on affiche un message et on arrête tout
+        die('Erreur : '.$e->getMessage());
+}
 // On associe la valeur de l'input à la variable
-$mysqli = mysqli_connect("db708219960.db.1and1.com;dbname=db708219960", "dbo708219960", "dbo708219960", "db708219960");
-$reference = $_POST['Reference'];
-$libelle = $_POST['Libelle'];
-$description = $_POST['Description'];
-$prix = $_POST['Prix'];
-$univers = $_POST['Univers'];
+//$mysqli = mysqli_connect("localhost", "root", "user", "Upop");
+$refArticle = $_POST['refArticle'];
+$libelleArticle = $_POST['libelleArticle'];
+$libelleUnivers = $_POST['libelleUnivers'];
 
 
 // On verifie si les données non nulles ne sont pas vides
 
-if(empty($_POST['Reference'])) {
-	echo "La reference est vide.";
+if(empty($_POST['refArticle'])) {
+	//echo "La reference est vide.";
+	header("Location: ../administration.php?erreurref2=bad_ref2");
 } else {
-	if(empty($_POST['Libelle'])) {
-		echo "Le libelle est vide.";
+	if(empty($_POST['libelleArticle'])) {
+		//echo "Le libelle est vide.";
+		header("Location: ../administration.php?erreurlibelle3=bad_lib3");
 	} else {
-		$Requete = mysqli_query($mysqli,"SELECT * FROM fiche_article WHERE libelleUnivers = '".$univers."' AND refArticle = '".$reference."' AND libelleArticle = '".$libelle."'");
+		//$Requete = mysqli_query($mysqli,"SELECT * FROM FICHE_ARTICLE WHERE libelleUnivers = '".$libelleUnivers."' AND refArticle = '".$refArticle."' AND libelleArticle = '".$libelleArticle."'");
+		$sql = "SELECT * FROM FICHE_ARTICLE WHERE libelleUnivers = :libelleUnivers AND refArticle = :refArticle AND libelleArticle = :libelleArticle";
+		$stmt = $bdd->prepare($sql);
+
+		$stmt->execute(array(
+			'libelleUnivers' => $libelleUnivers,
+			'refArticle' => $refArticle,
+			'libelleArticle' => $libelleArticle
+		));
+
 		// si il y a un résultat, mysqli_num_rows() nous donnera alors 1
 		// si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
-		if(mysqli_num_rows($Requete) == 1) {
-			$bdd->exec('DELETE FROM fiche_article WHERE refArticle = "'.$reference.'"');
+		//if(mysqli_num_rows($Requete) == 1) {
+		if($stmt->rowcount() == 0){
+			//echo "Cet element n'existe pas.";
+			header("Location: ../administration.php?erreurexist3=bad_exist3");
 		} else {
-			echo "Cet element n'existe pas.";
+			//$bdd->exec('DELETE FROM FICHE_ARTICLE WHERE refArticle = "'.$refArticle.'"');
+			$sql = "DELETE FROM FICHE_ARTICLE WHERE refArticle = :refArticle";
+			$stmt = $bdd->prepare($sql);
+			$stmt->execute(array(
+				'refArticle' => $refArticle
+			));
+			header("Location: ../administration.php?successsupelem=good_supelem");
 		}
 	}
 }
