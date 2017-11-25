@@ -89,7 +89,7 @@ try
 								</head>
 									<body>
 									    <p style="font-size: 22px;">	Bonjour '.$prenomUser.',
-											vous venez de vous inscrire sur Upop et on vous en remercie.
+											vous venez de vous inscrire sur Upop et nous vous en remercions.
 											Merci de votre confiance et à bientôt sur Upop.
 										</p><br>
 										<p style="font-size: 22px;">
