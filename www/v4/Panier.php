@@ -72,7 +72,7 @@ require "./php/verifConnexion.php";
                                 $stmt->execute(array(
                                     'loginUser' => $_SESSION['loginUser']
                                 ));
-                                $row = $stmt->fetch();
+                                $row = $stmt->fetch(); 
                             }
                                     
                     ?>
@@ -104,19 +104,19 @@ require "./php/verifConnexion.php";
 							<div class="col-xs-1 col-sm-1 col-md-1">				
 							</div>
 							<div class="col-xs-2 col-sm-2 col-md-2">	
-								<p><b>Ref. Article</b></p>			
+								<div><b>Ref. Article</b></div>			
 							</div>
 							<div class="col-xs-4 col-sm-4 col-md-4">				
-								<p><b>Titre de l'article</b></p>
+								<div><b>Titre de l'article</b></div>
 							</div>
 							<div class="col-xs-1 col-sm-1 col-md-1">				
-								<p><b>Prix Unit. (en €)</b></p>
+								<div class="prixProduit"><b>Prix Unit. (en €)</b></div>
 							</div>
 							<div class="col-xs-1 col-sm-1 col-md-1">				
-								<p><b>Quantité</b></p>
+								<div class="quantiteArticle"><b>Quantité</b></div>
 							</div>
 							<div class="col-xs-1 col-sm-1 col-md-1">				
-								<p><b>Prix Total (en €)</b></p>
+								<div class="prixProduitTotal"><b>Prix Total (en €)</b></div>
 							</div>
 							<div class="col-xs-2 col-sm-2 col-md-2">				
 							</div>	
@@ -144,54 +144,74 @@ require "./php/verifConnexion.php";
 							else 
 							{
 							    // VERIFICATION DE LA COMMANDE EN COURS
-							    $sql = "SELECT * FROM commande,commande_article,fiche_article,stock_article WHERE stock_article.refArticle=fiche_article.refArticle AND fiche_article.refArticle=commande_article.refArticle AND commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours'";
+							    $sql = "SELECT commande.numeroCommande,commande_article.refArticle,libelleArticle,libelleUnivers,prixArticle,stockArticle,quantiteArticle FROM commande,commande_article,fiche_article,stock_article WHERE stock_article.refArticle=fiche_article.refArticle AND fiche_article.refArticle=commande_article.refArticle AND commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours'";
 							    $stmt = $bdd->prepare($sql);
 							    $stmt->execute(array(
 							        'loginUser' => $_SESSION['loginUser']
 							    ));
 							    while ($row = $stmt->fetch())
 							    	{
+							    		$_SESSION['numCommande'] = $row['numeroCommande'];
 						?>
 						<!-- bloc d'un article du panier -->
-						<div class="row fond">
+						<div class="row fond article">
 							<!-- image de l'article du panier -->
 							<div class="col-xs-1 col-sm-1 col-md-1">				
 								<img id="ImgPerso" src=<?php echo 'images/'.$row['refArticle'].'.png' ?>>
 							</div>
-							<div class="col-xs-2 col-sm-2 col-md-2">	
-								<p><?php echo $row['refArticle']; ?></p>			
+							<div class="col-xs-2 col-sm-2 col-md-2 refArticle">	
+								<?php echo $row['refArticle']; ?>		
 							</div>
 							<!-- libellé de l'article du panier -->
 							<div class="col-xs-4 col-sm-4 col-md-4">				
-								<p><?php echo $row['libelleArticle']; ?></p>
-								<p><?php echo $row['libelleUnivers']; ?></p>
+								<div class="libelleArticle"><?php echo $row['libelleArticle']; ?></div>
+								<div class="libelleUnivers"><?php echo $row['libelleUnivers']; ?></div>
 							</div>
 							<!-- prix unitaire de l'article du panier -->
-							<div class="col-xs-1 col-sm-1 col-md-1">				
-								<p><?php echo $row['prixArticle']; ?></p>
+							<div class="col-xs-1 col-sm-1 col-md-1 prixProduit">				
+								<?php echo $row['prixArticle']; ?>
 							</div>
 							<!-- quantite de l'article du panier -->
-							<div class="col-xs-1 col-sm-1 col-md-1">	
-								<input style="width:40px;" type="number" max=<?php echo $row['stockArticle'] ?> maxlength="2" value=<?php echo $row['quantiteArticle'] ?>></input>			
+							<div class="col-xs-1 col-sm-1 col-md-1" class="qteArticle">	
+								<input class="quantiteArticle" type="number" min="0" max=<?php echo $row['stockArticle'] ?> value=<?php echo $row['quantiteArticle'] ?>></input>			
 							</div>
 							<!-- montant total pour cet article du panier -->
-							<div class="col-xs-1 col-sm-1 col-md-1">				
-								<p><?php echo $row['prixArticle']; ?></p>
+							<div class="col-xs-1 col-sm-1 col-md-1 prixProduitTotal">				
+								<?php 
+									$qte = $row['quantiteArticle'];
+									$prix = $row['prixArticle']; 
+									$prixTotal = $qte*$prix;
+									echo $prixTotal;	
+								?>
 							</div>
 							<!-- suppresion de l'article du panier -->
 							<div class="col-xs-2 col-sm-2 col-md-2">
-								<input type="button" value="Supprimer" class="btn">				
+								<input type="button" value="Supprimer" class="suppressionArticle btn" id=<?php echo $row['refArticle']; ?>>				
 							</div>
 						</div>
-						<hr>
 						<?php
 							}
 							$stmt->closeCursor(); // Termine le traitement de la requête
 						}
 						?>	
-
-						<div class="col-xs-12 col-sm-12 col-md-12 text-right">
-							<input type="button" value="Commander" class="btn">
+						<hr>
+						<div class="row fond">
+							<div class="col-xs-12 col-sm-12 col-md-12 text-right">
+						    	<div>
+						        	<label>Total HT</label>
+						      		<div class="totalCommande" id="sousTotalPanier"></div>
+						    	</div>
+						    	<div>
+						    	    <label>TVA (20%)</label>
+						        	<div class="totalCommande" id="tvaPanier"></div>
+						    	</div>
+						    	<div>
+						    	    <label>Total Commande</label>
+						      		<div class="totalCommande" id="totalPanier"></div>
+						    	</div>
+						    	<br>
+							<input type="button" value="Commander" class="btn validationCommande">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -201,9 +221,84 @@ require "./php/verifConnexion.php";
 <!-- fin contenu de la page -->
 </body>
 <script>
+	var tauxTVA = 0.20;
+	var fadeTime = 200;
+
 	$(window).on('load',function(){
+		calculPanier();
     	count = parseInt($("#compteur").val());
     	$("#countArticle").append(count);
     });
+
+	$('.quantiteArticle').change( function() {
+    	modifQuantite(this);
+	});
+
+    $('.suppressionArticle').click( function() {
+  		deleteArticle(this);
+	});
+
+	function calculPanier()
+	{
+		var sousTotal = 0;
+
+		$('.article').each(function () {
+			sousTotal += parseFloat($(this).children('.prixProduitTotal').text());
+		});
+
+		var TVA = sousTotal * tauxTVA;
+		var totalCommande = sousTotal + TVA;
+
+		$('.totalCommande').fadeOut(fadeTime, function() {
+			$('#sousTotalPanier').html(sousTotal.toFixed(2));
+			$('#tvaPanier').html(TVA.toFixed(2));
+			$('#totalPanier').html(totalCommande.toFixed(2));
+			if(totalCommande == 0){
+				$('.validationCommande').fadeOut(fadeTime);
+			}else{
+				$('.validationCommande').fadeIn(fadeTime);
+			}
+		$('.totalCommande').fadeIn(fadeTime);
+		});
+	};
+
+	function deleteArticle(boutonSuppression)
+	{
+    	var ligneArticle = $(boutonSuppression).parent().parent();
+    	var prixArticleEnCours = parseFloat(ligneArticle.children('.prixProduit').text());
+		var qteArticleEnCours = parseInt(ligneArticle.children().children('.quantiteArticle').val());
+		var refArticleEnCours = ligneArticle.children('.refArticle').text();
+
+		console.log(prixArticleEnCours,qteArticleEnCours,refArticleEnCours);
+		$.ajax({
+				url: 'php/suppressionPanier.php',
+	    		data: 'refArticle='+ refArticleEnCours,
+	    		success: function(){
+	    			count-=1;
+		    			$("#countArticle").html(count);
+	    		}
+			});
+
+    	ligneArticle.slideUp(fadeTime, function() {
+    		ligneArticle.remove();
+    		calculPanier();
+    	});
+	};
+
+	function modifQuantite(quantiteSaisie)
+	{
+		var ligneArticle = $(quantiteSaisie).parent().parent();
+		var prix = parseFloat(ligneArticle.children('.prixProduit').text());
+		var quantite = parseInt($(quantiteSaisie).val());
+		var prixTotal = prix * quantite;
+
+		ligneArticle.children('.prixProduitTotal').each(function () {
+			$(this).fadeOut(fadeTime, function() {
+				$(this).text(prixTotal.toFixed(2));
+				calculPanier();
+				$(this).fadeIn(fadeTime);
+			});
+		});  
+	};
 </script>
 </html>
