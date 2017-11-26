@@ -64,6 +64,7 @@ header('Content-Type: text/html; charset=utf-8');
                             die('<br />Erreur : ' . $e->getMessage());
                             }
                             $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $pdo_options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8';
                             //on vérifie que la connexion s'effectue correctement
                             if(!$bdd){
                                 header("Location: ../panier.php?erreurbdd=error_bdd");
