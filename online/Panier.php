@@ -266,25 +266,29 @@ header('Content-Type: text/html; charset=utf-8');
   		deleteArticle(this);
 	});
 
-    $('.validationCommande').click( function() {
-    	$('.article').each(function () {
-			var qteArticleEnCours = $(this).children().children('.quantiteArticle').val();
-			var refArticleEnCours = $(this).children('.refArticle').text();
-			console.log(qteArticleEnCours,refArticleEnCours);
+	$('.validationCommande').click( function() {
+			$('.article').each(function () {
+					var qteArticleEnCours = $(this).children().children('.quantiteArticle').val();
+					var refArticleEnCours = $(this).children('.refArticle').text();
+					console.log(qteArticleEnCours,refArticleEnCours);
+					$.ajax({
+							url: 'php/updateQtePanier.php',
+							data: 'qteArticle='+ qteArticleEnCours+'&'+'refArticle='+refArticleEnCours,
+							success: function(){
+							}
+					});
+					$(this).remove();
+			});
 			$.ajax({
-				url: 'php/updateQtePanier.php',
-	    		data: 'qteArticle='+ qteArticleEnCours+'&'+'refArticle='+refArticleEnCours,
-	    		success: function(){
-	    		}
-			});
-		});
-		$.ajax({
-				url: 'php/validationCommande.php',
-	    		success: function(){
-	    		}
-			});
-		alert('Votre commande a bien été validé');
-    });
+							url: 'php/validationCommande.php',
+							success: function(){
+							}
+					});
+			var count=0;
+			$("#countArticle").html(count);
+			calculPanier();
+			alert('Votre commande a bien été validé');
+	});
 
 	function calculPanier()
 	{
