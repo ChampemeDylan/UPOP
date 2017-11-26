@@ -25,12 +25,13 @@ DROP TABLE IF EXISTS `commande`;
 CREATE TABLE `commande` (
   `numeroCommande` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `loginUser` varchar(10) NOT NULL,
-  `dateCreation` datetime NOT NULL,
-  `dateValidation` datetime NOT NULL,
+  `dateCommande` date NOT NULL,
+  `dateValidation` date DEFAULT NULL,
+  `etatCommande` varchar(10) NOT NULL,
   PRIMARY KEY (`numeroCommande`),
   KEY `FK_C_User` (`loginUser`),
   CONSTRAINT `FK_C_User` FOREIGN KEY (`loginUser`) REFERENCES `fiche_user` (`loginUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +40,7 @@ CREATE TABLE `commande` (
 
 LOCK TABLES `commande` WRITE;
 /*!40000 ALTER TABLE `commande` DISABLE KEYS */;
+INSERT INTO `commande` VALUES (1,'Simon','2017-11-23',NULL,'En cours');
 /*!40000 ALTER TABLE `commande` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-20 17:11:01
+-- Dump completed on 2017-11-26 16:56:46

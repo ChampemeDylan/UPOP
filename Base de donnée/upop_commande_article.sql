@@ -39,6 +39,7 @@ CREATE TABLE `commande_article` (
 
 LOCK TABLES `commande_article` WRITE;
 /*!40000 ALTER TABLE `commande_article` DISABLE KEYS */;
+INSERT INTO `commande_article` VALUES (1,'010501',1),(1,'010601',1),(1,'010701',1);
 /*!40000 ALTER TABLE `commande_article` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-20 17:11:00
+-- Dump completed on 2017-11-26 16:56:45
