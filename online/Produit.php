@@ -18,7 +18,7 @@ header('Content-Type: text/html; charset=utf-8');
   	<script type="application/javascript" src="./js/bootstrap.min.js"></script>
     <meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv= »Content-Type » content= »text/html; charset=utf-8″ />
+    <meta http-equiv= "Content-Type" content= "text/html; charset=utf-8"/>
 
   	<title>U POP</title>
   </head>
