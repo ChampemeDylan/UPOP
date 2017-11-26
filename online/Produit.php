@@ -103,8 +103,8 @@ header('Content-Type: text/html; charset=utf-8');
     //Local
     //$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
     //online
-    $bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
     $pdo_options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8';
+    $bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960', $pdo_options);
   }
   catch(Exception $e)
   {
