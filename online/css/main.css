@@ -1,0 +1,125 @@
+html {
+  font-family     : "Helvetica";
+  text-align      : justify;
+}
+
+body {
+  background-image: url("../images/background2.jpg");
+  background-size : 100%;
+  background-attachment : fixed;
+  background-position : center-center;
+  background-repeat : no-repeat;
+}
+
+
+ul {
+  text-align      : left;
+}
+
+.refColor {
+	color: grey;
+	font-size: 10px;
+}
+
+.imgButton2 {
+  max-width       : 100%;
+  max-height      : 70px;
+}
+
+/*.imgCV {
+  max-height      : 150px;
+  max-width       : 150px;
+}
+
+.textColor {
+  font-size       : 10px;
+  color           : grey;
+}
+
+.titleCV {
+  font-size       : 25px;
+  text-decoration : underline;
+}
+
+.title2CV {
+  font-size       : 25px;
+}*/
+
+.titleCateg {
+  font-size       : 15px;
+  text-decoration : underline;
+}
+
+.imgButton {
+  max-width : 55px;
+  max-height : 55px;
+}
+
+.logoBar{
+  max-width : 100px;
+  max-height : 100px;
+}
+
+.menu{
+
+  background-color: rgba(254,212,73,0.5);
+
+}
+
+.panel-default{
+  border-radius: 20px;
+  background-color: rgba(254, 212, 73, 0.3);
+}
+
+.panel-default>.panel-heading{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: rgb(136,206,98);
+}
+
+.panel-title{
+  color: white;
+  font-weight: bolder;
+}
+
+.btn{
+  color: white;
+  font-weight: bold;
+  border-color: rgb(96, 143, 69);
+  background-color: rgb(136,206,98);
+}
+
+.btn-primary{
+  margin-left: 20px;
+  margin-bottom: 10px;
+
+}
+
+.marginTopPage {
+  margin-top: 100px;
+}
+
+.navbar{
+  border-bottom: 3px solid rgb(35, 31, 32);
+  border-top: 3px solid rgb(35, 31, 32);
+}
+
+#countArticle,#login{
+  position:relative;
+  z-index:1000;
+  color: red;
+  top: 22px;
+  right: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-stretch: semi-condensed;
+}
+
+#compteur{
+  width: 0px;
+  display: none;
+}
+
+.navbar-default .navbar-toggle:focus {
+  background-color: rgba(0,0,0,0);
+}

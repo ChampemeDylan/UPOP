@@ -1,0 +1,14 @@
+.imageProduit {
+  max-height: 400px;
+  max-width: 400px;
+}
+
+.paddingArticle {
+  padding: 10px;
+}
+
+.paddingRef {
+  padding: 0px;
+  color: grey;
+  font-size: 10px;
+}
