@@ -2,6 +2,7 @@
 session_start();
 
 require "./php/verifConnexion.php";
+header('Content-Type: text/html; charset=utf-8');
 
 // test bouton validCompte appuyé
 if(isset($_POST['validCompte']))
@@ -26,6 +27,7 @@ if(isset($_POST['validCompte']))
 		<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
 		<script type="application/javascript" src="./js/bootstrap.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv= "Content-Type" content= "text/html; charset=utf-8"/>
 		<title>U'POP - Compte</title>
 	</head>
 
@@ -64,7 +66,8 @@ if(isset($_POST['validCompte']))
                                 $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 
                                 //en online
-                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+                                //$pdo_options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8';
+                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960','dbo708219960','dbo708219960', $pdo_options);
                             }
                             catch (Exception $e)
                             {
@@ -200,15 +203,20 @@ if(isset($_POST['validCompte']))
 							<?php
 								try
 								{
-									// On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
+									//on se connecte à la base de données
+									// en local
 									$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+
+									//en online
+									//$pdo_options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8';
+									//$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960','dbo708219960','dbo708219960', $pdo_options);
 								}
-								catch(Exception $e)
+								catch (Exception $e)
 								{
-										// En cas d'erreur, on affiche un message et on arrête tout
-								        die('Erreur : '.$e->getMessage());
-								}
-								// récupération des commandes de l'utilisateur connecté
+								die('<br />Erreur : ' . $e->getMessage());
+								}                
+								$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							// récupération des commandes de l'utilisateur connecté
 								$sql = "SELECT * FROM commande WHERE loginUser=:loginUser ORDER BY dateCommande DESC";
 								$stmt = $bdd->prepare($sql);
 								$stmt->execute(array(

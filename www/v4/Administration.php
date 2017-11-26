@@ -3,6 +3,7 @@ session_start();
 
 require "./php/verifConnexion.php";
 require "./php/setArticle.php";
+header('Content-Type: text/html; charset=utf-8');
 
 function debug_to_console($data) {
     if(is_array($data) || is_object($data))
@@ -32,6 +33,7 @@ function debug_to_console($data) {
     <script type="application/javascript" src="./js/bootstrap.min.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv= "Content-Type" content= "text/html; charset=utf-8"/>
 	<script>
 		$(function() {
 			$('#onglets').css('display', 'block');
@@ -50,7 +52,7 @@ function debug_to_console($data) {
 			setDisplay();
 		});
 	</script>
-	<title>Administration</title>
+	<title>U Pop - Administration</title>
 </head>
 
 <body>
@@ -87,7 +89,8 @@ function debug_to_console($data) {
                                 $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 
                                 //en online
-                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+                                //$pdo_options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8';
+                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960','dbo708219960','dbo708219960', $pdo_options);
                             }
                             catch (Exception $e)
                             {

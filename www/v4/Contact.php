@@ -5,6 +5,7 @@
 session_start();
 
 require "./php/verifConnexion.php";
+header('Content-Type: text/html; charset=utf-8');
 
 //	Configuration
 
@@ -72,10 +73,11 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 	<!-- fichiers javascript -->
 	<script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
 	<script type="application/javascript" src="./js/bootstrap.min.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv= "Content-Type" content= "text/html; charset=utf-8"/>
+  
 
-
-	<title>U POP</title>
+	<title>U POP - Contact</title>
 
 </head>
 <body>
@@ -112,7 +114,8 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
                                 $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 
                                 //en online
-                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+                                //$pdo_options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8';
+                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960','dbo708219960','dbo708219960', $pdo_options);
                             }
                             catch (Exception $e)
                             {

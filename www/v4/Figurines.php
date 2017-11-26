@@ -1,7 +1,7 @@
 <?php
 session_start();
-
 require "./php/verifConnexion.php";
+header('Content-Type: text/html; charset=utf-8');
 ?>
 <!DOCTYPE html>
 
@@ -20,8 +20,10 @@ require "./php/verifConnexion.php";
 <!-- fichiers javascript -->
   <script type="application/javascript" src="./js/jquery-3.2.1.min.js"></script>
   <script type="application/javascript" src="./js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv= "Content-Type" content= "text/html; charset=utf-8"/>
 
-	<title>U POP</title>
+  <title>U POP - Figurines</title>
 
 </head>
 
@@ -58,7 +60,8 @@ require "./php/verifConnexion.php";
                                 $bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
 
                                 //en online
-                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960', 'dbo708219960', 'dbo708219960');
+                                //$pdo_options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8';
+                                //$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960','dbo708219960','dbo708219960', $pdo_options);
                             }
                             catch (Exception $e)
                             {
@@ -118,14 +121,20 @@ require "./php/verifConnexion.php";
 			<?php
 				try
 				{
-					// On se connecte à MySQL avec l'adresse du serveur, l'identifiant et le mot de passe
+					//on se connecte à la base de données
+					// en local
 					$bdd = new PDO('mysql:host=localhost;dbname=uPop;charset=utf8', 'root', 'root');
+
+					//en online
+					//$pdo_options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8';
+					//$bdd = new PDO('mysql:host=db708219960.db.1and1.com;dbname=db708219960','dbo708219960','dbo708219960', $pdo_options);
 				}
-				catch(Exception $e)
+				catch (Exception $e)
 				{
-						// En cas d'erreur, on affiche un message et on arrête tout
-				        die('Erreur : '.$e->getMessage());
-				}
+				die('<br />Erreur : ' . $e->getMessage());
+				}                
+				$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				
 				if(isset($_GET['categorie'])){
 					switch ($_GET['categorie']) {
 						case 'films':
