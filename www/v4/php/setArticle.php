@@ -26,7 +26,7 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
-$sql = "SELECT * FROM fiche_Article WHERE refArticle = :refArticle";
+$sql = "SELECT * FROM fiche_article WHERE refArticle = :refArticle";
 $stmt = $bdd->prepare($sql);
 
 $stmt->execute(array(

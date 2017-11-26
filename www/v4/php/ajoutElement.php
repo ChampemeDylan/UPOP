@@ -41,7 +41,7 @@ if(empty($_POST['refArticle'])) {
 				header("Location: ../administration.php?erreurprix=bad_prix");
 			} else {
 				//$Requete = mysqli_query($mysqli,"SELECT * FROM UNIVERS WHERE libelleUnivers = '".$libelleUnivers."'");
-				$sql = "SELECT * FROM UNIVERS WHERE libelleUnivers = :libelleUnivers";
+				$sql = "SELECT * FROM univers WHERE libelleUnivers = :libelleUnivers";
 				$stmt = $bdd->prepare($sql);
 				
 				$stmt->execute(array(
@@ -56,7 +56,7 @@ if(empty($_POST['refArticle'])) {
 					header("Location: ../administration.php?erreurexist=bad_exist");
 				} else {
 					//$bdd->exec('INSERT INTO FICHE_ARTICLE VALUES (\''.$refArticle.'\', \''.$libelleArticle.'\', \''.$descriptifArticle.'\', '.$prixArticle.', \''.$libelleUnivers.'\')');
-					$sql = "INSERT INTO FICHE_ARTICLE VALUES (:refArticle, :libelleArticle, :descriptifArticle, :prixArticle, :libelleUnivers)";
+					$sql = "INSERT INTO fiche_article VALUES (:refArticle, :libelleArticle, :descriptifArticle, :prixArticle, :libelleUnivers)";
 					$stmt = $bdd->prepare($sql);
 					$stmt->execute(array(
 						'refArticle' => $refArticle,

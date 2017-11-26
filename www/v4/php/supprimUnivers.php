@@ -26,7 +26,7 @@ if(empty($_POST['libelleUnivers'])) {
 	header("Location: ../administration.php?erreurexist4=bad_exist4");
 } else {
 		//$Requete = mysqli_query($mysqli,"SELECT * FROM FICHE_ARTICLE WHERE libelleUnivers = '".$libelleUnivers."' AND refArticle = '".$refArticle."' AND libelleArticle = '".$libelleArticle."'");
-		$sql = "SELECT * FROM UNIVERS WHERE libelleUnivers = :libelleUnivers";
+		$sql = "SELECT * FROM univers WHERE libelleUnivers = :libelleUnivers";
 		$stmt = $bdd->prepare($sql);
 		
 		$stmt->execute(array(
@@ -51,17 +51,17 @@ if(empty($_POST['libelleUnivers'])) {
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers
 			)); */
-			$sql = "DELETE FROM FICHE_ARTICLE WHERE libelleUnivers = :libelleUnivers";
+			$sql = "DELETE FROM fiche_articleE WHERE libelleUnivers = :libelleUnivers";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers
 			));
-			$sql = "DELETE FROM UNIVERS_CATEGORIE WHERE libelleUnivers = :libelleUnivers";
+			$sql = "DELETE FROM univers_categorie WHERE libelleUnivers = :libelleUnivers";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers
 			));
-			$sql = "DELETE FROM UNIVERS WHERE libelleUnivers = :libelleUnivers";
+			$sql = "DELETE FROM univers WHERE libelleUnivers = :libelleUnivers";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers

@@ -32,7 +32,7 @@ if(empty($_POST['refArticle'])) {
 		header("Location: ../administration.php?erreurlibelle3=bad_lib3");
 	} else {
 		//$Requete = mysqli_query($mysqli,"SELECT * FROM FICHE_ARTICLE WHERE libelleUnivers = '".$libelleUnivers."' AND refArticle = '".$refArticle."' AND libelleArticle = '".$libelleArticle."'");
-		$sql = "SELECT * FROM FICHE_ARTICLE WHERE libelleUnivers = :libelleUnivers AND refArticle = :refArticle AND libelleArticle = :libelleArticle";
+		$sql = "SELECT * FROM fiche_article WHERE libelleUnivers = :libelleUnivers AND refArticle = :refArticle AND libelleArticle = :libelleArticle";
 		$stmt = $bdd->prepare($sql);
 		
 		$stmt->execute(array(
@@ -49,7 +49,7 @@ if(empty($_POST['refArticle'])) {
 			header("Location: ../administration.php?erreurexist3=bad_exist3");
 		} else {
 			//$bdd->exec('DELETE FROM FICHE_ARTICLE WHERE refArticle = "'.$refArticle.'"');
-			$sql = "DELETE FROM FICHE_ARTICLE WHERE refArticle = :refArticle";
+			$sql = "DELETE FROM fiche_article WHERE refArticle = :refArticle";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'refArticle' => $refArticle

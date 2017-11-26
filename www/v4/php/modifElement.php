@@ -46,7 +46,7 @@ if(empty($_POST['refArticle'])) {
 				header("Location: ../administration.php?erreurprix6=bad_prix");
 			} else {
 				//$Requete = mysqli_query($mysqli,"SELECT * FROM UNIVERS WHERE libelleUnivers = '".$libelleUnivers."'");
-				$sql = "SELECT * FROM UNIVERS WHERE libelleUnivers = :libelleUnivers";
+				$sql = "SELECT * FROM univers WHERE libelleUnivers = :libelleUnivers";
 				$stmt = $bdd->prepare($sql);
 				
 				$stmt->execute(array(
@@ -62,7 +62,7 @@ if(empty($_POST['refArticle'])) {
 				} else {
 					//$bdd->exec('INSERT INTO FICHE_ARTICLE VALUES (\''.$refArticle.'\', \''.$libelleArticle.'\', \''.$descriptifArticle.'\', '.$prixArticle.', \''.$libelleUnivers.'\')');
 					//version 1 ne passe pas !?
-					$sql = "UPDATE FICHE_ARTICLE SET libelleArticle = :libelleArticle, descriptifArticle = :descriptifArticle, prixArticle= :prixArticle, libelleUnivers = :libelleUnivers WHERE refArticle = :refArticle" ;
+					$sql = "UPDATE fiche_article SET libelleArticle = :libelleArticle, descriptifArticle = :descriptifArticle, prixArticle= :prixArticle, libelleUnivers = :libelleUnivers WHERE refArticle = :refArticle" ;
 					$stmt = $bdd->prepare($sql);
 					$stmt->execute(array(
 						'refArticle' => $refArticle,

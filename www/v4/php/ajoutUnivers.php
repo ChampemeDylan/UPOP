@@ -29,7 +29,7 @@ if(empty($_POST['libelleUnivers'])) {
 	header("Location: ../administration.php?erreurlibelle2=bad_lib2");
 } else {
 	//$Requete = mysqli_query($mysqli,"SELECT * FROM UNIVERS WHERE libelleUnivers = '".$libelleUnivers."'");
-	$sql = "SELECT * FROM UNIVERS WHERE libelleUnivers = :libelleUnivers";
+	$sql = "SELECT * FROM univers WHERE libelleUnivers = :libelleUnivers";
 	$stmt = $bdd->prepare($sql);
 	
 	$stmt->execute(array( 
@@ -44,14 +44,14 @@ if(empty($_POST['libelleUnivers'])) {
 		header("Location: ../administration.php?erreurexist2=bad_exist2");
 	} else {
 		//$bdd->exec('INSERT INTO UNIVERS VALUES (\''.$libelleUnivers.'\')');
-		$sql = "INSERT INTO UNIVERS VALUES (:libelleUnivers)";
+		$sql = "INSERT INTO univers VALUES (:libelleUnivers)";
 		$stmt = $bdd->prepare($sql);
 		$stmt->execute(array(
 			'libelleUnivers' => $libelleUnivers
 		));
 		if(isset($_POST['categ1'])) {
 			//$bdd->exec('INSERT INTO UNIVERS_CATEGORIE VALUES (\''.$libelleUnivers.'\', \''.$categ1.'\')');
-			$sql = "INSERT INTO UNIVERS_CATEGORIE VALUES (:libelleUnivers, :categ1)";
+			$sql = "INSERT INTO univers_categorie VALUES (:libelleUnivers, :categ1)";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers,
@@ -60,7 +60,7 @@ if(empty($_POST['libelleUnivers'])) {
 		}
 		if(isset($_POST['categ2'])) {
 			//$bdd->exec('INSERT INTO UNIVERS_CATEGORIE VALUES (\''.$libelleUnivers.'\', \''.$categ2.'\')');
-			$sql = "INSERT INTO UNIVERS_CATEGORIE VALUES (:libelleUnivers, :categ2)";
+			$sql = "INSERT INTO univers_categorie VALUES (:libelleUnivers, :categ2)";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers,
@@ -69,7 +69,7 @@ if(empty($_POST['libelleUnivers'])) {
 		}
 		if(isset($_POST['categ3'])) {
 			//$bdd->exec('INSERT INTO UNIVERS_CATEGORIE VALUES (\''.$libelleUnivers.'\', \''.$categ3.'\')');
-			$sql = "INSERT INTO UNIVERS_CATEGORIE VALUES (:libelleUnivers, :categ3)";
+			$sql = "INSERT INTO univers_categorie VALUES (:libelleUnivers, :categ3)";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers,
@@ -78,7 +78,7 @@ if(empty($_POST['libelleUnivers'])) {
 		}
 		if(isset($_POST['categ4'])) {
 			//$bdd->exec('INSERT INTO UNIVERS_CATEGORIE VALUES (\''.$libelleUnivers.'\', \''.$categ4.'\')'); 
-			$sql = "INSERT INTO UNIVERS_CATEGORIE VALUES (:libelleUnivers, :categ4)";
+			$sql = "INSERT INTO univers_categorie VALUES (:libelleUnivers, :categ4)";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers,
