@@ -39,8 +39,18 @@ if(empty($_POST['libelleUnivers'])) {
 			//echo "Cet univers n'existe pas.";
 			header("Location: ../administration.php?erreurexist5=bad_exist5");
 		} else {
-			//$bdd->exec('DELETE FROM FICHE_ARTICLE WHERE refArticle = "'.$refArticle.'"');
-			$sql = "DELETE FROM UNIVERS WHERE libelleUnivers = :libelleUnivers";
+			// fonctionne directement sur la bdd mais pas sur le site.
+			/* $sql = "DELETE FROM COMMANDE_ARTICLE WHERE refArticle IN (SELECT refArticle FROM FICHE_ARTICLE WHERE libelleUnivers = :libelleUnivers)";
+			$stmt = $bdd->prepare($sql);
+			$stmt->execute(array(
+				'libelleUnivers' => $libelleUnivers
+			));
+			$sql = "DELETE FROM STOCK_ARTICLE WHERE refArticle IN (SELECT refArticle FROM FICHE_ARTICLE WHERE libelleUnivers = :libelleUnivers)";
+			$stmt = $bdd->prepare($sql);
+			$stmt->execute(array(
+				'libelleUnivers' => $libelleUnivers
+			)); */
+			$sql = "DELETE FROM FICHE_ARTICLE WHERE libelleUnivers = :libelleUnivers";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers
@@ -50,7 +60,7 @@ if(empty($_POST['libelleUnivers'])) {
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers
 			));
-			$sql = "DELETE FROM FICHE_ARTICLE WHERE libelleUnivers = :libelleUnivers";
+			$sql = "DELETE FROM UNIVERS WHERE libelleUnivers = :libelleUnivers";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute(array(
 				'libelleUnivers' => $libelleUnivers
@@ -58,6 +68,4 @@ if(empty($_POST['libelleUnivers'])) {
 			header("Location: ../administration.php?successsupuniv=good_supuniv");
 		}
 	}
-
-
 ?>

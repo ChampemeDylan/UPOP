@@ -16,7 +16,7 @@ catch(Exception $e)
 // On associe la valeur de l'input à la variable
 $libelleUnivers = $_POST['libelleUnivers'];
 //$mysqli = mysqli_connect("localhost", "root", "user", "Upop");
-$categ1 = 'Jeu vidéo';
+$categ1 = 'Jeu Vidéo';
 $categ2 = 'Série';
 $categ3 = 'Film';
 $categ4 = 'Dessin Animé';
