@@ -244,7 +244,7 @@ if(isset($_POST['validCompte']))
 								die('<br />Erreur : ' . $e->getMessage());
 								}
 								$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							// récupération des commandes de l'utilisateur connecté
+								// récupération des commandes de l'utilisateur connecté
 								$sql = "SELECT * FROM commande WHERE loginUser=:loginUser ORDER BY dateCommande DESC";
 								$stmt = $bdd->prepare($sql);
 								$stmt->execute(array(
@@ -271,7 +271,7 @@ if(isset($_POST['validCompte']))
 									<td><?php echo $donnees['numeroCommande'] ?></td>
 									<td><?php echo $donnees['dateCommande'] ?></td>
 									<td><?php echo $montantTotal ?> €</td>
-									<td><?php echo $donnees['etatCommande'] ?></td>
+									<td><?php echo htmlspecialchars($donnees['etatCommande']) ?></td>
 								</tr>
 							</tbody>
 							<?php
