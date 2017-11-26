@@ -146,7 +146,35 @@ header('Content-Type: text/html; charset=utf-8');
 							    header("Location: ../panier.php?erreurbdd=error_bdd");
 							}
 							else 
-							{
+							{	
+								// VERIFICATION DU STOCK DES ARTICLES DU PANIER
+                                // Récupération des ref articles du panier en cours
+                                $sql = "SELECT refArticle,commande.numeroCommande FROM commande,commande_article WHERE commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours'";
+                                $stmt = $bdd->prepare($sql);
+                                $stmt->execute(array(
+                                    'loginUser' => $_SESSION['loginUser']
+                                ));
+
+                                while($row = $stmt->fetch()){
+                                    // Vérification du stock de l'article 
+                                    $sql2 = "SELECT stockArticle FROM stock_article WHERE refArticle=:refArticle";
+                                    $stmt2 = $bdd->prepare($sql2);
+                                    $stmt2->execute(array(
+                                        'refArticle' => $row['refArticle']
+                                    ));
+                                    $row2=$stmt2->fetch();
+
+                                    // Dans le cas ou l'article n'a plus de stock, on le supprime de la commande en cours
+                                    if ($row2['stockArticle']<=0){
+                                        $sql3 = "DELETE FROM commande_article WHERE refArticle=:refArticle AND numeroCommande=:numeroCommande";
+                                        $stmt3 = $bdd->prepare($sql3);
+                                        $stmt3->execute(array(
+                                            'refArticle' => $row['refArticle'],
+                                            'numeroCommande' => $row['numeroCommande']
+                                        ));
+                                    }
+                                };
+
 							    // VERIFICATION DE LA COMMANDE EN COURS
 							    $sql = "SELECT commande.numeroCommande,commande_article.refArticle,libelleArticle,libelleUnivers,prixArticle,stockArticle,quantiteArticle FROM commande,commande_article,fiche_article,stock_article WHERE stock_article.refArticle=fiche_article.refArticle AND fiche_article.refArticle=commande_article.refArticle AND commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours'";
 							    $stmt = $bdd->prepare($sql);
@@ -177,7 +205,7 @@ header('Content-Type: text/html; charset=utf-8');
 							</div>
 							<!-- quantite de l'article du panier -->
 							<div class="col-xs-1 col-sm-1 col-md-1" class="qteArticle">	
-								<input class="quantiteArticle" type="number" min="0" max=<?php echo $row['stockArticle'] ?> value=<?php echo $row['quantiteArticle'] ?>></input>			
+								<input class="quantiteArticle" type="number" min="1" max=<?php echo $row['stockArticle'] ?> value=<?php echo $row['quantiteArticle'] ?>></input>			
 							</div>
 							<!-- montant total pour cet article du panier -->
 							<div class="col-xs-1 col-sm-1 col-md-1 prixProduitTotal">				
@@ -201,10 +229,6 @@ header('Content-Type: text/html; charset=utf-8');
 						<hr>
 						<div class="row fond">
 							<div class="col-xs-12 col-sm-12 col-md-12 text-right">
-						    	<div>
-						        	<label>Total HT</label>
-						      		<div class="totalCommande" id="sousTotalPanier"></div>
-						    	</div>
 						    	<div>
 						    	    <label>TVA (20%)</label>
 						        	<div class="totalCommande" id="tvaPanier"></div>
@@ -242,21 +266,36 @@ header('Content-Type: text/html; charset=utf-8');
   		deleteArticle(this);
 	});
 
+    $('.validationCommande').click( function() {
+    	$('.article').each(function () {
+			var qteArticleEnCours = $(this).children().children('.quantiteArticle').val();
+			var refArticleEnCours = $(this).children('.refArticle').text();
+			console.log(qteArticleEnCours,refArticleEnCours);
+			$.ajax({
+				url: 'php/updateQtePanier.php',
+	    		data: 'qteArticle='+ qteArticleEnCours+'&'+'refArticle='+refArticleEnCours,
+	    		success: function(){	
+	    		}
+			});
+		});
+		$.ajax({
+				url: 'php/validationCommande.php',
+	    		success: function(){	
+	    		}
+			});
+		alert('Votre commande a bien été validé');
+    });
+
 	function calculPanier()
 	{
-		var sousTotal = 0;
-
+		var totalCommande = 0;
 		$('.article').each(function () {
-			sousTotal += parseFloat($(this).children('.prixProduitTotal').text());
+			totalCommande += parseFloat($(this).children('.prixProduitTotal').text());
 		});
-
-		var TVA = sousTotal * tauxTVA;
-		var totalCommande = sousTotal + TVA;
-
+		var TVA = totalCommande * tauxTVA;
 		$('.totalCommande').fadeOut(fadeTime, function() {
-			$('#sousTotalPanier').html(sousTotal.toFixed(2));
-			$('#tvaPanier').html(TVA.toFixed(2));
 			$('#totalPanier').html(totalCommande.toFixed(2));
+			$('#tvaPanier').html(TVA.toFixed(2));
 			if(totalCommande == 0){
 				$('.validationCommande').fadeOut(fadeTime);
 			}else{
@@ -269,20 +308,15 @@ header('Content-Type: text/html; charset=utf-8');
 	function deleteArticle(boutonSuppression)
 	{
     	var ligneArticle = $(boutonSuppression).parent().parent();
-    	var prixArticleEnCours = parseFloat(ligneArticle.children('.prixProduit').text());
-		var qteArticleEnCours = parseInt(ligneArticle.children().children('.quantiteArticle').val());
 		var refArticleEnCours = ligneArticle.children('.refArticle').text();
-
-		console.log(prixArticleEnCours,qteArticleEnCours,refArticleEnCours);
 		$.ajax({
 				url: 'php/suppressionPanier.php',
 	    		data: 'refArticle='+ refArticleEnCours,
 	    		success: function(){
 	    			count-=1;
-		    			$("#countArticle").html(count);
+		    		$("#countArticle").html(count);
 	    		}
 			});
-
     	ligneArticle.slideUp(fadeTime, function() {
     		ligneArticle.remove();
     		calculPanier();
@@ -295,7 +329,6 @@ header('Content-Type: text/html; charset=utf-8');
 		var prix = parseFloat(ligneArticle.children('.prixProduit').text());
 		var quantite = parseInt($(quantiteSaisie).val());
 		var prixTotal = prix * quantite;
-
 		ligneArticle.children('.prixProduitTotal').each(function () {
 			$(this).fadeOut(fadeTime, function() {
 				$(this).text(prixTotal.toFixed(2));

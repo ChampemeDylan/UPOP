@@ -128,6 +128,34 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
                             }
                             else 
                             {
+                                // VERIFICATION DU STOCK DES ARTICLES DU PANIER
+                                // Récupération des ref articles du panier en cours
+                                $sql = "SELECT refArticle,commande.numeroCommande FROM commande,commande_article WHERE commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours'";
+                                $stmt = $bdd->prepare($sql);
+                                $stmt->execute(array(
+                                    'loginUser' => $_SESSION['loginUser']
+                                ));
+
+                                while($row = $stmt->fetch()){
+                                    // Vérification du stock de l'article 
+                                    $sql2 = "SELECT stockArticle FROM stock_article WHERE refArticle=:refArticle";
+                                    $stmt2 = $bdd->prepare($sql2);
+                                    $stmt2->execute(array(
+                                        'refArticle' => $row['refArticle']
+                                    ));
+                                    $row2=$stmt2->fetch();
+
+                                    // Dans le cas ou l'article n'a plus de stock, on le supprime de la commande en cours
+                                    if ($row2['stockArticle']<=0){
+                                        $sql3 = "DELETE FROM commande_article WHERE refArticle=:refArticle AND numeroCommande=:numeroCommande";
+                                        $stmt3 = $bdd->prepare($sql3);
+                                        $stmt3->execute(array(
+                                            'refArticle' => $row['refArticle'],
+                                            'numeroCommande' => $row['numeroCommande']
+                                        ));
+                                    }
+                                };
+
                                 // VERIFICATION DE LA COMMANDE EN COURS
                                 $sql = "SELECT count(*) FROM commande,commande_article WHERE commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours';";
                                 $stmt = $bdd->prepare($sql);
@@ -149,7 +177,7 @@ $err_formulaire = false; // sert à remplir le formulaire en cas d'erreur si bes
 		</div>
 	</nav>
 
--<!-- contenu de la page -->
+<!-- contenu de la page -->
 	<div class="container center marginTopPage">
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-6">

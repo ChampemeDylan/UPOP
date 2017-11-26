@@ -70,6 +70,34 @@ header('Content-Type: text/html; charset=utf-8');
                             }
                             else 
                             {
+                              // VERIFICATION DU STOCK DES ARTICLES DU PANIER
+                                // Récupération des ref articles du panier en cours
+                                $sql = "SELECT refArticle,commande.numeroCommande FROM commande,commande_article WHERE commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours'";
+                                $stmt = $bdd->prepare($sql);
+                                $stmt->execute(array(
+                                    'loginUser' => $_SESSION['loginUser']
+                                ));
+
+                                while($row = $stmt->fetch()){
+                                    // Vérification du stock de l'article 
+                                    $sql2 = "SELECT stockArticle FROM stock_article WHERE refArticle=:refArticle";
+                                    $stmt2 = $bdd->prepare($sql2);
+                                    $stmt2->execute(array(
+                                        'refArticle' => $row['refArticle']
+                                    ));
+                                    $row2=$stmt2->fetch();
+
+                                    // Dans le cas ou l'article n'a plus de stock, on le supprime de la commande en cours
+                                    if ($row2['stockArticle']<=0){
+                                        $sql3 = "DELETE FROM commande_article WHERE refArticle=:refArticle AND numeroCommande=:numeroCommande";
+                                        $stmt3 = $bdd->prepare($sql3);
+                                        $stmt3->execute(array(
+                                            'refArticle' => $row['refArticle'],
+                                            'numeroCommande' => $row['numeroCommande']
+                                        ));
+                                    }
+                                };
+
                                 // VERIFICATION DE LA COMMANDE EN COURS
                                 $sql = "SELECT count(*) FROM commande,commande_article WHERE commande.numeroCommande=commande_article.numeroCommande AND loginUser=:loginUser AND etatCommande='En cours';";
                                 $stmt = $bdd->prepare($sql);
@@ -190,8 +218,9 @@ header('Content-Type: text/html; charset=utf-8');
             if (test==="V") {
               count+=1;
               $("#countArticle").html(count);
+            } else {
+              alert('Article déjà présent dans votre panier')
             }
-            alert(reponse); // reponse contient l'affichage du fichier PHP (soit echo)
           }
       });
     })
