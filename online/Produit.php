@@ -176,7 +176,7 @@ header('Content-Type: text/html; charset=utf-8');
 
           <!-- Quantité -->
           <div class="col-xs-12">
-            <p><b>Qté : </b><?php
+            <p><b>Stock : </b><?php
               if ($donnees['stockArticle']>0)
                 {
                   echo $donnees['stockArticle'];
@@ -219,6 +219,7 @@ header('Content-Type: text/html; charset=utf-8');
             if (test==="V") {
               count+=1;
               $("#countArticle").html(count);
+              alert(reponse);
             } else {
               alert('Article déjà présent dans votre panier')
             }

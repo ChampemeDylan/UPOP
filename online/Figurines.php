@@ -293,6 +293,7 @@ header('Content-Type: text/html; charset=utf-8');
 	    			if (test==="V") {
 		    			count+=1;
 		    			$("#countArticle").html(count);
+							alert(reponse);
 	    			} else {
 	    				alert('Article déjà présent dans votre panier');
 	    			}

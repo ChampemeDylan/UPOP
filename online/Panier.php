@@ -195,13 +195,16 @@ header('Content-Type: text/html; charset=utf-8');
 								<?php echo $row['refArticle']; ?>
 							</div>
 							<!-- libellé de l'article du panier -->
-							<div class="col-xs-4 col-sm-4 col-md-4">
-								<div class="libelleArticle"><?php echo $row['libelleArticle']; ?></div>
-								<div class="libelleUnivers"><?php echo $row['libelleUnivers']; ?></div>
-							</div>
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                <a href="produit.php?refArticle=<?php echo $row['refArticle']; ?>">
+                  <b><!-- Insertion PHP du titre et du libellé de la figurine -->
+                    <?php echo $row['libelleArticle']; ?> (<?php echo $row['libelleUnivers']; ?>)
+                  </b>
+                </a>
+              </div>
 							<!-- prix unitaire de l'article du panier -->
 							<div class="col-xs-1 col-sm-1 col-md-1 prixProduit">
-								<?php echo $row['prixArticle']; ?>
+								<?php echo $row['prixArticle']; ?>.00
 							</div>
 							<!-- quantite de l'article du panier -->
 							<div class="col-xs-1 col-sm-1 col-md-1" class="qteArticle">
@@ -213,7 +216,7 @@ header('Content-Type: text/html; charset=utf-8');
 									$qte = $row['quantiteArticle'];
 									$prix = $row['prixArticle'];
 									$prixTotal = $qte*$prix;
-									echo $prixTotal;
+									echo $prixTotal.'.00';
 								?>
 							</div>
 							<!-- suppresion de l'article du panier -->

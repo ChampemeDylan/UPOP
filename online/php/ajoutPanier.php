@@ -91,7 +91,7 @@ else
         // SINON ON
    		else
    		{
-   			echo 'L\'article est déjà présent dans le panier';
+
    		}
     }
 }
